@@ -1,0 +1,339 @@
+.page-recursos .menu li a,
+.page-recursos .menu li span {
+  color: var(--textwhite); /* ou var(--bg-branco) */
+}
+
+.page-recursos .header-scrolled .menu li a {
+  color: var(--text); 
+}
+
+.page-recursos .header-scrolled #entrar-link {
+    color: var(--text); 
+    border: 2px solid var(--text);
+}
+
+.page-recursos #entrar-link {
+    color: var(--textwhite);
+    border: 2px solid var(--textwhite);
+    transition: background-color 0.3s, color 0.3s;
+} 
+
+.page-recursos #entrar-link:hover {
+    color: var(--primary);
+    background: white;
+} 
+
+.page-recursos #contato-link {
+    background: radial-gradient(circle, rgba(19, 180, 238, 1) 0%, rgba(45, 248, 250, 1) 100%);
+    border: 2px solid var(--secondary);
+    transition: background-color 0.3s, color 0.3s;
+} 
+
+.page-recursos #contato-link:hover {
+    background: var(--secondary);
+} 
+
+.page-recursos {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+}
+
+.recursos-section {
+    position: relative;
+    padding: calc(var(--header-height) + 2rem) 0 4rem 0; /* Reduzi o padding */
+    background: linear-gradient(to bottom, var(--primary) 0%, var(--primary) 32%, rgba(var(--primary-rgb), 0.2) 32%, rgba(var(--primary-rgb), 0.2) 100%);
+}
+
+.recursos-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.recursos-header {
+   display: flex;
+   flex-wrap: nowrap;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.recursos-header-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+}
+
+.recursos-header-texto h1 {
+    font: 700 3rem/1 'Inter', sans-serif;
+    color: var(--textwhite);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recursos-header-texto p {
+    font: 400 1.2rem/1.6 'Inter', sans-serif;
+    color: var(--textwhite);
+}
+
+.recursos-header-texto .destaque {
+    font: 500 1rem/1.6 'Inter', sans-serif;
+    padding: 15px 20px;
+    background-color: #30BBEB;
+    color: #fff;
+}
+
+.recursos-header-imagem {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.recursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.recurso-card {
+    background: var(--bg-branco);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(var(--primary-rgb), 0.3);
+    padding: 30px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.recurso-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(var(--primary-rgb), 0.35);
+}
+
+.recurso-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(var(--primary-rgb), 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.recurso-icon .icon {
+    width: 36px;
+    height: 36px;
+}
+
+.recurso-content h2 {
+    font: 700 1.8rem/1.3 'Inter', sans-serif;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.recurso-descricao {
+    font: 400 1rem/1.6 'Inter', sans-serif;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.recurso-lista {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+.recurso-lista li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    font: 400 0.95rem/1.5 'Inter', sans-serif;
+}
+
+.recurso-lista li::before {
+    position: absolute;
+    left: 5px;
+    top: 0px;
+    width: 18px;
+    height: 18px;
+    content: "✓";
+    color: var(--secondary);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .recursos-section {
+        background: linear-gradient(to bottom, var(--primary) 0%, var(--primary) 15%, var(--bg-branco) 15%, var(--bg-branco) 100%);
+    }
+
+    .recursos-container {
+      gap: 40px;
+  }
+    
+    .recursos-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .recursos-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .recursos-header p {
+        font-size: 1.1rem;
+    }
+    
+    .recursos-header .destaque {
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    .recursos-header-imagem {
+        flex: 1;
+        display: block;
+    }
+
+    .recursos-header-imagem svg {
+       width: 100%;
+       height: auto;
+    }
+    
+    .recursos-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0px;
+    }
+    
+    .recurso-card {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .recursos-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .recurso-content h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* iPad Portrait (768px-1024px) - Recursos Page */
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 1024px) 
+  and (orientation: portrait) {
+
+  .page-recursos .recursos-section {
+    padding: calc(var(--header-height) + 1.5rem) 2rem 3rem 2rem;
+    background: linear-gradient(to bottom, var(--primary) 0%, var(--primary) 25%, rgba(var(--primary-rgb), 0.2) 25%, rgba(var(--primary-rgb), 0.2) 100%);
+  }
+
+  .page-recursos .recursos-container {
+    gap: 40px;
+  }
+
+  .page-recursos .recursos-header {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .page-recursos .recursos-header-texto h1 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .page-recursos .recursos-header-texto p {
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .page-recursos .recursos-header-texto .destaque {
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+  }
+
+  .page-recursos .recursos-header-imagem {
+    justify-content: center;
+    margin-top: 1rem;
+    display: flex;
+  }
+
+  .page-recursos .recursos-header-imagem svg {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .page-recursos .recursos-grid {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  .page-recursos .recurso-card {
+    padding: 25px;
+  }
+
+  .page-recursos .recurso-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+  }
+
+  .page-recursos .recurso-icon .icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .page-recursos .recurso-content h2 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+
+  .page-recursos .recurso-descricao {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+  }
+
+  .page-recursos .recurso-lista li {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  /* Header adjustments for recursos page */
+  .page-recursos .header-scrolled .menu li a,
+  .page-recursos .header-scrolled #entrar-link {
+    color: var(--text);
+  }
+
+  .page-recursos #entrar-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .page-recursos #contato-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-centralizado {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem; /* Espaço acima do botão */
+  }
+
+  .cta-button {
+    display: block; /* Mude para block */
+    width: auto; /* Ou um valor fixo como 300px se preferir */
+    padding: 1rem 2.5rem; /* Ajuste o padding se necessário */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    text-align: center;
+    font-size: 1.1rem; /* Tamanho de fonte um pouco maior para iPad */
+  }
+}

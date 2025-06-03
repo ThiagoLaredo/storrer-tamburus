@@ -1,0 +1,63 @@
+/* Estilos gerais para o botão CTA */
+.btn-centralizado {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.cta-button {
+  background: white;
+  color: var(--secondary);
+  display: inline-block;
+  text-align: center;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 280px; 
+  max-width: 350px;
+  white-space: nowrap;  
+}
+  
+.cta-button:hover {
+  background: rgba(19, 180, 238, 1);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button.azul {
+  background: rgba(19, 180, 238, 1);
+  color: white;
+}
+
+.cta-button.azul:hover {
+  background: #fff;
+  color: rgba(19, 180, 238, 1);
+}
+
+.btn-comprar {
+  width: 100%;
+  display: inline-block;
+  padding: 14px 6px;
+  background: var(--secondary);
+  text-align: center;
+  color: var(--textwhite);
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 20px;
+}
+
+.btn-comprar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  background-color: #38C7F2;
+}

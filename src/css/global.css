@@ -1,0 +1,121 @@
+body, h1, h2, h3, h4, p, ul, li, a {
+  margin: 0;
+  padding: 0;
+}
+
+/* h1, h2, h3, h4, p, ul, li, a {
+  will-change: opacity, transform;
+} */
+
+html, body {
+  /* height: 100%; */
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  all: unset;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.swiper-slide {
+  user-select: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Adicione no seu CSS global ou no menu-mobile.css */
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Garante que o menu não cause rolagem horizontal */
+.menu {
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+/* Garante renderização suave */
+.page-open-animate,
+[data-menu],
+.header_acoes a {
+    will-change: opacity;
+    backface-visibility: hidden;
+}
+
+/* Reset inicial seguro */
+body.preload .page-open-animate,
+body.preload [data-menu],
+body.preload .header_acoes a {
+    opacity: 0 !important;
+}
+
+.container {
+  max-width: 1200px; /* Largura máxima do container */
+  margin: 0 auto;
+  width: 100%; /* Faz o container ocupar toda a largura disponível */
+  padding: 0 1.25rem;
+  box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap; /* Adiciona suporte para espaçamento em branco */
+}
+
+.hidden-img {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* Evita que os elementos apareçam antes do JavaScript animar */
+[data-menu='logo'],
+[data-menu='button'],
+#menu > li > a,
+#menu > li > span,
+.header_acoes a,
+.page-open-animate {
+  opacity: 0;
+}
+
+
+/* iPad Portrait (768px-1024px) Header Adjustments */
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 1024px) 
+  and (orientation: portrait) {
+    .mascotes-img  {
+      opacity: 0.2;
+    }
+  }

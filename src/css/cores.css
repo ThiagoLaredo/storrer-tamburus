@@ -1,0 +1,46 @@
+:root {
+  --textwhite: #FAFAFA;
+  --text: #28302E;
+  --bg-branco: #fff;
+  --primary: #6751D1;
+  --secondary: #13B4EE;
+  --bgroxo: #d3cbff;
+  --primary-rgb: 103, 81, 209; /* Valores RGB da cor primária */
+  --secondary-rgb: 19, 180, 238; /* Valores RGB da cor secundária */
+  --textwhite-rgb: 250, 250, 250; /* Exemplo de valores RGB para branco */
+  --text-rgb: 0, 0, 0; /* Exemplo de valores RGB para branco */
+  --degradeazul: radial-gradient(circle, rgba(19, 180, 238, 1) 0%, rgba(45, 248, 250, 1) 100%);
+}
+
+.textwhite {
+  color: var(--textwhite);
+}
+
+.text {
+  color: var(--text);
+}
+.bg {
+  background-color: var(--bg);
+}
+.bg-escuro {
+  background-color: var(--bg-branco);
+}
+
+.bg-roxo {
+  background-color: var(--bgroxo);
+}
+
+.degradeazul {
+  background: var(--degradeazul);
+}
+
+.primary {
+  color: var(--primary);
+}
+
+.secondary {
+  color: var(--secondary);
+}
+
+
+

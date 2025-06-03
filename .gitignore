@@ -1,0 +1,9 @@
+.env
+node_modules/
+# *.log
+# *.cache
+# *.bak
+# *.tmp
+
+# Local Netlify folder
+.netlify
