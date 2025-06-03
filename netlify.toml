@@ -1,0 +1,9 @@
+[build]
+  publish = "dist"
+  command = "npm install --include=dev && npm run build"
+
+[context.production.environment]
+  NODE_ENV = "production"
+
+[functions]
+  directory = "netlify/functions"  # Diretório onde as funções serverless estão localizadas

@@ -1,0 +1,91 @@
+/* Estilos básicos para a página */
+
+/* Ou especificamente para suas seções */
+#termos-de-uso::before,
+#politica-privacidade::before {
+  content: "";
+  display: block;
+  height: 100px; /* Altura do seu header */
+  margin: -100px 0 0; /* Valor negativo igual à altura */
+}
+
+.terms-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 2rem) 0 4rem 0; /* Reduzi o padding */
+    font-family: 'Inter', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .terms-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 1rem;
+  }
+
+  .terms-container h2 {
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1.5rem;
+    color: var(--text);
+  }
+
+  .terms-container h3 {
+    font-size: 1.4rem;
+    margin: 1.8rem 0 1rem;
+    color: var(--text);
+  }
+
+  .terms-container p, .terms-container ul {
+    margin-bottom: 1.2rem;
+  }
+
+  .terms-container ul {
+    padding-left: 2rem;
+  }
+
+  .terms-container li {
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-section {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact-section h2, .contact-section p {
+    margin: 0;
+  }
+
+  .last-updated {
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    text-align: right;
+    color: #7f8c8d;
+  }
+
+  a {
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .terms-page {
+      padding: 1rem;
+    }
+    
+    .terms-container h1 {
+      font-size: 2rem;
+    }
+  }

@@ -1,0 +1,36 @@
+#contactThankYouMessage, #newsletterThankYouMessage  {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px
+} 
+
+#contactThankYouMessage h3, #newsletterThankYouMessage h3 {
+    font: 600 1.6rem 'Inter', sans-serif;
+    color: var(--textwhite);
+    text-align: left;
+    margin-bottom: 10px;
+} 
+
+#contactThankYouMessage p, #newsletterThankYouMessage p {
+    font: 300 1.2rem/1.4 'Inter', sans-serif;
+    color: var(--textwhite);
+    text-align: left;
+    margin-bottom: 20px;
+} 
+
+@media (max-width: 768px) {
+
+    #contactThankYouMessage h3, #newsletterThankYouMessage h3, #contactThankYouMessage p, #newsletterThankYouMessage p {
+        text-align: center;
+    } 
+    
+
+    #contactThankYouMessage, #newsletterThankYouMessage  {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px
+    } 
+}
