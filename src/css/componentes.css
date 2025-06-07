@@ -1,63 +1,101 @@
-/* Estilos gerais para o botão CTA */
-.btn-centralizado {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 2rem 0;
-}
-
-.cta-button {
-  background: white;
-  color: var(--secondary);
-  display: inline-block;
-  text-align: center;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-width: 280px; 
-  max-width: 350px;
-  white-space: nowrap;  
-}
+/* Botões */
+.button {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    border-radius: 4px;
+    background-color: var(--amarelo);
+    color: var(--cinza);
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
   
-.cta-button:hover {
-  background: rgba(19, 180, 238, 1);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.cta-button.azul {
-  background: rgba(19, 180, 238, 1);
-  color: white;
-}
-
-.cta-button.azul:hover {
-  background: #fff;
-  color: rgba(19, 180, 238, 1);
-}
-
-.btn-comprar {
-  width: 100%;
-  display: inline-block;
-  padding: 14px 6px;
-  background: var(--secondary);
-  text-align: center;
-  color: var(--textwhite);
-  border: none;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin-bottom: 20px;
-}
-
-.btn-comprar:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-  background-color: #38C7F2;
-}
+  .button:hover,
+  .button:focus {
+    background-color: var(--amarelo-escuro);
+  }
+  
+  /* Botão com borda */
+  .button-outline {
+    background: transparent;
+    border: 2px solid var(--amarelo);
+    color: var(--cinza);
+  }
+  
+  .button-outline:hover,
+  .button-outline:focus {
+    background-color: var(--amarelo);
+  }
+  
+  /* Cabeçalhos */
+  h1, h2, h3 {
+    color: var(--texto-principal);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  
+  /* Parágrafos */
+  p {
+    color: var(--texto-principal);
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  
+  /* Navbar */
+  .navbar {
+    padding: 1.5rem 2rem;
+    background-color: var(--fundo-claro);
+    border-bottom: 1px solid var(--borda-clara);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Links */
+  a {
+    color: var(--texto-principal);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: var(--amarelo);
+  }
+  
+  /* Seções */
+  .section {
+    padding: 4rem 1.25rem;
+  }
+  
+  .section.bg-light {
+    background-color: var(--fundo-cinza-claro);
+  }
+  
+  /* Cartões */
+  .card {
+    background: #fff;
+    border: 1px solid var(--borda-clara);
+    border-radius: 6px;
+    box-shadow: var(--sombra-suave);
+    padding: 2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .filtro-btn {
+    background: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .filtro-btn.ativo {
+    color: var(--primary);
+  }
+  
