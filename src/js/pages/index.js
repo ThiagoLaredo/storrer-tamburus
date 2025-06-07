@@ -1,72 +1,132 @@
+// Importa os estilos globais e componentes
 import "../../css/global.css";
 import "../../css/header.css";
-import "../../css/introducao.css";
-import "../../css/pq-escolher.css";
 import "../../css/footer.css";
 import "../../css/menu-mobile.css";
 import "../../css/cores.css";
 import "../../css/componentes.css";
-import "../../css/potencialize-resultados.css";
-import "../../css/agentes-inteligentes.css";
-import "../../css/formulario-contato.css";
+import "../../css/home.css"; // Estilo específico para a galeria de projetos
 
+// Importa os módulos existentes
 import MenuMobile from '../modules/menu-mobile.js';
 import HeaderScroll from '../modules/header-scroll.js';
-import HeaderManager from '../modules/HeaderManager.js'; 
-import FormHandler from '../modules/formHandler.js';
+import HeaderManager from '../modules/HeaderManager.js';
 import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
-import VideoPopup from '../modules/VideoPopup.js';
-import SwiperAgentsSlider from '../modules/SwiperAgentsSlider.js';
+
+// Importa novos módulos da galeria de projetos
+import { fetchEntries } from '../modules/contentfulAPI.js';
+import { renderFiltros, renderGaleria } from '../modules/renderProjetos.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ========== HEADER ==========
+  const menuMobile = new MenuMobile(
+    '[data-menu="logo"]',
+    '[data-menu="button"]',
+    '[data-menu="list"]',
+    '[data-menu="contato-mobile"]',
+    '[data-menu="whatsapp"]',
+    '[data-menu="linkedin"]',
+    '[data-menu="instagram"]',
+    '.header_acoes'
+  );
+  if (menuMobile) menuMobile.init();
 
-    // Inicializa o menu mobile com submenu integrado, caso os elementos existam
-    const menuMobile = new MenuMobile(
-        '[data-menu="logo"]',
-        '[data-menu="button"]',
-        '[data-menu="list"]',
-        '[data-menu="contato-mobile"]',
-        '[data-menu="whatsapp"]',
-        '[data-menu="linkedin"]',
-        '[data-menu="instagram"]',
-        '.header_acoes' // Novo parâmetro
-    );
-    if (menuMobile) {
-        menuMobile.init();
-    } else {
+  const headerManager = new HeaderManager('.header');
+  const headerEl = document.querySelector('.header');
+  if (headerEl) {
+    const headerScroll = new HeaderScroll('.header');
+    headerScroll.init();
+  }
+
+  // ========== ANIMAÇÕES ==========
+  initPageOpenAnimations();
+  initScrollAnimations();
+
+  // ========== GALERIA DE PROJETOS ==========
+  const galeria = document.getElementById('galeria');
+  const filtros = document.querySelector('[data-menu="list"]');
+  let todosProjetos = [];
+
+  function filtrar(slug) {
+    console.log('Filtrando por:', slug); // Log para debug
+    
+    const projetosFiltrados = slug === 'todos'
+      ? todosProjetos
+      : todosProjetos.filter(p => {
+          console.log(`Projeto ${p.title} - Tipo: ${p.tipoSlug}`); // Log para debug
+          return p.tipoSlug === slug;
+        });
+  
+    console.log('Projetos filtrados:', projetosFiltrados); // Log para debug
+    renderGaleria(galeria, projetosFiltrados);
+  }
+
+  async function carregarProjetos() {
+    try {
+      // 1. Carrega dados com include para resolver relacionamentos
+      const tiposData = await fetchEntries('tipoDeProjeto');
+      const projetosData = await fetchEntries('projeto', { include: 2 });
+  
+      // 2. Cria mapa de tipos (ID → slug)
+      const tiposMap = new Map();
+      tiposData.items.forEach(tipo => {
+        if (tipo.fields) {
+          tiposMap.set(tipo.sys.id, {
+            slug: tipo.fields.slug || 'sem-tipo',
+            nome: tipo.fields.nome || 'Sem nome'
+          });
+        }
+      });
+  
+      // 3. Processa cada projeto com os nomes de campos corretos
+      todosProjetos = projetosData.items.map(item => {
+        // Usa 'titulo' em vez de 'title'
+        const title = item.fields?.titulo || 'Sem título';
+        
+        // Usa 'tipoDoProjeto' em vez de 'tipoProjeto'
+        let tipoSlug = 'sem-tipo';
+        if (item.fields?.tipoDoProjeto?.sys?.id) {
+          const tipoId = item.fields.tipoDoProjeto.sys.id;
+          const tipoInfo = tiposMap.get(tipoId);
+          if (tipoInfo) {
+            tipoSlug = tipoInfo.slug;
+          }
+        }
+  
+        // Resolve a URL da capa (mantém o mesmo se o campo for 'capa')
+        let capaUrl = '';
+        if (item.fields?.capa?.sys?.id) {
+          const capaId = item.fields.capa.sys.id;
+          const capaAsset = projetosData.includes?.Asset?.find(a => a.sys.id === capaId);
+          if (capaAsset?.fields?.file?.url) {
+            capaUrl = `https:${capaAsset.fields.file.url}`;
+          }
+        }
+  
+        return {
+          title: title,
+          slug: item.fields?.slug || '',
+          tipoSlug: tipoSlug,
+          capa: capaUrl
+        };
+      });
+  
+      console.log('Projetos processados:', todosProjetos);
+  
+      // 4. Renderiza
+      const tiposParaFiltros = Array.from(tiposMap.values());
+      renderFiltros(filtros, tiposParaFiltros, filtrar);
+      renderGaleria(galeria, todosProjetos);
+  
+    } catch (error) {
+      console.error("Erro ao carregar projetos:", error);
     }
+  }
+  
 
-    // 1. INICIALIZE O HEADER MANAGER PRIMEIRO (novo código)
-    const headerManager = new HeaderManager('.header');
-
-    // 2. DEPOIS INICIALIZE O HEADER SCROLL (código existente)
-    const headerEl = document.querySelector('.header');
-    if (headerEl) {
-        const headerScroll = new HeaderScroll('.header');
-        headerScroll.init();
-    }
-
-    const thumbnailEl = document.querySelector('#videoThumbnail');
-    if (thumbnailEl) {
-      const videoPopup = new VideoPopup(
-        '#videoThumbnail',
-        '#videoPopup',
-        '#videoElement', 
-        '#closePopup',
-        '../videos/lancamento.mp4'
-      );
-      videoPopup.init();
-    }
-
-    // Animações de abertura e scroll
-    initPageOpenAnimations();
-    initScrollAnimations();
-
-    // Inicializa a classe
-    new FormHandler('.contact-form');
-
-    const swiperEl = document.querySelector('.agents-swiper');
-    if (swiperEl) {
-        new SwiperAgentsSlider();
-    }
+  carregarProjetos();
+  // Depois de carregar os projetos
+if (todosProjetos.length > 0) {
+    console.log('Primeiro projeto detalhado:', todosProjetos[0]._raw);
+  }
 });

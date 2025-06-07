@@ -1,0 +1,101 @@
+.galeria-projetos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 40px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.projeto-item {
+    position: relative;
+    overflow: hidden;
+    /* border-radius: 8px; */
+    aspect-ratio: 4/3;
+}
+
+.projeto-item a {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+}
+
+.projeto-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Overlay com efeito de grade de bolinhas */
+.projeto-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--amarelo);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    
+    /* Padrão de bolinhas MUITO grandes e extremamente próximas */
+    background-image: 
+        radial-gradient(
+            circle at center,
+            var(--amarelo-escuro) 55%,  /* Diâmetro aumentado ao máximo */
+            transparent 10%             /* Borda mínima para quase se tocarem */
+        );
+    background-size: 24px 24px;        /* Espaçamento mínimo */
+    background-position: 0 0;
+    background-repeat: repeat;
+    
+    /* Otimização para renderização precisa */
+    image-rendering: optimizeQuality;
+    backface-visibility: hidden;
+}
+
+/* Texto do projeto */
+.projeto-titulo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--cinza);
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s;
+}
+
+/* Efeitos no hover */
+.projeto-item:hover img {
+    transform: scale(1.05);
+}
+
+.projeto-item:hover .projeto-overlay {
+    opacity: 0.9;
+}
+
+.projeto-item:hover .projeto-titulo {
+    opacity: 1;
+}
+
+.filtro-btn {
+    color: var(--texto-principal);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .galeria-projetos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .galeria-projetos {
+        grid-template-columns: 1fr;
+    }
+}

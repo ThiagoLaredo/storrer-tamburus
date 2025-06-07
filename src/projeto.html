@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preload" href="./videos/lancamento.mp4" as="video" type="video/mp4" media="(min-width: 1025px)">
+
+    <!-- Preload da imagem do banner -->
 
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Planos da pluug.ai | Escolha o ideal para você</title>
-    <meta name="description" content="Descubra o plano ideal e comece a transformar sua presença digital com inteligência artificial.">
+    <title>Criação de conteúdo com IA que engaja e converte | pluug.ai</title>
+    <meta name="description" content="Transforme ideias em conteúdos autênticos com inteligência artificial. Crie, engaje e converta com a pluug.ai.">
     <link rel="icon" href="./imgs/favicon.ico" type="image/x-icon">
 
     <!-- Google Analytics -->
@@ -17,22 +20,23 @@
       gtag('js', new Date());
       gtag('config', 'G-2THN1H4EGB');
     </script>
-    
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="Planos da pluug.ai | Escolha o ideal para você">
-    <meta property="og:description" content="Descubra o plano ideal e comece a transformar sua presença digital com inteligência artificial.">
-    <meta property="og:url" content="https://www.pluug.ai/planos">
+    <meta property="og:title" content="Criação de conteúdo com IA que engaja e converte | pluug.ai">
+    <meta property="og:description" content="Transforme ideias em conteúdos autênticos com inteligência artificial. Crie, engaje e converta com a pluug.ai.">
+    <meta property="og:url" content="https://www.pluug.ai/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.pluug.ai/imgs/pluug-facebook.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Planos da pluug.ai | Escolha o ideal para você">
-    <meta name="twitter:description" content="Descubra o plano ideal e comece a transformar sua presença digital com inteligência artificial.">
+    <meta name="twitter:title" content="Criação de conteúdo com IA que engaja e converte | pluug.ai">
+    <meta name="twitter:description" content="Transforme ideias em conteúdos autênticos com inteligência artificial. Crie, engaje e converta com a pluug.ai.">
     <meta name="twitter:image" content="https://www.pluug.ai/imgs/pluug-twitter-card.webp">
-    
+
+
     <!-- Preconnect to Google Fonts for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,13 +46,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet"></noscript>
 
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"> -->
     <script>document.documentElement.className += ' js';</script>
 
   </head>
 
-  <body class="page-precos">
+  <body>
 
-   <header class="header">
+    <header class="header">
       <div class="container">
         <div class="header_menu">
           <a data-menu="logo" href="/">
@@ -116,7 +121,6 @@
     </header> 
 
     <!-- Icones sociais menu mobile -->
-
     <a data-menu="contato-mobile" href="mailto:contato@pluug.ai" target="_blank">contato@pluug.ai</a>
     <a data-menu="whatsapp" href="https://wa.me/5521985486951" target="_blank" loading="lazy">
       <img src="./imgs/icones/whatsapp-icon2.svg" alt="icone WhatsApp mobile" width="32" height="32">
@@ -131,202 +135,15 @@
       <span class="visually-hidden">Ir para o Instagram</span>
     </a>
 
-  <section class="planos-section">
-    <div class="planos container page-open-animate">
-      <div class="planos-header page-open-animate">
-        <h1>Planos</h1>
-        <p>Escolha o plano que melhor se adapta às suas necessidades e comece a transformar sua presença digital hoje mesmo!</p>
-      </div>
-      <div class="toggle-title">
-        <p><span class="texto-destaque">Economize 20%</span> no plano anual.</p>
-        <div class="plan-toggle-wrapper">
-          <span>Mensal</span>
-          <label class="switch">
-            <input type="checkbox" id="planToggle">
-            <span class="slider"></span>
-          </label>
-          <span>Anual</span>
-        </div>
-      </div>      
-      <div class="planos-grid">
-        <div class="plano">
-          <h2>Creator</h2>
-          <p>Recursos poderosos de IA para criar conteúdo e estratégias para o digital.</p>
-          <span>Faça um teste gratuito de 3 dias</span>
-          <p>O plano inclui:</p>
-          <ul>
-            <li>1 licença exclusiva e não compartilhável</li>
-            <li>Trend AI (tendências das redes sociais)</li>
-            <li>Creator Genie (posts, roteiros, copies...)</li>
-            <li>Creator Flow (calendários, campanhas, funis...)</li>
-            <li>Suporte básico (via e-mail e chamado)</li>
-          </ul>
-          <p class="plan-price" data-monthly="147,90/mês" data-annual="R$ 1.419,84/ano">147,90/mês</p>
-          <a
-          class="btn-comprar"
-          data-link-monthly="https://painel.pluug.ai/account/register-tenant?editionId=10&subscriptionStartType=3&paymentPeriodType=monthly"
-          data-link-annual="https://painel.pluug.ai/account/register-tenant?editionId=10&subscriptionStartType=3&paymentPeriodType=annual"
-          target="_blank"
-          rel="noopener noreferrer">
-          Comece Agora
-          </a>
-                  <div class="recursos">
-            <h3>Recursos</h3>
-            <ul>
-              <li>Usuários: 1 licença exclusiva e não compartilhável</li>
-              <li>Personalização: dentro de sessão</li>
-              <li>Agentes Inteligentes: 17 agentes</li>
-              <li class="sim">Acesso ao Dashboard de Trends</li>
-              <li class="sim">Geração de Conteúdos</li>
-              <li class="sim">Criação de Estratégias</li>
-              <li class="sim">Suporte: Básico</li>
-              <li class="nao">Geração de Infoprodutos</li>
-              <li class="nao">Classificação de Leads</li>
-              <li class="nao">Acesso antecipado a novos Agentes</li>
-              <li class="nao">Memória e Personalização Profunda</li>
-              <li class="nao">Base de conhecimento</li>
-              <li class="nao">Suporte customer success</li>
-            </ul>
-          </div>
-        </div>
+    <main>
+      <section id="projeto-detalhe" class="container">
+        <h1 id="projeto-titulo"></h1>
+        <div id="projeto-texto"></div>
+        <div id="projeto-imagens"></div>
+      </section>
+    </main>
 
-        <div class="plano plano-destaque">
-          <div class="selo-favorito">
-            <svg class="icone-coracao" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35z" fill="#D13F5F"/></svg>            <div class="texto">
-              <span>Nosso</span>
-              <span>Favorito</span>
-            </div>
-          </div>                  
-          <h2>Pro</h2>
-          <p>Recursos avançados de IA para criar conteúdo, estratégias, infoprodutos e classificação de Leads</p>
-          <span>Faça um teste gratuito de 3 dias</span>
-          <p>O plano inclui:</p>
-          <ul>
-            <li>1 licença exclusiva e não compartilhável</li>
-            <li>Tudo do plano Creator, mais:</li>
-            <li>Creator Builder (criação de infoprodutos)</li>
-            <li>Leads AI (classificação de Leads)</li>
-            <li>Suporte Pro (resposta priorizada)</li>
-          </ul>
-          <p class="plan-price" data-monthly="247,90/mês" data-annual="R$  2.379,84/ano">247,90<span class="price-suffix">/mês</span></p>
-          <a
-          class="btn-comprar"
-          data-link-monthly=" https://painel.pluug.ai/account/register-tenant?editionId=11&subscriptionStartType=3&paymentPeriodType=monthly"
-          data-link-annual="https://painel.pluug.ai/account/register-tenant?editionId=11&subscriptionStartType=3&paymentPeriodType=annual"
-          target="_blank"
-          rel="noopener noreferrer">
-          Comece Agora
-          </a>          
-          <div class="recursos">
-            <h3>Recursos</h3>
-            <ul>
-              <li>Usuários: 1 licença exclusiva e não compartilhável</li>
-              <li>Personalização: dentro de sessão</li>
-              <li>Agentes Inteligentes: 26 agentes</li>
-              <li class="sim">Acesso ao Dashboard de Trend</li>
-              <li class="sim">Geração de Conteúdos</li>
-              <li class="sim">Criação de Estratégias</li>
-              <li class="sim">Suporte: Pro</li>
-              <li class="sim">Geração de Infoprodutos</li>
-              <li class="sim">Classificação de Leads</li>
-              <li class="sim">Acesso antecipado a novos Agentes</li>
-              <li class="nao">Memória e Personalização Profunda</li>
-              <li class="nao">Base de conhecimento</li>
-              <li class="nao">Suporte customer success</li>
-            </ul>
-          </div>
-        </div>
 
-        <div class="plano">
-          <h2>Business</h2>
-          <p>Personalização avançada, gestão do conteúdo, treinamento e suporte exclusivo</p>
-          <div class="contato-plano">
-            <a href="https://wa.me/5521985486951" class="btn-contato" target="_blank">Entre em contato</a>
-          </div>          
-          <p>O plano inclui:</p>
-          <ul>
-            <li>3 licenças </li>
-            <li>Tudo do plano Pro, mais:</li>
-            <li>Gestão das licenças e conteúdo gerado pela equipe</li>
-            <li>Memória contínua e personalizada (IA aprende e adapta conforme o uso).</li>
-            <li>Base de conhecimento exclusiva</li>
-            <li>1 Treinamento para equipe</li>
-            <li>Suporte exclusivo - customer success </li>
-          </ul>
-          <div class="contato-plano">
-            <a href="https://wa.me/5521985486951" class="btn-contato" target="_blank">Entre em contato</a>
-          </div>  
-          <div class="recursos">
-            <h3>Recursos</h3>
-            <ul>
-              <li>3 licenças para serem atribuidas</li>
-              <li>Personalização: Sim</li>
-              <li>Agentes Inteligentes: Todos os Agentes</li>
-              <li class="sim">Acesso ao Dashboard de Trends</li>
-              <li class="sim">Geração de Conteúdos</li>
-              <li class="sim">Criação de Estratégias</li>
-              <li class="sim">Suporte: Pro</li>
-              <li class="sim">Geração de Infoprodutos</li>
-              <li class="sim">Classificação de Leads</li>
-              <li class="sim">Acesso antecipado a novos Agentes</li>
-              <li class="sim">Memória e Personalização Profunda</li>
-              <li class="sim">Base de conhecimento</li>
-              <li class="sim">Suporte customer success</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>  
-
-  <section id="entre-em-contato" class="entre-em-contato">
-    <div class="container animate-me">
-      <!-- Formulário -->
-      <div id="formulario">
-        <h2>Receba nossa Newsletter e fique por dentro das novidades</h2>         
-        <form class="contact-form">
-          <div class="form-grid">
-            <div class="form-group">
-              <input type="text" id="nome" placeholder="Nome*" required>
-              <span class="error-message" id="error-nome"></span>
-            </div>
-            
-            <div class="form-group">
-              <input type="email" id="email" placeholder="E-mail*" required>
-              <span class="error-message" id="error-email"></span>
-            </div>
-            
-            <div class="form-group">
-              <input type="text" id="celular" placeholder="DDD + Celular*" required>
-              <span class="error-message" id="error-celular"></span>
-            </div>
-            
-            <div class="form-group">
-              <input type="text" id="nicho" placeholder="Nicho de atuação">
-            </div>
-          </div>
-          
-          <div class="terms-checkbox">
-            <input type="checkbox" id="termos" required data-gtm-form-interact-field-id="0">
-            <label for="termos">
-              Li e aceito os 
-              <a class="terms-link" href="./politica-privacidade.html#termos-de-uso" target="_blank" rel="noopener noreferrer">
-                termos de uso <svg width="12" height="12" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;"><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>
-              </a> e 
-              <a class="terms-link" href="./politica-privacidade.html#politica-privacidade" target="_blank" rel="noopener noreferrer">
-                política de privacidade <svg width="12" height="12" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;"><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>
-              </a>
-            </label>
-            <span class="error-message" id="error-termos"></span>
-          </div>
-          
-          <div class="submit-button">
-            <button type="submit" class="btn-enviar" id="enviar">Enviar</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
     
     <footer class="site-footer">
       <div class="footer-container">
@@ -347,13 +164,13 @@
                 <img src="imgs/icones/linkedin-footer.svg" width="20" height="21" alt="Ícone do LinkedIn" class="icon"> pluug-ai
               </a>
             </div>
-          </div>   
+          </div>                
           <div class="footer-image">
             <img src="./imgs/icones/mascotes-rodape.svg" width="785" height="255" alt="Mascotes Pluug.ai" class="mascotes-img">
           </div>
         </div>
       </div>
     </footer>
-
+   
   </body>
 </html>

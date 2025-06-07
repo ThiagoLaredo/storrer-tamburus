@@ -1,7 +1,7 @@
 {
-  "name": "pluug",
+  "name": "storrer-tamburus",
   "version": "1.0.0",
-  "description": "Landing page para Pluug AI",
+  "description": "Landing page para Storrer Tamburus",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ThiagoLaredo/pluug_ai.git"
+    "url": "git+https://github.com/ThiagoLaredo/storrer-tamburus.git"
   },
   "author": "Thiago Laredo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ThiagoLaredo/pluug_ai/issues"
+    "url": "https://github.com/ThiagoLaredo/storrer-tamburus/issues"
   },
-  "homepage": "https://github.com/ThiagoLaredo/pluug_ai#readme",
+  "homepage": "https://github.com/ThiagoLaredo/storrer-tamburus#readme",
   "devDependencies": {
     "@babel/core": "^7.24.9",
     "@babel/plugin-transform-runtime": "^7.26.9",

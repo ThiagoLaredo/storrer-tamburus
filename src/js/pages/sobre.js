@@ -1,11 +1,9 @@
 import "../../css/global.css";
-import "../../css/sobre.css";
 import "../../css/header.css";
 import "../../css/footer.css";
 import "../../css/menu-mobile.css";
 import "../../css/cores.css";
 import "../../css/componentes.css";
-import "../../css/formulario-contato.css";
 
 import MenuMobile from '../modules/menu-mobile.js';
 import HeaderScroll from '../modules/header-scroll.js';
