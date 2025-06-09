@@ -71,18 +71,31 @@ img {
 }
 
 /* Animações */
-.page-open-animate,
-[data-menu],
-.header_acoes a {
+
+/* Remova a opacidade padrão do seletor [data-menu] */
+[data-menu] {
   will-change: opacity;
   backface-visibility: hidden;
+  /* REMOVA opacity: 0 daqui */
 }
 
-body.preload .page-open-animate,
-body.preload [data-menu],
+/* Adicione estas regras específicas */
+body.preload [data-menu="logo"],
+body.preload [data-menu="button"],
 body.preload .header_acoes a {
-  opacity: 0 !important;
+  opacity: 0;
 }
+
+/* Itens do menu - estado inicial */
+#menu > li > a {
+  opacity: 0; /* Inicialmente invisível */
+}
+
+/* Classe para quando a animação deve mostrar */
+.menu-visible #menu > li > a {
+  opacity: 1 !important; /* Força a visibilidade */
+}
+
 
 /* Container padrão */
 .container {
