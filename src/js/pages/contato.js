@@ -11,8 +11,6 @@ import HeaderScroll from '../modules/header-scroll.js';
 import HeaderManager from '../modules/HeaderManager.js'; 
 import FormHandler from '../modules/formHandler.js';
 import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
-import VideoPopup from '../modules/VideoPopup.js';
-import SwiperAgentsSlider from '../modules/SwiperAgentsSlider.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
