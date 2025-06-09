@@ -11,7 +11,7 @@ import "../../css/home.css"; // Estilo específico para a galeria de projetos
 import MenuMobile from '../modules/menu-mobile.js';
 import HeaderScroll from '../modules/header-scroll.js';
 import HeaderManager from '../modules/HeaderManager.js';
-import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
+import { initPageOpenAnimations, initGalleryAnimations, initScrollAnimations } from '../modules/animations.js';
 
 // Importa novos módulos da galeria de projetos
 import { fetchEntries } from '../modules/contentfulAPI.js';
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ========== ANIMAÇÕES ==========
   initPageOpenAnimations();
+  initGalleryAnimations()
   initScrollAnimations();
 
   // ========== GALERIA DE PROJETOS ==========
@@ -48,17 +49,30 @@ document.addEventListener('DOMContentLoaded', () => {
   let todosProjetos = [];
 
   function filtrar(slug) {
-    console.log('Filtrando por:', slug); // Log para debug
-    
     const projetosFiltrados = slug === 'todos'
       ? todosProjetos
-      : todosProjetos.filter(p => {
-          console.log(`Projeto ${p.title} - Tipo: ${p.tipoSlug}`); // Log para debug
-          return p.tipoSlug === slug;
-        });
+      : todosProjetos.filter(p => p.tipoSlug === slug);
   
-    console.log('Projetos filtrados:', projetosFiltrados); // Log para debug
-    renderGaleria(galeria, projetosFiltrados);
+    // Verifica se GSAP está disponível
+    if (typeof gsap !== 'undefined') {
+      gsap.to('.projeto-item', {
+        opacity: 0,
+        y: 20,
+        duration: 0.3,
+        onComplete: () => {
+          renderGaleria(galeria, projetosFiltrados);
+        }
+      });
+    } else {
+      // Fallback caso GSAP não esteja disponível
+      document.querySelectorAll('.projeto-item').forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+      });
+      setTimeout(() => {
+        renderGaleria(galeria, projetosFiltrados);
+      }, 300);
+    }
   }
 
   async function carregarProjetos() {
