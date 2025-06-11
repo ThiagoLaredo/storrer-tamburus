@@ -1,0 +1,150 @@
+/* ===== ESTILOS DA PÁGINA DE PROJETO ===== */
+.projeto-conteudo {
+  max-width: 1440px;
+  margin: 0 auto;
+  /* padding: 0 1.5rem; */
+  color: var(--texto-principal);
+}
+
+/* Cabeçalho do projeto */
+.projeto-header {
+  padding: 2rem 0rem;
+  margin-bottom: 3rem;
+}
+
+.projeto-titulo {
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--texto-destaque);
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+}
+
+/* Metadados no topo */
+.projeto-metadados-topo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+  color: var(--texto-principal);
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--borda-clara);
+}
+
+.projeto-metadado {
+  position: relative;
+  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.projeto-metadado:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--amarelo);
+  border-radius: 50%;
+}
+
+/* Descrição do projeto */
+.projeto-descricao {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--texto-principal);
+}
+
+.projeto-descricao p {
+  margin-bottom: 1.5rem;
+}
+
+.projeto-descricao p:last-child {
+  margin-bottom: 0;
+}
+
+/* Galeria de imagens */
+.projeto-galeria {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin: 5rem 0;
+}
+
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.galeria-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: var(--sombra-suave);
+}
+
+/* Efeitos de hover */
+.galeria-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Layout responsivo */
+@media (min-width: 768px) {
+  .projeto-conteudo {
+    /* padding: 0 3rem; */
+  }
+  
+  .projeto-titulo {
+    font-size: 3rem;
+  }
+  
+  .projeto-metadados-topo {
+    font-size: 1.1rem;
+    gap: 2rem;
+  }
+  
+  .projeto-descricao {
+    font-size: 1.25rem;
+  }
+  
+  .projeto-galeria {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* .projeto-header {
+    padding: 6rem 0 3rem;
+  } */
+  
+  /* Itens de galeria em destaque podem ocupar 2 colunas */
+  .galeria-destaque {
+    grid-column: span 2;
+  }
+}
+
+/* Classes utilitárias */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Estilos para erros */
+.error-message {
+  color: #d32f2f;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
