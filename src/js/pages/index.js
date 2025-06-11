@@ -1,13 +1,11 @@
-// Importa os estilos globais e componentes
 import "../../css/global.css";
-import "../../css/header.css";
-import "../../css/footer.css";
-import "../../css/menu-mobile.css";
 import "../../css/cores.css";
 import "../../css/componentes.css";
-import "../../css/home.css"; // Estilo específico para a galeria de projetos
+import "../../css/header.css";
+import "../../css/menu-mobile.css";
+import "../../css/footer.css";
+import "../../css/home.css"; 
 
-// Importa os módulos existentes
 import MenuMobile from '../modules/menu-mobile.js';
 import HeaderScroll from '../modules/header-scroll.js';
 import HeaderManager from '../modules/HeaderManager.js';
@@ -15,8 +13,11 @@ import { initPageOpenAnimations, initGalleryAnimations, initScrollAnimations } f
 
 // Importa novos módulos da galeria de projetos
 import { fetchEntries } from '../modules/contentfulAPI.js';
-import { renderFiltros, renderGaleria } from '../modules/renderProjetos.js';
+import { renderFiltros } from '../modules/renderMenu.js'; // Novo import
+import { renderGaleria } from '../modules/renderProjetos.js';
 
+// No seu código existente, apenas atualize o import
+// O restante pode permanecer igual
 document.addEventListener('DOMContentLoaded', () => {
   // ========== HEADER ==========
   const menuMobile = new MenuMobile(
