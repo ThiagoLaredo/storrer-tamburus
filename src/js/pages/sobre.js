@@ -1,11 +1,12 @@
+// Ordem sugerida (ajuste conforme sua necessidade):
 import "../../css/global.css";
-import "../../css/header.css";
-import "../../css/footer.css";
-import "../../css/menu-mobile.css";
 import "../../css/cores.css";
 import "../../css/componentes.css";
+import "../../css/header.css";
+import "../../css/menu-mobile.css";
+import "../../css/footer.css";
 
-import MenuMobile from '../modules/menu-mobile.js';
+// import MenuMobile from '../modules/menu-mobile.js';
 import HeaderScroll from '../modules/header-scroll.js';
 import HeaderManager from '../modules/HeaderManager.js';
 import FormHandler from '../modules/formHandler.js';
