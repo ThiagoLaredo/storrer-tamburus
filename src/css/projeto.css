@@ -1,4 +1,22 @@
 /* ===== ESTILOS DA PÁGINA DE PROJETO ===== */
+
+/* projeto.css */
+
+/* Garante que os elementos animados não fiquem piscando antes da animação */
+#projeto-titulo,
+#projeto-local,
+#projeto-ano,
+#projeto-area,
+#projeto-texto,
+.galeria-item {
+  visibility: hidden;
+}
+
+/* Classe que será adicionada quando a animação terminar */
+.animated {
+  visibility: visible;
+}
+
 .projeto-conteudo {
   max-width: 1440px;
   margin: 0 auto;
@@ -8,8 +26,7 @@
 
 /* Cabeçalho do projeto */
 .projeto-header {
-  padding: 2rem 0rem;
-  margin-bottom: 3rem;
+  padding: 2.5rem 0rem;
 }
 
 .projeto-titulo {
@@ -31,7 +48,19 @@
   font-size: 1rem;
   color: var(--texto-principal);
   padding-bottom: 1.5rem;
+  border-bottom: 0px solid var(--borda-clara);
+  visibility: visible;
+}
+
+/* Anima apenas os itens internos */
+#projeto-local, #projeto-ano, #projeto-area {
+  visibility: hidden;
+}
+
+/* Efeito final */
+.projeto-metadados-topo.animado {
   border-bottom: 1px solid var(--borda-clara);
+  transition: border-bottom 0.8s ease-out; /* Pode usar GSAP ou CSS */
 }
 
 .projeto-metadado {
@@ -71,7 +100,6 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  margin: 5rem 0;
 }
 
 .galeria-item {
@@ -94,18 +122,16 @@
 
 /* Layout responsivo */
 @media (min-width: 768px) {
-  .projeto-conteudo {
-    /* padding: 0 3rem; */
-  }
+
   
   .projeto-titulo {
     font-size: 3rem;
   }
   
-  .projeto-metadados-topo {
+  /* .projeto-metadados-topo {
     font-size: 1.1rem;
     gap: 2rem;
-  }
+  } */
   
   .projeto-descricao {
     font-size: 1.25rem;
@@ -118,9 +144,7 @@
 }
 
 @media (min-width: 1024px) {
-  /* .projeto-header {
-    padding: 6rem 0 3rem;
-  } */
+ 
   
   /* Itens de galeria em destaque podem ocupar 2 colunas */
   .galeria-destaque {
