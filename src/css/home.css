@@ -83,10 +83,6 @@
     opacity: 1;
 }
 
-.filtro-btn {
-    color: var(--texto-principal);
-}
-
 /* Responsividade */
 @media (max-width: 1024px) {
     .galeria-projetos {

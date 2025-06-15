@@ -19,6 +19,13 @@ import { renderGaleria } from '../modules/renderProjetos.js';
 // No seu código existente, apenas atualize o import
 // O restante pode permanecer igual
 document.addEventListener('DOMContentLoaded', () => {
+
+  document.querySelectorAll('.home-link, [data-menu="logo"]').forEach(link => {
+    link.addEventListener('click', () => {
+      localStorage.removeItem('lastFilter');
+    });
+  });
+
   // ========== HEADER ==========
   const menuMobile = new MenuMobile(
     '[data-menu="logo"]',
@@ -32,13 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   if (menuMobile) menuMobile.init();
 
+
   const headerManager = new HeaderManager('.header');
   const headerEl = document.querySelector('.header');
   if (headerEl) {
     const headerScroll = new HeaderScroll('.header');
     headerScroll.init();
   }
-
+  
   // ========== ANIMAÇÕES ==========
   initPageOpenAnimations();
   initGalleryAnimations()

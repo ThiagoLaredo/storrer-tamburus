@@ -60,13 +60,13 @@
   /* Botão hamburguer */
   .js [data-menu="button"] {
     display: flex;
-    background: radial-gradient(circle, rgba(19, 180, 238, 1) 0%, rgba(45, 248, 250, 1) 100%);
+    background: var(--amarelo-escuro);
     border: none;
     padding: 0.6rem; 
     border-radius: 50%; 
     font-family: 'OpenSans', sans-serif;
     font-weight: bold;
-    color: #fff;
+    color: var(--amarelo-escuro);
     cursor: pointer;
     margin: 4px 0;
     align-items: center;
@@ -80,7 +80,7 @@
   #hamburguer {
     width: 30px;
     height: 2px;
-    background: var(--textwhite);
+    background: var(--cinza);
     border-radius: 1px;
     position: relative;
     transition: background 0.3s ease; 
@@ -92,7 +92,7 @@
     display: block;
     width: 30px;
     height: 2px;
-    background: var(--textwhite);
+    background: var(--cinza);
     border-radius: 1px;
     position: absolute;
     left: 0;
@@ -132,7 +132,7 @@
     left: 0;
     text-align: center;
     z-index: 200;
-    background-color: var(--primary);
+    background-color: var(--amarelo);
     padding: 80px 20px 20px;
     overflow-y: auto;
     box-sizing: border-box;
@@ -141,9 +141,9 @@
   .js [data-menu="list"].active {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .js [data-menu="list"] li {

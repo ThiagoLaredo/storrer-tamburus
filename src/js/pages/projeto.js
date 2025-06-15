@@ -9,7 +9,12 @@ import "../../css/projeto.css";
 import MenuMobile from '../modules/menu-mobile.js';
 import HeaderScroll from '../modules/header-scroll.js';
 import HeaderManager from '../modules/HeaderManager.js'; 
-import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
+import { 
+  initPageOpenAnimations, 
+  initScrollAnimations,
+  initProjetoAnimations,
+  initProjetoGalleryAnimations 
+} from '../modules/animations.js';
 import { fetchEntries } from "../modules/contentfulAPI.js";
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { renderFiltros } from '../modules/renderMenu.js'; // Importe a função do novo arquivo
@@ -131,11 +136,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (area) document.querySelector('#projeto-area').textContent = area;
     
     document.querySelector('#projeto-texto').innerHTML = await formatDescription(descricao);
+
+    // Animação dos textos
+    initProjetoAnimations();
     
     // Otimiza e carrega imagens
     if (galeriaDeImagens.length > 0) {
       const imagensHtml = await loadOptimizedImages(galeriaDeImagens, data.includes?.Asset || [], titulo);
       document.querySelector('#projeto-imagens').innerHTML = imagensHtml;
+       // Animação da galeria (com delay para garantir que as imagens estão carregadas)
+      setTimeout(() => {
+        initProjetoGalleryAnimations();
+      }, 100);
     } else {
       console.warn('Nenhuma imagem encontrada na galeria');
       document.querySelector('#projeto-imagens').innerHTML = '<p>Galeria de imagens não disponível</p>';
