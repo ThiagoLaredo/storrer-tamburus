@@ -47,49 +47,14 @@ ul[data-menu="list"] {
   list-style: none;
   gap: 1.5rem;
   align-items: center;
+  padding: 2rem;
 }
 
-.menu li a,
-.menu li span {
-  font: 400 1rem/1.2 'Inter', sans-serif;
-  color: var(--text);
-  display: flex;
-  gap: 4px;
-  justify-content: center;
-  text-decoration: none;
-  padding: 0.5rem 1rem; 
-  align-items: center;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
-}
 
-/* Sublinhado animado */
-.menu li a::after,
-.menu li span::after {
-  content: "";
-  position: absolute;
-  bottom: 4px;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  transform-origin: center;
-  width: 100%;
-  height: 2px;
-  background-color: var(--secondary);
-  transition: transform 0.3s ease;
-}
 
-/* Hover */
-.menu li a:hover,
-.menu li span:hover {
-  /* color: var(--secondary); */
-  transform: translateY(-2px);
-}
 
-.menu li a:hover::after,
-.menu li span:hover::after {
-  transform: translateX(-50%) scaleX(1);
-}
+
+
 
 .header_acoes {
   display: flex;

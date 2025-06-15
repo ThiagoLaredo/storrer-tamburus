@@ -121,24 +121,210 @@ export const initGalleryAnimations = () => {
   });
 };
 
+export const initProjetoAnimations = () => {
+  const pageOpenTL = initPageOpenAnimations();
+  const projectTL = gsap.timeline({ paused: true });
 
-  export function initScrollAnimations() {
+  // 1. Configuração inicial garantida
+  gsap.set(['#projeto-titulo', '#projeto-local', '#projeto-ano', '#projeto-area', '#projeto-texto p'], {
+    opacity: 0,
+    y: 20,
+    visibility: 'hidden'
+  });
+
+  gsap.set('.projeto-metadados-topo', {
+    'border-bottom-width': 0,
+    opacity: 1 // Container visível, só a borda animada
+  });
+
+  // 2. Sequência principal
+  projectTL
+    // Título
+    .to('#projeto-titulo', {
+      opacity: 1,
+      y: 0,
+      visibility: 'visible',
+      duration: 1,
+      ease: 'power2.out'
+    })
+    // Container dos metadados (sem animação de opacity)
+    .to('.projeto-metadados-topo', {
+      'border-bottom-width': '1px',
+      duration: 0.8,
+      ease: 'power1.out',
+      onStart: () => {
+        document.querySelector('.projeto-metadados-topo').classList.add('animado');
+      }
+    }, '+=0.2')
+    // Itens individuais
+    .to(['#projeto-local', '#projeto-ano', '#projeto-area'], {
+      opacity: 1,
+      y: 0,
+      visibility: 'visible',
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power1.out'
+    }, '-=0.5') // Overlap com a borda
+    // Parágrafos
+    .to('#projeto-texto p', {
+      opacity: 1,
+      y: 0,
+      visibility: 'visible',
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'power1.out'
+    });
+
+  // 3. Disparo sincronizado
+  pageOpenTL.eventCallback('onComplete', () => {
+    // Garante que todos os elementos estão no estado inicial
+    gsap.set('.projeto-metadados-topo', { 'border-bottom-width': 0 });
+    document.querySelector('.projeto-metadados-topo').classList.remove('animado');
+    
+    projectTL.play();
+  });
+
+  return projectTL;
+};
+
+export const initProjetoGalleryAnimations = () => {
+  document.querySelectorAll('.galeria-item').forEach((item, index) => {
+    gsap.to(item, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: item,
+        start: "top 80%",
+        toggleActions: "play none none none"
+      },
+      onStart: () => {
+        item.style.visibility = 'visible';
+      }
+    });
+  });
+};
+
+export function initScrollAnimations() {
+
+  const elements = document.querySelectorAll(".animate-me");
+
+  elements.forEach((el, index) => {
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: "top 100%",
+        toggleActions: "play none none none",
+        markers: false,
+      },
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out"
+    });
+  });
+}
+
+// Objeto para controlar o estado
+const hoverStates = new WeakMap();
+
+export const setupFilterAnimations = (container) => {
+  const buttons = container.querySelectorAll('.filtro-btn');
   
-    const elements = document.querySelectorAll(".animate-me");
-  
-    elements.forEach((el, index) => {
-  
-      gsap.from(el, {
-        scrollTrigger: {
-          trigger: el,
-          start: "top 100%",
-          toggleActions: "play none none none",
-          markers: false,
-        },
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: "power2.out"
+  buttons.forEach(btn => {
+    // Inicializa o estado
+    hoverStates.set(btn, {
+      hoverTween: null,
+      active: false
+    });
+
+    // Animação hover - versão robusta
+    btn.addEventListener('mouseenter', () => {
+      const state = hoverStates.get(btn);
+      
+      // Se já está ativo ou já tem hover, ignora
+      if (btn.classList.contains('ativo') || state.hoverTween) return;
+      
+      // Cancela qualquer animação existente
+      if (state.hoverTween) state.hoverTween.kill();
+      
+      state.hoverTween = gsap.to(btn, {
+        '--circle-opacity': 1,
+        '--circle-scale': 1.5,
+        duration: 0.3,
+        ease: 'power2.out',
+        onComplete: () => {
+          state.hoverTween = null;
+        }
       });
     });
-  }
+
+    btn.addEventListener('mouseleave', () => {
+      const state = hoverStates.get(btn);
+      
+      // Se está ativo, mantém o estado
+      if (btn.classList.contains('ativo')) return;
+      
+      // Cancela a animação de entrada se estiver ocorrendo
+      if (state.hoverTween) state.hoverTween.kill();
+      
+      state.hoverTween = gsap.to(btn, {
+        '--circle-opacity': 0,
+        '--circle-scale': 0,
+        duration: 0.2,
+        ease: 'power1.in',
+        onComplete: () => {
+          state.hoverTween = null;
+        }
+      });
+    });
+  });
+};
+
+export const toggleActiveFilter = (activeBtn) => {
+  const buttons = activeBtn.closest('ul').querySelectorAll('.filtro-btn');
+  
+  buttons.forEach(btn => {
+    const state = hoverStates.get(btn);
+    const isActive = btn === activeBtn;
+    
+    // Cancela qualquer animação em andamento
+    if (state.hoverTween) {
+      state.hoverTween.kill();
+      state.hoverTween = null;
+    }
+    
+    if (isActive) {
+      gsap.to(btn, {
+        '--circle-opacity': 1,
+        '--circle-scale': 1.5,
+        duration: 0.4,
+        ease: 'back.out(1.5)',
+        overwrite: 'auto'
+      });
+      btn.classList.add('ativo');
+      state.active = true;
+    } else {
+      gsap.to(btn, {
+        '--circle-opacity': 0,
+        '--circle-scale': 0,
+        duration: 0.3,
+        overwrite: 'auto'
+      });
+      btn.classList.remove('ativo');
+      state.active = false;
+    }
+  });
+};
+
+// Função para limpar animações
+export const cleanupFilterAnimations = (container) => {
+  const buttons = container.querySelectorAll('.filtro-btn');
+  buttons.forEach(btn => {
+    const state = hoverStates.get(btn);
+    if (state?.hoverTween) state.hoverTween.kill();
+    hoverStates.delete(btn);
+  });
+};
