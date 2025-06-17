@@ -1,9 +1,30 @@
 [build]
+  command = "npm run build"
   publish = "dist"
-  command = "npm install --include=dev && npm run build"
 
-[context.production.environment]
-  NODE_ENV = "production"
+[[redirects]]
+  from = "/projeto.html"
+  to = "/"
+  status = 301
 
-[functions]
-  directory = "netlify/functions"  # Diretório onde as funções serverless estão localizadas
+[[redirects]]
+  from = "/projeto.html?slug=:slug"
+  to = "/projetos/:slug"
+  status = 301
+
+[[redirects]]
+  from = "/projetos/*"
+  to = "/projeto.html?slug=:splat"
+  status = 200
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "text/css"
