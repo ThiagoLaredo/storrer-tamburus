@@ -87,12 +87,10 @@
   }
   
 /* ESTADO BASE DO BOTÃO DE FILTRO */
-
 .filtro-btn {
   position: relative;
   color: var(--cinza) !important;
-  font: 400 1rem/1.2 'Inter', sans-serif;
-  padding: .8rem 1.2rem;
+  font: 500 1rem/1.2 'Inter', sans-serif;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -111,28 +109,45 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
   background: var(--amarelo-escuro);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(var(--circle-scale, 0));
   opacity: var(--circle-opacity, 0);
   z-index: -1;
-  transition: none;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+              opacity 0.2s ease;
   will-change: transform, opacity;
+  /* Novo: garante que o círculo não seja cortado */
+  pointer-events: none;
 }
 
+/* Estado ativo */
 .filtro-btn.ativo {
   color: var(--amarelo-escuro) !important;
-  
 }
 
 .filtro-btn.ativo::before {
   background: var(--cinza);
+  --circle-opacity: 1;
+  --circle-scale: 1;
+}
+
+/* Efeito hover */
+.filtro-btn:hover::before {
+  --circle-opacity: 1;
+  --circle-scale: 1;
 }
 
 /* Acessibilidade */
 .filtro-btn:focus-visible {
   outline: 2px solid var(--amarelo);
   outline-offset: 2px;
+}
+
+/* Container pai - importante para não cortar o efeito */
+[data-menu="list"] {
+  overflow: visible !important;
+  padding: 1.8rem 0; /* Espaço vertical pode ser ajustado */
 }

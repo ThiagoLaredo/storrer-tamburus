@@ -87,6 +87,8 @@
 @media (max-width: 1024px) {
     .galeria-projetos {
         grid-template-columns: repeat(2, 1fr);
+        padding: 20px 0;
+
     }
 }
 

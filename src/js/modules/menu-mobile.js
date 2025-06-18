@@ -2,7 +2,7 @@
 import gsap from "gsap";
 
 export default class MenuMobile {
-  constructor(logoMobile, menuButton, menuList, contatoMobile, whatsappMobile, linkedinMobile, instagramMobile, headerAcoes, events) {
+  constructor(logoMobile, menuButton, menuList, contatoMobile, whatsappMobile, linkedinMobile, instagramMobile, headerTop, events) {
     this.logoMobile = document.querySelector(logoMobile);
     this.menuButton = document.querySelector(menuButton);
     this.menuList = document.querySelector(menuList);
@@ -10,7 +10,7 @@ export default class MenuMobile {
     this.whatsappMobile = document.querySelector(whatsappMobile);
     this.linkedinMobile = document.querySelector(linkedinMobile);
     this.instagramMobile = document.querySelector(instagramMobile);
-    this.headerAcoes = document.querySelector(headerAcoes); // Novo seletor
+    this.headerTop = document.querySelector(headerTop); // Novo seletor
     this.activeClass = "active";
     this.events = events || ["click"];
     this.menuOpened = false;
@@ -35,7 +35,7 @@ export default class MenuMobile {
         this.whatsappMobile.classList.add(this.activeClass);
         this.linkedinMobile.classList.add(this.activeClass);
         this.instagramMobile.classList.add(this.activeClass);
-        if (this.headerAcoes) this.headerAcoes.classList.add(this.activeClass); // Adiciona classe aos botões
+        if (this.headerTop) this.headerTop.classList.add(this.activeClass); // Adiciona classe aos botões
         this.animateMenuItems();
         this.toggleMenuAnimation(true);
         document.body.classList.add('no-scroll');
@@ -52,7 +52,7 @@ export default class MenuMobile {
       this.whatsappMobile.classList.remove(this.activeClass);
       this.linkedinMobile.classList.remove(this.activeClass);
       this.instagramMobile.classList.remove(this.activeClass);
-      if (this.headerAcoes) this.headerAcoes.classList.remove(this.activeClass); // Remove classe dos botões
+      if (this.headerTop) this.headerTop.classList.remove(this.activeClass); // Remove classe dos botões
       this.toggleMenuAnimation(false);
       document.body.classList.remove('no-scroll');
     }
@@ -96,12 +96,12 @@ export default class MenuMobile {
         });
     });
 
-        // Anima os botões de ação
-        if (this.headerAcoes) {
-          gsap.fromTo(this.headerAcoes,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.5, ease: "power1.out", delay: 0.3 + menuItems.length * 0.1 });
-        }
+    // Anima os botões de ação
+    if (this.headerTop) {
+      gsap.fromTo(this.headerTop,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power1.out", delay: 0.3 + menuItems.length * 0.1 });
+    }
 
     gsap.fromTo(this.contatoMobile,
       { opacity: 0, y: 10 },

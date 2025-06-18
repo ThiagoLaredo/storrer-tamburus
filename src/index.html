@@ -55,9 +55,21 @@
 
     <header class="header">
       <div class="container">
-        <div class="header_menu">
+        <!-- Menu Institucional (Topo) - MODIFICADO -->
+        <div class="header-top">
+          <nav class="institutional-nav" aria-label="Navegação institucional">
+            <ul class="institutional-menu">
+              <li><a href="/sobre">Sobre</a></li>
+              <li><a href="/contato">Contato</a></li>
+              <li><a href="https://instagram.com/seuinstagram" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            </ul>
+          </nav>
+        </div>
+    
+        <!-- Menu Principal (Projetos) -->
+        <div class="header_main">
           <a data-menu="logo" class="home-link" href="/">
-            <img src="./imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
+            <img src="/imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
             <span class="visually-hidden">Voltar para a página inicial</span>
           </a>
           <nav class="menu">
@@ -73,7 +85,10 @@
     </header>
     
     <!-- Icones sociais menu mobile -->
-    <a data-menu="contato-mobile" href="mailto:contato@pluug.ai" target="_blank">contato@pluug.ai</a>
+    <ul data-menu="contato-mobile">
+      <li>Sobre</li>
+      <li>Contato</li>
+    </ul>
     <a data-menu="whatsapp" href="https://wa.me/5521985486951" target="_blank" loading="lazy">
       <img src="./imgs/icones/whatsapp-icon2.svg" alt="icone WhatsApp mobile" width="32" height="32">
       <span class="visually-hidden">Ir para o WhatsApp</span>
@@ -96,7 +111,7 @@
     </main>
 
 
-    <footer class="site-footer">
+    <!-- <footer class="site-footer">
       <div class="footer-container">
         <div class="footer-content">
           <div class="footer-info animate-me">
@@ -117,7 +132,7 @@
           </div>                
         </div>
       </div>
-    </footer>
+    </footer> -->
    
   </body>
 </html>
