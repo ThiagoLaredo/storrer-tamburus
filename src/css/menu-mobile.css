@@ -10,10 +10,13 @@
   display: none;
 }
 
-/* Estilo padrão para header_acoes (desktop) */
-.header_acoes {
-  display: flex;
-}
+/* header scroll */
+.header.header-scrolled  {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.85); /* Branco com 90% de opacidade */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+} 
 
 @media (max-width: 768px) {
   /* Ajustes gerais */
@@ -135,6 +138,7 @@
     padding: 80px 20px 20px;
     overflow-y: auto;
     box-sizing: border-box;
+    margin: 0; 
   }
 
   .js [data-menu="list"].active {
