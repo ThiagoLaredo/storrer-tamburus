@@ -3,6 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
+
 export const initPageOpenAnimations = () => {
   // 1. Remova a classe preload imediatamente
   document.body.classList.remove("preload");
@@ -10,9 +11,10 @@ export const initPageOpenAnimations = () => {
   // 2. Adicione classe de controle no body
   document.body.classList.add('menu-animating');
 
-  // 3. Configuração inicial - apenas para elementos não-dinâmicos
-  gsap.set("[data-menu='logo'], [data-menu='button'], .header_acoes a", {
-    opacity: 0
+  // 3. Configuração inicial - sem .header_acoes a
+  gsap.set("[data-menu='logo'], [data-menu='button'], .institutional-menu li, #menu > li > a", {
+    opacity: 0,
+    y: 10
   });
 
   // 4. Timeline principal
@@ -27,36 +29,41 @@ export const initPageOpenAnimations = () => {
   // Logo
   tl.to("[data-menu='logo']", {
     opacity: 1,
+    y: 0,
     duration: 0.8
-  });
+  }, 0);
 
-  // Botão Menu
-  tl.to("[data-menu='button']", {
+    // Botão Menu
+    tl.to("[data-menu='button']", {
+      opacity: 1,
+      duration: 0.6
+    }, 0.2);
+
+  // Menu Institucional com stagger
+  tl.to(".institutional-menu li", {
     opacity: 1,
-    duration: 0.6
+    y: 0,
+    duration: 0.6,
+    stagger: 0.1
   }, 0.2);
 
-  // Itens do Menu - abordagem robusta
+  // Itens do Menu Principal
   const animateMenuItems = () => {
-    // Força reset da opacidade antes de animar
-    gsap.set("#menu > li > a", { opacity: 0 });
-    
     tl.to("#menu > li > a", {
       opacity: 1,
+      y: 0,
       stagger: 0.1,
       duration: 0.5,
       onStart: () => {
-        // Garante que o CSS não vai interferir
         document.body.classList.add('menu-animating');
       }
-    }, 0.3);
+    }, 0.4);
   };
 
-  // Verifica se os itens já existem
+  // Verificação e observer para itens dinâmicos
   if (document.querySelectorAll('#menu > li > a').length > 0) {
     animateMenuItems();
   } else {
-    // Observador para quando os itens forem adicionados
     const observer = new MutationObserver((mutations) => {
       if (document.querySelectorAll('#menu > li > a').length > 0) {
         animateMenuItems();
@@ -70,15 +77,7 @@ export const initPageOpenAnimations = () => {
     });
   }
 
-  // Restante das suas animações originais...
-  // Botões Ação com stagger
-  tl.to(".header_acoes a", {
-    opacity: 1,
-    stagger: 0.15,
-    duration: 0.5
-  }, 0.5);
-
-  // Animação dos elementos .page-open-animate
+  // Animação dos elementos .page-open-animate (mantido igual)
   document.querySelectorAll('.page-open-animate').forEach((el, i) => {
     const rect = el.getBoundingClientRect();
     const isAboveFold = rect.top < window.innerHeight;
@@ -90,7 +89,7 @@ export const initPageOpenAnimations = () => {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          delay: 0.8 + (i * 0.1),
+          delay: 0.8 + (i * 0.1), // Ajustado para compensar remoção
           ease: "back.out(1.4)"
         }
       );
@@ -101,7 +100,6 @@ export const initPageOpenAnimations = () => {
 
   return tl;
 };
-
 
 export const initGalleryAnimations = () => {
   // Configuração inicial - prepara os elementos
