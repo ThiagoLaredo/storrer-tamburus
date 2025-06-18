@@ -38,35 +38,44 @@
       <script>document.documentElement.className += ' js';</script>
     </head>
     
-
     <body class="page-creators">
 
       <header class="header">
         <div class="container">
-          <div class="header_menu">
-            <a data-menu="logo" href="/">
-              <img src="./imgs/logo-white.webp" alt="Logo Pluug.ai" width="135" height="32">                
+          <!-- Menu Institucional (Topo) - MODIFICADO -->
+          <div class="header-top">
+            <nav class="institutional-nav" aria-label="Navegação institucional">
+              <ul class="institutional-menu">
+                <li><a href="/sobre">Sobre</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="https://instagram.com/seuinstagram" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              </ul>
+            </nav>
+          </div>
+      
+          <!-- Menu Principal (Projetos) -->
+          <div class="header_main">
+            <a data-menu="logo" class="home-link" href="/">
+              <img src="/imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
+              <span class="visually-hidden">Voltar para a página inicial</span>
             </a>
             <nav class="menu">
               <button data-menu="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
                 <span id="hamburguer"></span>
-              </button>  
-              <ul data-menu="list" id="menu">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./plataforma.html">Plataforma</a></li>
-                <li><a href="./depoimentos.html">Depoimentos</a></li>
-                <li><a href="./sobre.html">Sobre</a></li>
-                <li><a href="./planos.html">Planos</a></li>
-              </ul>
+              </button>
+              <ul id="menu" role="menubar" data-menu="list">
+                <!-- Os itens serão inseridos dinamicamente -->
+              </ul>                        
             </nav>
-          </div>   
-          <div class="header_acoes">
-            <a href="https://painel.pluug.ai/account/login" class="btn-login" target="_blank">Entrar</a>        
-            <a href="https://painel.pluug.ai/account/register" class="btn-cadastro" target="_blank">Criar conta</a>  
           </div>
-      </header> 
-
-      <a data-menu="contato-mobile" href="mailto:contato@pluug.ai" target="_blank">contato@pluug.ai</a>
+        </div>
+      </header>
+  
+     <!-- Icones sociais menu mobile -->
+     <ul data-menu="contato-mobile">
+      <li>Sobre</li>
+      <li>Contato</li>
+      </ul>
       <a data-menu="whatsapp" href="https://wa.me/5521985486951" target="_blank" loading="lazy">
         <img src="./imgs/icones/whatsapp-icon2.svg" alt="icone WhatsApp mobile" width="32" height="32">
         <span class="visually-hidden">Ir para o WhatsApp</span>
@@ -79,212 +88,7 @@
         <img src="./imgs/icones/instagram-footer.svg" alt="icone Instagram mobile" width="32" height="32" loading="lazy">
         <span class="visually-hidden">Ir para o Instagram</span>
       </a>
-
-      <div class="creators-header">
-        <div class="container page-open-animate">
-          <div class="creators-header-texto">
-            <h1>
-              Histórias reais de quem está mudando a forma de produzir conteúdo,
-              <strong>todos os dias com a pluug.ai</strong>
-            </h1>
-            <p>
-              Veja como eles estão escalando seus negócios no digital.
-            </p>
-            <a href="./planos.html" class="cta-button azul">Quero fazer parte</a>
-          </div>
-      
-        <div class="creators-header-imagem">
-          <div class="mosaic-col">
-            <div class="mosaic-item mosaic-large">
-              <picture>
-                <source type="image/avif" srcset="./imgs/depo1-600.avif 600w" sizes="(max-width: 768px) 100vw, 33vw" />
-                <source type="image/webp" srcset="./imgs/depo1-600.webp 600w" sizes="(max-width: 768px) 100vw, 33vw" />
-                <img src="./imgs/depo1.jpg" alt="Depoimento 1" loading="lazy" width="600" height="800" />
-              </picture>
-            </div>
-          </div>
-        
-          <div class="mosaic-col">
-            <div class="mosaic-item mosaic-small">
-              <picture>
-                <source type="image/avif" srcset="./imgs/depo2-600.avif 600w" sizes="(max-width: 768px) 100vw, 20vw" />
-                <source type="image/webp" srcset="./imgs/depo2-600.webp 600w" sizes="(max-width: 768px) 100vw, 20vw" />
-                <img src="./imgs/depo2.jpg" alt="Depoimento 2" loading="lazy" width="300" height="200" />
-              </picture>
-            </div>
-        
-            <div class="mosaic-item mosaic-small">
-              <picture>
-                <source type="image/avif" srcset="./imgs/depo3-600.avif 600w" sizes="(max-width: 768px) 100vw, 20vw" />
-                <source type="image/webp" srcset="./imgs/depo3-600.webp 600w" sizes="(max-width: 768px) 100vw, 20vw" />
-                <img src="./imgs/depo3.jpg" alt="Depoimento 3" loading="lazy" width="300" height="200" />
-              </picture>
-            </div>
-          </div>
-        </div>
-        </div>
-        <div class="grafismo-white-wrapper page-open-animate">
-          <img src="./imgs/grafismo-white.svg" alt="Grafismo decorativo"/>
-        </div>
-      </div>
-              
-      <section class="creators-depoimentos container animate-me">
-        <h2>Criadores que já estão revolucionando sua produção</h2>  
-        <div class="swiper swiper-depoimentos">
-          <div class="swiper-wrapper">
-            <!-- Slide 1 -->
-            <div class="swiper-slide">
-              <div class="card-depoimentos-content">
-                <div class="depoimento-imagem">
-                  <picture>
-                    <source
-                      type="image/avif"
-                      srcset="
-                        ./imgs/isla-nogueira-600.avif 600w,
-                        ./imgs/isla-nogueira-1200.avif 1200w
-                      "
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <source
-                      type="image/webp"
-                      srcset="
-                        ./imgs/isla-nogueira-600.webp 600w,
-                        ./imgs/isla-nogueira-1200.webp 1200w
-                      "
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <img
-                      src="./imgs/isla-nogueira.jpg"
-                      alt="Isla Nogueira - CEO da La Isla - moda feminina"
-                      loading="lazy"
-                      width="600"
-                      height="800"
-                    />
-                  </picture>
-                </div>
-                <div class="depoimento-texto">
-                  <h3>Isla Nogueira</h3>
-                  <span>CEO da La Isla - moda feminina</span>
-                  <p>
-                    A pluug.ai está transformando minha rotina de criação de conteúdo para o Instagram da minha loja. Crio legendas e roteiros de stories muito mais rápido, assim consigo garantir o perfil sempre ativo.
-                  </p>
-                </div>
-              </div>
-            </div>
-          
-            <!-- Slide 2 -->
-            <div class="swiper-slide">
-              <div class="card-depoimentos-content">
-                <div class="depoimento-imagem">
-                  <picture>
-                    <source
-                      type="image/avif"
-                      srcset="
-                        ./imgs/eline-cavalcanti-600.avif 600w
-                      "
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <source
-                      type="image/webp"
-                      srcset="
-                        ./imgs/eline-cavalcanti-600.webp 600w
-                      "
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <img
-                      src="./imgs/eline-cavalcanti.jpg"
-                      alt="Eline Cavalcanti"
-                      loading="lazy"
-                      width="400"
-                      height="300"
-                    />
-                  </picture>         
-                </div>
-                <div class="depoimento-texto">
-                  <h3>Eline Cavalcanti</h3>
-                  <span>Diretora Sênior de GTM Global</span>
-                  <p>
-                    O Creator Genie é nosso assistente pessoal. Produzimos conteúdo para Instagram e LinkedIn sem estresse e no prazo.
-                  </p>
-                </div>
-              </div>
-            </div>
-          
-            <!-- Slide 3 -->
-            <div class="swiper-slide">
-              <div class="card-depoimentos-content">
-                <div class="depoimento-imagem">
-                  <picture>
-                    <source
-                      type="image/avif"
-                      srcset="
-                        ./imgs/diana-abreu-depoimento-600.avif 600w
-                      "
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <source
-                      type="image/webp"
-                      srcset="
-                        ./imgs/diana-abreu-depoimento-600.webp 600w
-                      "
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <img
-                      src="./imgs/diana-abreu-depoimento.jpg"
-                      alt="Diana Abreu"
-                      loading="lazy"
-                      width="400"
-                      height="300"
-                    />
-                  </picture> 
-                </div>
-                <div class="depoimento-texto">
-                  <h3>Diana Abreu</h3>
-                  <span>CEO & Founder pluug.ai</span>
-                  <p>
-                    Desde os roteiros do Reels até os fios de mensagem do funil de vendas, com a pluug.ai eu economizo muito mais tempo e acelero toda a produção de conteúdo da empresa.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-                    
-          <!-- Navegação -->
-          <div class="swiper-button-wrapper">
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-          </div>
-        
-          <!-- Paginação -->
-          <div class="swiper-pagination"></div>
-        </div>
-      </section>
-
-      <section class="comparativo">
-        <div class="container">
-          <div class="comparativo-header animate-me">
-            <h2>Você ainda está criando conteúdo do jeito difícil?</h2>
-            <p>A pluug.ai é a melhor solução para creators, empreendedores e profissionais terem resultado nas redes sociais</p>
-          </div> 
-          <div class="comparativo-content animate-me">
-            <div class="comparativo-card">
-              <h3 class="antes-pluug">Antes da pluug.ai</h3>
-              <p>Perde Horas planejando o que postar.</p>
-              <p>Bloqueio criativo constante</p>
-              <p>Postagens aleatórias sem engajamento</p>
-              <p>Criação manual e demorada</p>
-            </div>
-            <div class="comparativo-card">
-              <h3 class="depois-pluug">Depois da pluug.ai</h3>
-              <p>Planejamento automático com IA</p>
-              <p>Sugestões personalizadas prontas para uso</p>
-              <p>Estratégias e postagens alinhas ao seu nicho</p>
-              <p>Agentes inteligentes otimizam todo o fluxo criativo</p>
-            </div>
-          </div> 
-        </div>
-      </section>
-      
+  
       <section id="entre-em-contato" class="entre-em-contato">
         <div class="container animate-me">
           <!-- Formulário -->
@@ -334,7 +138,7 @@
         </div>
       </section>
       
-      <footer class="site-footer">
+      <!-- <footer class="site-footer">
         <div class="footer-container">
           <div class="footer-content">
             <div class="footer-info animate-me">
@@ -359,7 +163,7 @@
             </div>
           </div>
         </div>
-      </footer>
+      </footer> -->
 
     </body>
   </html>
