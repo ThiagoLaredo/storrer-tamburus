@@ -1,32 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="/">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <!-- Título e metatags serão definidos dinamicamente pelo JS -->
     
+    <!-- Favicon -->
     <link rel="icon" href="./imgs/favicon.ico" type="image/x-icon">
-    
-    <!-- Preconnect to Google Fonts for faster font loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Preload and asynchronously load Google Fonts to avoid render-blocking -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet"></noscript>
-
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"> -->
-    <script>document.documentElement.className += ' js';</script>
-
-    <script>
-      // Injeção de dados durante o build
-      document.documentElement.className += ' js';
-      window.PROJECT_DATA = null;
-    </script>
-
+  
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+  
+    <!-- JS do projeto -->
+    <script type="module" src="./js/pages/projeto.js" defer></script>
   </head>
+  
 
   <body>
 
@@ -70,11 +60,11 @@
       <img src="./imgs/icones/whatsapp-icon2.svg" alt="icone WhatsApp mobile" width="32" height="32">
       <span class="visually-hidden">Ir para o WhatsApp</span>
     </a>
-    <a data-menu="linkedin" href="https://www.linkedin.com/company/pluug-ai/" target="_blank" loading="lazy">
+    <a data-menu="linkedin" href="https://www.linkedin.com/company/storrer-tamburus" target="_blank" loading="lazy">
       <img src="./imgs/icones/linkedin.svg" alt="icone Linkedin mobile" width="32" height="32">
       <span class="visually-hidden">Ir para o Linkedin</span>
     </a>
-    <a data-menu="instagram" href="https://www.instagram.com/pluug.ai/" target="_blank">
+    <a data-menu="instagram" href="https://www.instagram.com/storrertamburus/" target="_blank">
       <img src="./imgs/icones/instagram-footer.svg" alt="icone Instagram mobile" width="32" height="32" loading="lazy">
       <span class="visually-hidden">Ir para o Instagram</span>
     </a>
