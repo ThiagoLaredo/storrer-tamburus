@@ -7,14 +7,14 @@
 
 #contactThankYouMessage h3, #newsletterThankYouMessage h3 {
     font: 600 1.6rem 'Inter', sans-serif;
-    color: var(--textwhite);
+    color: var(--cinza);
     text-align: left;
     margin-bottom: 10px;
 } 
 
 #contactThankYouMessage p, #newsletterThankYouMessage p {
     font: 300 1.2rem/1.4 'Inter', sans-serif;
-    color: var(--textwhite);
+    color: var(--cinza);
     text-align: left;
     margin-bottom: 20px;
 } 

@@ -24,7 +24,6 @@
     z-index: 10;
     top: 0;
     left: 0;
-    padding: 6px 0px;
   }
 
 /* header scroll */
@@ -41,7 +40,7 @@
   }
 
   .header a > img {
-    width: 100%;
+    width: 70%;
   }
 
   .header-scrolled .menu li a,
@@ -154,7 +153,7 @@
   .js [data-menu="list"] a {
     font-size: 1.1rem;
     line-height: 1.4;
-    color: var(--textwhite);
+    color: var(--cinza);
     padding: 0.8rem 1rem;
     display: block;
     width: 100%;
@@ -195,8 +194,8 @@
   }
 
   .btn-login {
-    border: 2px solid var(--textwhite);
-    color: var(--textwhite);
+    border: 2px solid var(--cinza);
+    color: var(--cinza);
   }
 
   .btn-cadastro {
@@ -208,13 +207,16 @@
   [data-menu="contato-mobile"].active  {
     position: fixed;
     font: 500 1rem 'Inter', sans-serif;
-    color: var(--textwhite);
-    display: block;
+    color: var(--cinza);
+    display: flex;
+    gap: 20px;
     bottom: 0;
     left: 0;
     z-index: 999;
     padding: 1rem;
     opacity: 0;
+    text-decoration: none;
+    list-style: none;
   }
 
   [data-menu="linkedin"].active {

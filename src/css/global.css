@@ -18,7 +18,7 @@ body {
   background: var(--fundo-claro);
 }
 
-main {   padding: calc(var(--header-height) + 0.2rem) 0;
+main {   padding: calc(var(--header-height) + 0.2rem) 0 0 0;
 }
 
 .swiper-slide {
@@ -67,7 +67,7 @@ img {
 
 .menu {
   max-width: 100vw;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* Animações */
@@ -82,9 +82,9 @@ img {
 /* Adicione estas regras específicas */
 body.preload [data-menu="logo"],
 body.preload [data-menu="button"],
-body.preload .header_acoes a {
+body.preload .institutional-menu a {
   opacity: 0;
-}
+} 
 
 /* Itens do menu - estado inicial */
 #menu > li > a {
