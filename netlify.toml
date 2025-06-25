@@ -2,20 +2,6 @@
   command = "npm run build"
   publish = "dist"
 
-# 1. Primeiro sirva arquivos estáticos
-[[redirects]]
-  from = "/js/*"
-  to = "/js/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/css/*"
-  to = "/css/:splat"
-  status = 200
-  force = true
-
-# 2. Redirecionamentos permanentes (301)
 [[redirects]]
   from = "/projeto.html"
   to = "/"
@@ -26,28 +12,19 @@
   to = "/projetos/:slug"
   status = 301
 
-# 3. Rota para projetos - ESSENCIAL
 [[redirects]]
   from = "/projetos/*"
-  to = "/projeto.html"
-  status = 200
-  query = {slug = ":splat"}  # Mantém o slug como query parameter
-
-# 4. Fallback para SPA (React/Vue)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
+  to = "/projeto.html?slug=:splat"
   status = 200
 
-# Headers para arquivos estáticos
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Content-Type = "application/javascript"
     Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "application/javascript"
 
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Content-Type = "text/css"
     Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "text/css"
