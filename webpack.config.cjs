@@ -333,15 +333,19 @@ module.exports = (env, argv) => {
     ],
     devServer: {
       static: {
-        directory: PATHS.dist,
-        publicPath: publicPath,
+        directory: path.join(__dirname, 'src'),
+        publicPath: '/',
+        staticOptions: {
+          setHeaders: (res, path) => {
+            if (path.endsWith('.js')) {
+              res.setHeader('Content-Type', 'application/javascript');
+            }
+          }
+        }
       },
       historyApiFallback: {
         rewrites: [
-          // Mantém a rota para projetos
-          { from: /^\/projetos\/(.+)/, to: '/projeto.html' },
-          // Serve arquivos estáticos diretamente
-          { from: /\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf|otf)$/, to: (context) => context.parsedUrl.pathname }
+          { from: /^\/projetos\/(.+)/, to: '/projeto.html' }
         ]
       },
       compress: true,
@@ -351,18 +355,18 @@ module.exports = (env, argv) => {
       client: {
         overlay: {
           errors: true,
-          warnings: false,
-        },
+          warnings: false
+        }
       },
-      proxy: [
+      proxy: [ // Sintaxe EXATA que o webpack-dev-server v4 espera
         {
           context: ['/api'],
           target: 'http://localhost:5005',
           secure: false,
-          changeOrigin: true,
-          timeout: 120000,
+          changeOrigin: true
         }
-      ],
-    },
+      ]
+    }
+
   };
 };
