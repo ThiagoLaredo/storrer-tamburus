@@ -2,6 +2,7 @@
   command = "npm run build"
   publish = "dist"
 
+# Redirecionamentos permanentes
 [[redirects]]
   from = "/projeto.html"
   to = "/"
@@ -12,11 +13,27 @@
   to = "/projetos/:slug"
   status = 301
 
+# Regra CRÍTICA - Serve arquivos JS/CSS diretamente
+[[redirects]]
+  from = "/js/*"
+  to = "/js/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/css/*"
+  to = "/css/:splat"
+  status = 200
+  force = true
+
+# Regra para projetos (SÓ deve aplicar quando não for arquivo estático)
 [[redirects]]
   from = "/projetos/*"
   to = "/projeto.html?slug=:splat"
   status = 200
+  conditions = {Path = "/projetos/*", NotPath = ["/js/*", "/css/*", "/*.js", "/*.css"]}
 
+# Headers para arquivos estáticos
 [[headers]]
   for = "/js/*"
   [headers.values]
