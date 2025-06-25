@@ -52,7 +52,7 @@
         '[data-menu="whatsapp"]',
         '[data-menu="linkedin"]',
         '[data-menu="instagram"]',
-        '.header_acoes'
+        '.header-top'
       );
       menuMobile?.init();
 
