@@ -2,18 +2,7 @@
   command = "npm run build"
   publish = "dist"
 
-# Redirecionamentos permanentes
-[[redirects]]
-  from = "/projeto.html"
-  to = "/"
-  status = 301
-
-[[redirects]]
-  from = "/projeto.html?slug=:slug"
-  to = "/projetos/:slug"
-  status = 301
-
-# Regra CRÍTICA - Serve arquivos JS/CSS diretamente
+# 1. Primeiro sirva arquivos estáticos
 [[redirects]]
   from = "/js/*"
   to = "/js/:splat"
@@ -26,22 +15,39 @@
   status = 200
   force = true
 
-# Regra para projetos (SÓ deve aplicar quando não for arquivo estático)
+# 2. Redirecionamentos permanentes (301)
+[[redirects]]
+  from = "/projeto.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/projeto.html?slug=:slug"
+  to = "/projetos/:slug"
+  status = 301
+
+# 3. Rota para projetos - ESSENCIAL
 [[redirects]]
   from = "/projetos/*"
-  to = "/projeto.html?slug=:splat"
+  to = "/projeto.html"
   status = 200
-  conditions = {Path = "/projetos/*", NotPath = ["/js/*", "/css/*", "/*.js", "/*.css"]}
+  query = {slug = ":splat"}  # Mantém o slug como query parameter
+
+# 4. Fallback para SPA (React/Vue)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
 # Headers para arquivos estáticos
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
     Content-Type = "application/javascript"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
     Content-Type = "text/css"
+    Cache-Control = "public, max-age=31536000, immutable"
