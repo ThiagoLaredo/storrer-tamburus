@@ -46,8 +46,8 @@
       // Inicializações de componentes
       const menuMobile = new MenuMobile(
         '[data-menu="logo"]',
-        '[data-menu="button"]',
-        '[data-menu="list"]',
+        '[data-menu="button-menu"]',
+        '[data-menu="list-projetos"]',
         '[data-menu="contato-mobile"]',
         '[data-menu="whatsapp"]',
         '[data-menu="linkedin"]',
@@ -69,7 +69,7 @@
       initScrollAnimations();
 
       // ----------- CARREGAMENTO DO MENU DE FILTROS ------------
-      const filtrosContainer = document.querySelector('[data-menu="list"]');
+      const filtrosContainer = document.querySelector('[data-menu="list-projetos"]');
       if (filtrosContainer) {
         // Carrega os tipos de projeto para o menu
         const tiposData = await fetchEntries('tipoDeProjeto');

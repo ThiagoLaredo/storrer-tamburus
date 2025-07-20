@@ -1,99 +1,104 @@
-.galeria-projetos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    padding: 40px 0;
-    max-width: 1400px;
-    margin: 0 auto;
+.intro {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--cor-fundo);
+  margin-top: -120px;
 }
 
-.projeto-item {
-    position: relative;
-    overflow: hidden;
-    /* border-radius: 8px; */
-    aspect-ratio: 4/3;
+.intro-text {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  color: var(--cor-texto);
+}
+.intro-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
-.projeto-item a {
-    display: block;
-    height: 100%;
+.intro-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Swiper Destaques - mantendo o estilo dos projetos */
+.swiper-destaques {
+  width: 100%;
+  padding: 2rem 0;
+  overflow: hidden; /* Importante para o Swiper */
+}
+.destaque-slide {
+  position: relative; /* Necessário para o posicionamento absoluto interno */
+  width: 100%;
+  height: 100vh; /* Altura da viewport */
+  overflow: hidden; /* Previne vazamento de conteúdo */
+}
+
+.destaque-link {
+  display: block;
+  height: 100%;
+  position: relative;
+}
+
+.destaque-imagem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Container ajustado */
+.destaque-slide .container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+}
+
+.destaque-titulo {
+  position: absolute;
+  left: 1.25rem; /* Respeita o padding do container */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--amarelo-escuro);
+  color: var(--cinza);
+  padding: 0.5rem 1rem;
+  margin: 0;
+  font-size: 1.5rem;
+}
+  
+  .destaque-link {
     text-decoration: none;
-}
-
-.projeto-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-/* Overlay com efeito de grade de bolinhas */
-.projeto-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--amarelo);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    
-    /* Padrão de bolinhas MUITO grandes e extremamente próximas */
-    background-image: 
-        radial-gradient(
-            circle at center,
-            var(--amarelo-escuro) 55%,  /* Diâmetro aumentado ao máximo */
-            transparent 10%             /* Borda mínima para quase se tocarem */
-        );
-    background-size: 24px 24px;        /* Espaçamento mínimo */
-    background-position: 0 0;
-    background-repeat: repeat;
-    
-    /* Otimização para renderização precisa */
-    image-rendering: optimizeQuality;
-    backface-visibility: hidden;
-}
-
-/* Texto do projeto */
-.projeto-titulo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--cinza);
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-align: center;
-    width: 100%;
-    padding: 0 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease 0.1s;
-}
-
-/* Efeitos no hover */
-.projeto-item:hover img {
-    transform: scale(1.05);
-}
-
-.projeto-item:hover .projeto-overlay {
-    opacity: 0.9;
-}
-
-.projeto-item:hover .projeto-titulo {
-    opacity: 1;
-}
-
-/* Responsividade */
-@media (max-width: 1024px) {
-    .galeria-projetos {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 20px 0;
-
+    color: inherit;
+  }
+  
+  /* Placeholder */
+  .destaque-imagem.placeholder {
+    background-color: var(--cor-cinza-claro);
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .destaque-slide {
+      width: 280px;
     }
-}
-
-@media (max-width: 600px) {
-    .galeria-projetos {
-        grid-template-columns: 1fr;
+    
+    .destaque-imagem {
+      height: 350px;
     }
-}
+  }

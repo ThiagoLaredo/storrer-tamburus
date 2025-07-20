@@ -12,7 +12,7 @@ export const initPageOpenAnimations = () => {
   document.body.classList.add('menu-animating');
 
   // 3. Configuração inicial - sem .header_acoes a
-  gsap.set("[data-menu='logo'], [data-menu='button'], .institutional-menu li, #menu > li > a", {
+  gsap.set("[data-menu='logo'], [data-menu='button-menu'], .menu-institutional li, #menu-projetos > li > a", {
     opacity: 0,
     y: 10
   });
@@ -34,13 +34,13 @@ export const initPageOpenAnimations = () => {
   }, 0);
 
     // Botão Menu
-    tl.to("[data-menu='button']", {
+    tl.to("[data-menu='button-menu']", {
       opacity: 1,
       duration: 0.6
     }, 0.2);
 
   // Menu Institucional com stagger
-  tl.to(".institutional-menu li", {
+  tl.to(".menu-institutional li", {
     opacity: 1,
     y: 0,
     duration: 0.6,
@@ -49,7 +49,7 @@ export const initPageOpenAnimations = () => {
 
   // Itens do Menu Principal
   const animateMenuItems = () => {
-    tl.to("#menu > li > a", {
+    tl.to("#menu-projetos > li > a", {
       opacity: 1,
       y: 0,
       stagger: 0.1,
@@ -61,17 +61,17 @@ export const initPageOpenAnimations = () => {
   };
 
   // Verificação e observer para itens dinâmicos
-  if (document.querySelectorAll('#menu > li > a').length > 0) {
+  if (document.querySelectorAll('#menu-projetos > li > a').length > 0) {
     animateMenuItems();
   } else {
     const observer = new MutationObserver((mutations) => {
-      if (document.querySelectorAll('#menu > li > a').length > 0) {
+      if (document.querySelectorAll('#menu-projetos > li > a').length > 0) {
         animateMenuItems();
         observer.disconnect();
       }
     });
     
-    observer.observe(document.getElementById('menu'), {
+    observer.observe(document.getElementById('menu-projetos'), {
       childList: true,
       subtree: true
     });

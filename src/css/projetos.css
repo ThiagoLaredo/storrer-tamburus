@@ -1,0 +1,72 @@
+.projetos {
+  padding: 2rem 0
+}
+
+/* Galeria Swiper */
+.swiper {
+  width: 100%;
+  overflow: visible !important;
+}
+
+.swiper-wrapper {
+  align-items: center;
+}
+
+.swiper-slide {
+  width: auto !important;
+  height: auto;
+}
+
+.projeto-slide {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.projeto-imagem {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.projeto-imagem:hover {
+  transform: scale(1.02);
+}
+
+.projeto-titulo {
+  margin-top: 15px;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: normal;
+  color: var(--cor-texto);
+}
+
+.projeto-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Placeholder para projetos sem imagem */
+.projeto-imagem.placeholder {
+  background-color: var(--cor-cinza-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-cinza);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .galeria-projetos {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 20px 0;
+
+  }
+}
+
+@media (max-width: 600px) {
+  .galeria-projetos {
+      grid-template-columns: 1fr;
+  }
+}
