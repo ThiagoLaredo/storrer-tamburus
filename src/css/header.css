@@ -1,51 +1,63 @@
-/* Geral */
+/* Esconde o filtro em todas as páginas por padrão */
+#menu-projetos {
+  display: none;
+}
+
+/* Mostra apenas nas páginas específicas */
+body.projetos-page #menu-projetos,
+body.projeto-page #menu-projetos {
+  display: flex;
+}
+
 .header {
   width: 100%;
   z-index: 1000;
-  background-color: white;
+  padding: 1rem 0;
+  background-color:var(--fundo-escuro);
   position: fixed;
   top: 0;
 }
 
 .header .container {
   display: flex;
-  flex-direction: column; /* Alterado para coluna */
-  width: 100%;
-}
-
-.header_main {
-  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 1rem;
 }
 
-/* Menu Institucional no Topo */
+.navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
 .institutional-nav {
   width: 100%;
   padding: 0.5rem 0rem;
-  order: 1; /* Garante que fica acima de tudo */
 }
 
-.institutional-menu {
+.menu-institutional {
   display: flex;
-  justify-content: flex-end;
+  justify-content:center;
   gap: 2rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.institutional-menu a {
+.menu-institutional a {
   color: var(--cinza);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
   transition: opacity 0.3s;
   z-index: 2;
 }
 
-.institutional-menu a:hover {
+.menu-institutional a:hover {
   opacity: 0.8;
 }
 
@@ -62,20 +74,15 @@
   order: 2; /* Posiciona abaixo do menu institucional */
 }
 
-/* header scroll - Ajustado para afetar apenas a parte principal */
-.header.header-scrolled .header_menu {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+.header.header-scrolled [data-menu="logo"] {
+  width: 50px;
 }
 
-/* .header.header-scrolled .institutional-nav {
-  display: none;
-} */
+.header.header-scrolled {
+  padding: 0.2rem 0;
+}
 
-
-ul[data-menu="list"] {
+ul[data-menu="list-projetos"] {
   display: flex;
   list-style: none;
   gap: 4rem;
@@ -125,14 +132,14 @@ ul[data-menu="list"] {
     min-width: 150px;
   }
 
-  ul[data-menu="list"] {
+  ul[data-menu="list-projetos"] {
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .menu li a,
-  .menu li span {
+  .projetos-nav li a,
+  .projetos-navli span {
     font-size: 0.9rem;
     padding: 0.5rem;
   }
@@ -158,12 +165,12 @@ ul[data-menu="list"] {
     padding: 0.5rem 1rem;
   }
   
-  .institutional-menu {
+  .menu-institutional {
     justify-content: center;
     gap: 1rem;
   }
   
-  .institutional-menu a {
+  .menu-institutional a {
     font-size: 0.8rem;
   }
 }

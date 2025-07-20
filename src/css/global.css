@@ -15,7 +15,7 @@ button {
 body {
   overflow-x: hidden;
   font-family: 'Inter', sans-serif;
-  background: var(--fundo-claro);
+  background: var(--fundo-escuro);
 }
 
 main {   padding: calc(var(--header-height) + 0.2rem) 0 0 0;
@@ -81,18 +81,18 @@ img {
 
 /* Adicione estas regras específicas */
 body.preload [data-menu="logo"],
-body.preload [data-menu="button"],
-body.preload .institutional-menu a {
+body.preload [data-menu='button-menu'],
+body.preload .menu-institutional a {
   opacity: 0;
 } 
 
 /* Itens do menu - estado inicial */
-#menu > li > a {
+#menu-projetos > li > a {
   opacity: 0; /* Inicialmente invisível */
 }
 
 /* Classe para quando a animação deve mostrar */
-.menu-visible #menu > li > a {
+.menu-visible #menu-projetos > li > a {
   opacity: 1 !important; /* Força a visibilidade */
 }
 
@@ -108,9 +108,9 @@ body.preload .institutional-menu a {
 
 /* Elementos ocultos no início */
 [data-menu='logo'],
-[data-menu='button'],
-#menu > li > a,
-#menu > li > span,
+[data-menu='button-menu'],
+#menu-projetos > li > a,
+#menu-projetos > li > span,
 .header_acoes a,
 .page-open-animate {
   opacity: 0;

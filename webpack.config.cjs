@@ -199,7 +199,7 @@ const PATHS = {
 
 const publicPath = '/';
 
-const pages = ['index', 'projeto', 'sobre', 'contato'];
+const pages = ['index', 'projetos', 'projeto', 'sobre', 'contato'];
 
 const entryPoints = pages.reduce((entries, page) => {
   const jsPath = `./src/js/pages/${page}.js`;
@@ -338,10 +338,9 @@ module.exports = (env, argv) => {
       },
       historyApiFallback: {
         rewrites: [
-          // Mantém a rota para projetos
-          { from: /^\/projetos\/(.+)/, to: '/projeto.html' },
-          // Serve arquivos estáticos diretamente
-          { from: /\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf|otf)$/, to: (context) => context.parsedUrl.pathname }
+          { from: /^\/projetos\/?$/, to: '/projetos.html' }, // Galeria
+          { from: /^\/projetos\/([^\/]+)\/?$/, to: '/projeto.html?slug=$1' }, // Detalhe
+          { from: /\.(js|css|images|fonts)/, to: (context) => context.parsedUrl.pathname }
         ]
       },
       compress: true,
