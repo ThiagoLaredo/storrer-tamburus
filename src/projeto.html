@@ -18,36 +18,37 @@
   </head>
   
 
-  <body>
+  <body class="projeto-page">
 
     <header class="header">
       <div class="container">
-        <!-- Menu Institucional (Topo) - MODIFICADO -->
-        <div class="header-top">
+        <a data-menu="logo" class="home-link" href="/">
+          <img src="/imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
+          <span class="visually-hidden">Voltar para a página inicial</span>
+        </a>
+
+        <!-- Menus -->
+        <div class="navigation">
+          <!-- Menu Institucional -->
           <nav class="institutional-nav" aria-label="Navegação institucional">
-            <ul class="institutional-menu">
+            <ul class="menu-institutional">
+              <li><a href="/projetos">Projetos</a></li>
               <li><a href="/sobre">Sobre</a></li>
               <li><a href="/contato">Contato</a></li>
-              <li><a href="https://instagram.com/seuinstagram" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             </ul>
           </nav>
-        </div>
-    
-        <!-- Menu Principal (Projetos) -->
-        <div class="header_main">
-          <a data-menu="logo" class="home-link" href="/">
-            <img src="/imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
-            <span class="visually-hidden">Voltar para a página inicial</span>
-          </a>
-          <nav class="menu">
-            <button data-menu="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
-              <span id="hamburguer"></span>
-            </button>
-            <ul id="menu" role="menubar" data-menu="list">
+          <!-- Menu Projetos -->
+          <nav class="projetos-nav">
+            <ul id="menu-projetos" role="menubar" data-menu="list-projetos">
               <!-- Os itens serão inseridos dinamicamente -->
             </ul>                        
           </nav>
-        </div>
+        </div> 
+
+        <!-- Botão Menu -->
+        <button data-menu='button-menu' aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+          <span id="hamburguer"></span>
+        </button> 
       </div>
     </header>
     

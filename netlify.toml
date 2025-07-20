@@ -2,9 +2,10 @@
   command = "npm run build"
   publish = "dist"
 
+# Redirecionamentos principais
 [[redirects]]
   from = "/projeto.html"
-  to = "/"
+  to = "/projetos"
   status = 301
 
 [[redirects]]
@@ -12,11 +13,25 @@
   to = "/projetos/:slug"
   status = 301
 
+# URL amigável para a galeria
 [[redirects]]
-  from = "/projetos/*"
-  to = "/projeto.html?slug=:splat"
+  from = "/projetos"
+  to = "/projetos.html"
   status = 200
 
+# URL amigável para detalhes de projeto
+[[redirects]]
+  from = "/projetos/:slug"
+  to = "/projeto.html?slug=:slug"
+  status = 200
+
+# Fallback para URLs antigas
+[[redirects]]
+  from = "/projeto/:slug"
+  to = "/projetos/:slug"
+  status = 301
+
+# Headers de cache
 [[headers]]
   for = "/js/*"
   [headers.values]
@@ -28,3 +43,15 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
     Content-Type = "text/css"
+
+[[headers]]
+  for = "/imgs/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"

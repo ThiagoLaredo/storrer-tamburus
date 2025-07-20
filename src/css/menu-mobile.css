@@ -1,5 +1,5 @@
 /* Elementos ocultos por padrão */
-[data-menu="button"] {
+[data-menu='button-menu'] {
   display: none;
 }
 
@@ -14,7 +14,7 @@
 .header.header-scrolled  {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.85); /* Branco com 90% de opacidade */
+  background-color: rgba(255, 255, 255, 0.15); /* Branco com 90% de opacidade */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 } 
 
@@ -60,7 +60,7 @@
   }
 
   /* Botão hamburguer */
-  .js [data-menu="button"] {
+  .js [data-menu='button-menu'] {
     display: flex;
     background: var(--amarelo-escuro);
     border: none;
@@ -110,22 +110,22 @@
   }
 
   /* Estilos quando o menu está ativo */
-  .js [data-menu="button"].active #hamburguer {
+  .js [data-menu='button-menu'].active #hamburguer {
     background: transparent;
   }
 
-  .js [data-menu="button"].active #hamburguer::before {
+  .js [data-menu='button-menu'].active #hamburguer::before {
     transform: rotate(45deg);
     top: 0;
   }
 
-  .js [data-menu="button"].active #hamburguer::after {
+  .js [data-menu='button-menu'].active #hamburguer::after {
     transform: rotate(-45deg);
     top: 0;
   }
 
   /* Menu mobile ajustado */
-  .js [data-menu="list"] {
+  .js [data-menu="list-projetos"] {
     display: none;
     position: fixed;
     width: 100%;
@@ -141,7 +141,7 @@
     margin: 0; 
   }
 
-  .js [data-menu="list"].active {
+  .js [data-menu="list-projetos"].active {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -149,12 +149,12 @@
     gap: 1.5rem;
   }
 
-  .js [data-menu="list"] li {
+  .js [data-menu="list-projetos"] li {
     width: 100%;
     max-width: 300px;
   }
 
-  .js [data-menu="list"] a {
+  .js [data-menu="list-projetos"] a {
     font-size: 1.1rem;
     line-height: 1.4;
     color: var(--cinza);
@@ -186,7 +186,7 @@
     padding: 0;
   }
 
-  .js [data-menu="list"].active ~ .header_acoes,
+  .js [data-menu="list-projetos"].active ~ .header_acoes,
   .header_acoes.active {
     display: flex;
     animation: fadeIn 0.3s ease forwards;
