@@ -121,7 +121,7 @@ export default class MenuMobile {
   }
 
   toggleMenuAnimation(show) {
-    const menuList = document.querySelector('.js [data-menu="list"]');
+    const menuList = document.querySelector('.js [data-menu="list-projetos"]');
     if (show) {
       gsap.to(menuList, {
         duration: 0.5,

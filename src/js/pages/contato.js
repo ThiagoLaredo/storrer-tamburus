@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializa o menu mobile com submenu integrado, caso os elementos existam
     const menuMobile = new MenuMobile(
         '[data-menu="logo"]',
-        '[data-menu="button"]',
-        '[data-menu="list"]',
+        '[data-menu="button-menu"]',
+        '[data-menu="list-projetos"]',
         '[data-menu="contato-mobile"]',
         '[data-menu="whatsapp"]',
         '[data-menu="linkedin"]',
