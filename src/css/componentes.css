@@ -15,18 +15,121 @@
   .button:focus {
     background-color: var(--amarelo-escuro);
   }
-  
-  /* Botão com borda */
-  .button-outline {
-    background: transparent;
-    border: 2px solid var(--amarelo);
+
+  .button-cases {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    background-color: transparent; /* Fundo transparente */
     color: var(--cinza);
-  }
-  
-  .button-outline:hover,
-  .button-outline:focus {
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    position: relative; /* Para o pseudo-elemento do sublinhado */
+    text-decoration: none; /* Remove qualquer sublinhado padrão */
+    /* text-transform: uppercase; */
+    /* letter-spacing: 0.1em;  */
+}
+
+/* Sublinhado animado */
+.button-cases::after {
+    content: '';
+    position: absolute;
+    left: 1.5em; /* Alinha com o padding horizontal */
+    right: 1.5em; /* Alinha com o padding horizontal */
+    bottom: -.2em; /* Posiciona abaixo do texto */
+    height: 4px; /* Espessura semi-grossa */
     background-color: var(--amarelo);
+    transform: scaleX(0.4); /* Começa com 80% de largura */
+    transform-origin: center;
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.button-cases:hover,
+.button-cases:focus {
+    color: var(--cinza); /* Mantém a cor do texto */
+}
+
+.button-cases:hover::after,
+.button-cases:focus::after {
+    background-color: var(--amarelo);
+    transform: scaleX(1); /* Expande para 100% de largura */
+    height: 4px; /* Aumenta ligeiramente a espessura no hover */
+    background-color: var(--amarelo-escuro);
+}
+  
+/* Botão com borda - versão aprimorada */
+.button-outline {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--cinza);
+  color: var(--cinza);
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  /* text-transform: uppercase;
+  letter-spacing: 1px; */
+  border-radius: 50px; 
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease-out;
+  cursor: pointer;
+}
+
+/* Efeito hover/focus - versão premium */
+.button-outline:hover,
+.button-outline:focus {
+  color: var(--cinza);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Efeito de preenchimento animado */
+.button-outline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--amarelo-escuro);
+  z-index: -1;
+  transition: all 0.4s ease-out;
+  border-radius: 50px;
+}
+
+.button-outline:hover::before,
+.button-outline:focus::before {
+  left: 0;
+}
+
+/* Efeito de brilho no hover */
+.button-outline:hover::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -50%;
+    opacity: 0;
   }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    left: 150%;
+    opacity: 0;
+  }
+}
   
   /* Cabeçalhos */
   h1, h2, h3 {
@@ -124,12 +227,12 @@
 }
 
 /* Estado ativo */
-.filtro-btn.ativo {
+/* .filtro-btn.ativo {
   color: var(--amarelo-escuro) !important;
-}
+} */
 
 .filtro-btn.ativo::before {
-  background: var(--cinza);
+  background: var(--amarelo);
   --circle-opacity: 1;
   --circle-scale: 1;
 }

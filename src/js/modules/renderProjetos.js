@@ -68,6 +68,8 @@ export function renderGaleria(container, projetos) {
           </div>
         `).join('')}
       </div>
+      <!-- Elementos de controle -->
+      <div class="swiper-scrollbar"></div>
     </div>
   `;
 
