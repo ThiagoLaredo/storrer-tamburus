@@ -10,13 +10,6 @@
   display: none;
 }
 
-/* header scroll */
-.header.header-scrolled  {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.15); /* Branco com 90% de opacidade */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-} 
 
 @media (max-width: 768px) {
   /* Ajustes gerais */
@@ -29,13 +22,6 @@
     left: 0;
   }
 
-/* header scroll */
-.header.header-scrolled  {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background-color: transparent;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-} 
 
   [data-menu="logo"] {
     width: 150px;

@@ -4,6 +4,103 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 gsap.registerPlugin(ScrollTrigger);
 
 
+// export const initPageOpenAnimations = () => {
+//   // 1. Remova a classe preload imediatamente
+//   document.body.classList.remove("preload");
+  
+//   // 2. Adicione classe de controle no body
+//   document.body.classList.add('menu-animating');
+
+//   // 3. Configuração inicial - sem .header_acoes a
+//   gsap.set("[data-menu='logo'], [data-menu='button-menu'], .menu-institutional li, #menu-projetos > li > a", {
+//     opacity: 0,
+//     y: 10
+//   });
+
+//   // 4. Timeline principal
+//   const tl = gsap.timeline({ 
+//     defaults: { ease: "power3.out" },
+//     onComplete: () => {
+//       document.body.classList.remove('menu-animating');
+//       document.body.classList.add('menu-visible');
+//     }
+//   });
+
+//   // Logo
+//   tl.to("[data-menu='logo']", {
+//     opacity: 1,
+//     y: 0,
+//     duration: 0.8
+//   }, 0);
+
+//     // Botão Menu
+//     tl.to("[data-menu='button-menu']", {
+//       opacity: 1,
+//       duration: 0.6
+//     }, 0.2);
+
+//   // Menu Institucional com stagger
+//   tl.to(".menu-institutional li", {
+//     opacity: 1,
+//     y: 0,
+//     duration: 0.6,
+//     stagger: 0.1
+//   }, 0.2);
+
+//   // Itens do Menu Principal
+//   const animateMenuItems = () => {
+//     tl.to("#menu-projetos > li > a", {
+//       opacity: 1,
+//       y: 0,
+//       stagger: 0.1,
+//       duration: 0.5,
+//       onStart: () => {
+//         document.body.classList.add('menu-animating');
+//       }
+//     }, 0.4);
+//   };
+
+//   // Verificação e observer para itens dinâmicos
+//   if (document.querySelectorAll('#menu-projetos > li > a').length > 0) {
+//     animateMenuItems();
+//   } else {
+//     const observer = new MutationObserver((mutations) => {
+//       if (document.querySelectorAll('#menu-projetos > li > a').length > 0) {
+//         animateMenuItems();
+//         observer.disconnect();
+//       }
+//     });
+    
+//     observer.observe(document.getElementById('menu-projetos'), {
+//       childList: true,
+//       subtree: true
+//     });
+//   }
+
+//   // Animação dos elementos .page-open-animate (mantido igual)
+//   document.querySelectorAll('.page-open-animate').forEach((el, i) => {
+//     const rect = el.getBoundingClientRect();
+//     const isAboveFold = rect.top < window.innerHeight;
+
+//     if (isAboveFold) {
+//       gsap.fromTo(el,
+//         { opacity: 0, y: 30 },
+//         {
+//           opacity: 1,
+//           y: 0,
+//           duration: 0.8,
+//           delay: 0.8 + (i * 0.1), // Ajustado para compensar remoção
+//           ease: "back.out(1.4)"
+//         }
+//       );
+//     } else {
+//       gsap.set(el, { opacity: 1 });
+//     }
+//   });
+
+//   return tl;
+// };
+
 export const initPageOpenAnimations = () => {
   // 1. Remova a classe preload imediatamente
   document.body.classList.remove("preload");
@@ -11,10 +108,15 @@ export const initPageOpenAnimations = () => {
   // 2. Adicione classe de controle no body
   document.body.classList.add('menu-animating');
 
-  // 3. Configuração inicial - sem .header_acoes a
+  // 3. Configuração inicial
   gsap.set("[data-menu='logo'], [data-menu='button-menu'], .menu-institutional li, #menu-projetos > li > a", {
     opacity: 0,
     y: 10
+  });
+
+  gsap.set(".intro-text h1, .intro-text p, .intro-text a", {
+    opacity: 0,
+    y: 20
   });
 
   // 4. Timeline principal
@@ -23,6 +125,11 @@ export const initPageOpenAnimations = () => {
     onComplete: () => {
       document.body.classList.remove('menu-animating');
       document.body.classList.add('menu-visible');
+      
+      // Verifica se estamos na página inicial e anima os textos
+      if (document.querySelector('.intro-text')) {
+        animateIntroText();
+      }
     }
   });
 
@@ -33,11 +140,11 @@ export const initPageOpenAnimations = () => {
     duration: 0.8
   }, 0);
 
-    // Botão Menu
-    tl.to("[data-menu='button-menu']", {
-      opacity: 1,
-      duration: 0.6
-    }, 0.2);
+  // Botão Menu
+  tl.to("[data-menu='button-menu']", {
+    opacity: 1,
+    duration: 0.6
+  }, 0.2);
 
   // Menu Institucional com stagger
   tl.to(".menu-institutional li", {
@@ -77,7 +184,7 @@ export const initPageOpenAnimations = () => {
     });
   }
 
-  // Animação dos elementos .page-open-animate (mantido igual)
+  // Animação dos elementos .page-open-animate
   document.querySelectorAll('.page-open-animate').forEach((el, i) => {
     const rect = el.getBoundingClientRect();
     const isAboveFold = rect.top < window.innerHeight;
@@ -89,7 +196,7 @@ export const initPageOpenAnimations = () => {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          delay: 0.8 + (i * 0.1), // Ajustado para compensar remoção
+          delay: 0.8 + (i * 0.1),
           ease: "back.out(1.4)"
         }
       );
@@ -97,6 +204,35 @@ export const initPageOpenAnimations = () => {
       gsap.set(el, { opacity: 1 });
     }
   });
+
+  // Função para animar os textos de introdução (só na index)
+  function animateIntroText() {
+    // Configuração inicial apenas para os elementos de intro
+    gsap.set(".intro-text h1, .intro-text p, .intro-text a", {
+      opacity: 0,
+      y: 20
+    });
+
+    const introTl = gsap.timeline({ defaults: { ease: "back.out(1.4)" } });
+    
+    introTl.to(".intro-text h1", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8
+    })
+    .to(".intro-text p", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8
+    }, "-=0.4") // Começa 0.4s antes do término da anterior
+    .to(".intro-text a", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8
+    }, "-=0.4"); // Começa 0.4s antes do término da anterior
+    
+    return introTl;
+  }
 
   return tl;
 };
@@ -324,5 +460,43 @@ export const cleanupFilterAnimations = (container) => {
     const state = hoverStates.get(btn);
     if (state?.hoverTween) state.hoverTween.kill();
     hoverStates.delete(btn);
+  });
+};
+
+
+export const setupDestaquesAnimation = (container) => {
+  const slides = container.querySelectorAll('.swiper-slide');
+  
+  // Configuração inicial
+  gsap.set(slides, {
+    opacity: 0,
+    y: 80,
+    scale: 0.95,
+    visibility: "hidden"
+  });
+
+  ScrollTrigger.create({
+    trigger: container,
+    start: "top 75%",
+    onEnter: () => {
+      const tl = gsap.timeline();
+      
+      tl.to(slides, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        visibility: "visible",
+        stagger: 0.15,
+        duration: 0.8,
+        ease: "back.out(1.2)"
+      });
+      
+      tl.to(container.querySelectorAll('.destaque-titulo'), {
+        opacity: 1,
+        y: 0,
+        duration: 0.6
+      }, "-=0.3");
+    },
+    once: true
   });
 };

@@ -28,14 +28,14 @@ body.projeto-page #menu-projetos {
 .navigation {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   width: 100%;
 }
 
 
 .institutional-nav {
-  width: 100%;
+  width: fit-content;
   padding: 0.5rem 0rem;
 }
 
@@ -75,20 +75,44 @@ body.projeto-page #menu-projetos {
 }
 
 .header.header-scrolled [data-menu="logo"] {
-  width: 50px;
+display: none;
 }
 
 .header.header-scrolled {
-  padding: 0.2rem 0;
+  padding: 0.4rem;
+  background-color: transparent;
+  display: flex;
 }
 
+.header.header-scrolled .menu-institutional {
+  border: 1px solid var(--amarelo);
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--amarelo-escuro); 
+}
+
+.header.header-scrolled .navigation {
+  align-items: center;
+}
+
+.header.header-scrolled .menu-institutional li > a {
+  /* color: var(--amarelo);  */
+}
+
+
+/* Adicione isso no header.css */
 ul[data-menu="list-projetos"] {
-  display: flex;
+  display: none; /* Alterado de flex para none */
   list-style: none;
   gap: 4rem;
   align-items: center;
   margin-left: 10px;
   z-index: -3;
+}
+
+/* Mostra o menu quando a classe active estiver presente */
+ul[data-menu="list-projetos"].active {
+  display: flex;
 }
 
 .logo-svg {
