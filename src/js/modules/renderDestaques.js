@@ -1,4 +1,4 @@
-import { SwiperGallery } from './swiper-gallery.js';
+import { SwiperDestaques } from './swiper-destaques.js';
 
 export function renderDestaques(container, projetos) {
   if (!container) return;
@@ -11,9 +11,9 @@ export function renderDestaques(container, projetos) {
     return;
   }
 
-  // Cria a estrutura do Swiper (igual ao renderProjetos mas com classes específicas)
+  // Cria a estrutura do Swiper (igual ao modelo que funciona)
   container.innerHTML = `
-    <div class="swiper swiper-destaques">
+    <div class="swiper-destaques">
       <div class="swiper-wrapper">
         ${projetos.map(projeto => `
           <div class="swiper-slide">
@@ -38,15 +38,12 @@ export function renderDestaques(container, projetos) {
           </div>
         `).join('')}
       </div>
+      <!-- Elementos de controle -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
     </div>
   `;
 
-  // Inicializa o Swiper com as mesmas opções
-  const swiper = new SwiperGallery('.swiper-destaques', {
-    // Opções adicionais podem vir aqui
-    slidesPerView: 'auto',
-    spaceBetween: 20,
-    centeredSlides: true
-  });
-  swiper.init();
+  // Inicializa o Swiper
+  const swiper = new SwiperDestaques('.swiper-destaques').init();
 }
