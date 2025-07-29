@@ -86,6 +86,13 @@ body.preload .menu-institutional a {
   opacity: 0;
 } 
 
+/* Garante que os elementos ficarão invisíveis até o JS inicializar */
+.preload .intro-text h1,
+.preload .intro-text p,
+.preload .intro-text a {
+  visibility: hidden !important;
+}
+
 /* Itens do menu - estado inicial */
 #menu-projetos > li > a {
   opacity: 0; /* Inicialmente invisível */

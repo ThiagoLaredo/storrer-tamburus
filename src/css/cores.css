@@ -3,6 +3,20 @@
   --amarelo: #F3ED4F;
   --amarelo-escuro: #E7DF59;
   --cinza: #5A5756;
+  /* Transparências do amarelo claro (#F3ED4F) */
+  --amarelo-transparente-50: rgba(243, 237, 79, 0.5);
+  --amarelo-transparente-25: rgba(243, 237, 79, 0.25);
+  --amarelo-transparente-10: rgba(243, 237, 79, 0.1);
+  
+  /* Transparências do amarelo escuro (#E7DF59) */
+  --amarelo-escuro-transparente-50: rgba(231, 223, 89, 0.5);
+  --amarelo-escuro-transparente-25: rgba(231, 223, 89, 0.25);
+  --amarelo-escuro-transparente-10: rgba(231, 223, 89, 0.1);
+  
+  /* Transparências do cinza (#5A5756) */
+  --cinza-transparente-50: rgba(90, 87, 86, 0.5);
+  --cinza-transparente-25: rgba(90, 87, 86, 0.25);
+  --cinza-transparente-10: rgba(90, 87, 86, 0.1);
 
   /* Base */
   --fundo-escuro: #dcd9d2;

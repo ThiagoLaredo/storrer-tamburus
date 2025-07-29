@@ -40,7 +40,7 @@
   </head>
   
 
-  <body>
+  <body class="home">
 
     <header class="header">
       <div class="container">
@@ -97,20 +97,36 @@
         <div class="intro-text container">
           <h1 class="intro-title">Arquitetura e Design de Interiores</h1>
           <p class="intro-subtitle">Projetos autorais com sofisticação, funcionalidade e identidade.</p>
-          <a href="#cases" class="button">Conheça nossos cases</a>
+          <a href="#cases" class="button-cases">Conheça nossos cases</a>
         </div>  
       </section>
-      <section class="highlights">
-        <div class="swiper swiper-projetos">
-          <div class="swiper-wrapper" id="destaques">
-            <!-- Slides vão ser inseridos dinamicamente aqui -->
-          </div>
-      
-          <div class="swiper-scrollbar"></div>
-        </div>
-      
-        <a href="/projetos" class="see-all">Ver todos os projetos →</a>
+      <section class="highlights" id="cases">
+        <div id="destaques" class="destaques-projetos swiper-container"></div>
       </section>
+
+      <section class="diferenciais">
+        <div class="container">
+          <h2 class="diferenciais-title">Nossos diferenciais</h2>
+          <ul class="diferenciais-list">
+            <li>
+              <!-- <img src="./imgs/icones/planejamento.svg" alt="Planejamento e organização" width="48" height="48"> -->
+              <h3>Planejamento e organização</h3>
+              <p>Trabalhamos com cronogramas detalhados para garantir a entrega no prazo.</p>
+            </li>
+            <li>
+              <!-- <img src="./imgs/icones/qualidade.svg" alt="Qualidade e sofisticação" width="48" height="48"> -->
+              <h3>Qualidade e sofisticação</h3>
+              <p>Utilizamos materiais de alta qualidade para resultados duradouros.</p>
+            </li>
+            <li>
+              <!-- <img src="./imgs/icones/atendimento.svg" alt="Atendimento personalizado" width="48" height="48"> -->
+              <h3>Atendimento personalizado</h3>
+              <p>Cada cliente é único, e adaptamos nossos serviços às suas necessidades.</p>
+            </li>
+          </ul>
+          <a href="./sobre.html" class="button-diferenciais button-outline">Saiba mais sobre nós</a>
+        </div>
+      </section>  
       
     </main>
  
