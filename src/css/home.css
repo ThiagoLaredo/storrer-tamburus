@@ -285,10 +285,6 @@
   color: var(--cinza);
 }
 
-/* .diferenciais-list li:hover h3::after {
-  width: 100%;
-} */
-
 .diferenciais-list p {
   color: var(--cinza);
   line-height: 1.6;
@@ -304,6 +300,14 @@
 
 /* Responsividade */
 @media (max-width: 768px) {
+
+  .destaque-titulo {
+    left: 50%; /* Respeita o padding do container */
+    transform: translateX(-50%); /* Corrige para o centro exato */
+    bottom: 8%;
+
+  }
+
   .diferenciais {
     padding: 3rem 0;
   }
