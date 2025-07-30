@@ -17,6 +17,14 @@
   visibility: visible;
 }
 
+.projeto-page .header.header-scrolled {
+  background: rgba(90, 87, 86, 0.1); /* Cor base (antiquewhite) com transparência */
+  backdrop-filter: blur(10px); /* Efeito de desfoque */
+  -webkit-backdrop-filter: blur(10px); /* Suporte para Safari */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidade */
+  border-bottom: 1px solid rgba(90, 87, 86, 0.2); /* Borda sutil para contraste */
+}
+
 .projeto-conteudo {
   max-width: 1440px;
   margin: 0 auto;
