@@ -1,8 +1,9 @@
+/* ============ BASE STYLES ============ */
 .projetos {
   padding: 0;
 }
 
-/* Galeria Swiper */
+/* ============ SWIPER CORE STYLES ============ */
 .swiper {
   width: 100%;
   overflow: visible !important;
@@ -17,21 +18,26 @@
   height: auto;
 }
 
+.swiper-initialized {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* ============ SCROLLBAR GENERAL STYLES ============ */
 .swiper-scrollbar {
   position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 6px;
+  height: 4px;
   background: rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
 
 .swiper-scrollbar-drag {
-  background: var(--amarelo);
+  background: rgba(0, 0, 0, 0.3);
+  cursor: grab;
 }
 
+/* ============ PROJECT SLIDE COMPONENT ============ */
 .projeto-slide {
   display: flex;
   flex-direction: column;
@@ -50,9 +56,17 @@
   transform: scale(1.02);
 }
 
+.projeto-imagem.placeholder {
+  background-color: var(--cor-cinza-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-cinza);
+}
+
 .projeto-titulo {
   position: absolute;
-  left: 1.25rem; /* Respeita o padding do container */
+  left: 1.25rem; /* 20px */
   bottom: 1%;
   transform: translateY(-50%);
   background-color: var(--cinza);
@@ -67,53 +81,43 @@
   color: inherit;
 }
 
-/* Placeholder para projetos sem imagem */
-.projeto-imagem.placeholder {
-  background-color: var(--cor-cinza-claro);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--cor-cinza);
-}
-
-/* Aplica apenas ao Swiper dentro de #galeria */
+/* ============ GALLERY SPECIFIC STYLES ============ */
 #galeria.swiper-container {
   padding-bottom: 30px; /* Espaço para a scrollbar */
   overflow: visible !important;
 }
 
-/* Barra de rolagem personalizada (somente para este Swiper) */
 #galeria .swiper-scrollbar {
   position: absolute;
   bottom: -40px;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
-  height: 6px;
-  background: rgba(0, 0, 0, 0.1);
   border-radius: 3px;
-  z-index: 10;
 }
 
-/* Barra arrastável (amarela) */
 #galeria .swiper-scrollbar-drag {
   background: var(--cinza-transparente-25);
   border-radius: 3px;
-  cursor: grab;
 }
 
-
-/* Responsividade */
-@media (max-width: 1024px) {
+/* ============ RESPONSIVE ADJUSTMENTS ============ */
+@media (min-width: 1024px) {
+  .swiper-scrollbar {
+    height: 6px;
+  }
+  
   .galeria-projetos {
-      grid-template-columns: repeat(2, 1fr);
-      /* padding: 20px 0; */
-
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
   .galeria-projetos {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+  
+  .js-swiper-gallery {
+    overflow: hidden;
   }
 }
