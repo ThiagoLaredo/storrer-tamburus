@@ -103,8 +103,8 @@
 /* Container das setas (prev/next) */
 .swiper-button-prev,
 .swiper-button-next {
-  width: 40px;  /* Largura igual à altura para formar um círculo */
-  height: 40px;
+  width: 40px !important;
+  height: 40px !important;
   background-color: var(--amarelo); /* Fundo amarelo */
   border-radius: 50%; /* Deixa redondo */
   display: flex;
@@ -117,7 +117,7 @@
 .swiper-button-prev::after,
 .swiper-button-next::after {
   color: var(--cinza); /* Cor do ícone */
-  font-size: 1.5rem; /* Tamanho ajustado para caber no círculo */
+  font-size: 1.5rem !important;
   background: transparent !important; /* Remove o fundo anterior */
   padding: 0 !important; /* Remove padding extra */
 }
