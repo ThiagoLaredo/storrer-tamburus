@@ -74,6 +74,7 @@
   padding: 0.3rem 0.6rem;
   margin: 0;
   font-size: 1rem;
+  font-weight: 400;
 }
 
 .projeto-link {
@@ -97,7 +98,7 @@
 }
 
 #galeria .swiper-scrollbar-drag {
-  background: var(--cinza-transparente-25);
+  background: var(--cinza-transparente-50);
   border-radius: 3px;
 }
 
