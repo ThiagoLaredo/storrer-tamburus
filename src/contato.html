@@ -39,42 +39,44 @@
     </head>
     
     
-    <body class="page-creators">
+    <body>
 
       <header class="header">
         <div class="container">
-          <!-- Menu Institucional (Topo) - MODIFICADO -->
-          <div class="header-top">
+          <a data-menu="logo" class="home-link" href="/">
+            <img src="/imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
+            <span class="visually-hidden">Voltar para a página inicial</span>
+          </a>
+  
+          <!-- Menus -->
+          <div class="navigation">
+            <!-- Menu Institucional -->
             <nav class="institutional-nav" aria-label="Navegação institucional">
               <ul class="menu-institutional">
-                <li><a href="/sobre">Sobre</a></li>
-                <li><a href="/contato">Contato</a></li>
+                <li><a href="./projetos.html">Projetos</a></li>
+                <li><a href="./sobre.html">Sobre</a></li>
+                <li><a href="./contato.html">Contato</a></li>
               </ul>
             </nav>
-          </div>
-      
-          <!-- Menu Principal (Projetos) -->
-          <div class="header_main">
-            <a data-menu="logo" class="home-link" href="/">
-              <img src="/imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
-              <span class="visually-hidden">Voltar para a página inicial</span>
-            </a>
+            <!-- Menu Projetos -->
             <nav class="projetos-nav">
-              <button data-menu='button-menu' aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
-                <span id="hamburguer"></span>
-              </button>
-              <ul id="menu" role="menubar" data-menu="list-projetos">
+              <ul id="menu-projetos" role="menubar" data-menu="list-projetos">
                 <!-- Os itens serão inseridos dinamicamente -->
               </ul>                        
             </nav>
-          </div>
+          </div> 
+  
+          <!-- Botão Menu -->
+          <button data-menu='button-menu' aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+            <span id="hamburguer"></span>
+          </button> 
         </div>
       </header>
-  
-     <!-- Icones sociais menu mobile -->
-     <ul data-menu="contato-mobile">
-      <li>Sobre</li>
-      <li>Contato</li>
+      
+      <!-- Icones sociais menu mobile -->
+      <ul data-menu="contato-mobile">
+        <li>Sobre</li>
+        <li>Contato</li>
       </ul>
       <a data-menu="whatsapp" href="https://wa.me/5521985486951" target="_blank" loading="lazy">
         <img src="./imgs/icones/whatsapp-icon2.svg" alt="icone WhatsApp mobile" width="32" height="32">
@@ -88,82 +90,65 @@
         <img src="./imgs/icones/instagram-footer.svg" alt="icone Instagram mobile" width="32" height="32" loading="lazy">
         <span class="visually-hidden">Ir para o Instagram</span>
       </a>
-  
-      <section id="entre-em-contato" class="entre-em-contato">
-        <div class="container animate-me">
-          <!-- Formulário -->
-          <div id="formulario">
-            <h2>Receba nossa Newsletter e fique por dentro das novidades</h2>         
-            <form class="contact-form">
-              <div class="form-grid">
-                <div class="form-group">
-                  <input type="text" id="nome" placeholder="Nome*" required>
-                  <span class="error-message" id="error-nome"></span>
-                </div>
-                
-                <div class="form-group">
-                  <input type="email" id="email" placeholder="E-mail*" required>
-                  <span class="error-message" id="error-email"></span>
-                </div>
-                
-                <div class="form-group">
-                  <input type="text" id="celular" placeholder="DDD + Celular*" required>
-                  <span class="error-message" id="error-celular"></span>
-                </div>
-                
-                <div class="form-group">
-                  <input type="text" id="nicho" placeholder="Nicho de atuação">
-                </div>
+  <main>
+    <section id="entre-em-contato" class="entre-em-contato">
+      <div class="container animate-me">
+        <!-- Formulário -->
+        <div id="formulario">
+          <h2>Entre em contato</h2>         
+          <form class="contact-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <input type="text" id="nome" placeholder="Nome*" required>
+                <span class="error-message" id="error-nome"></span>
               </div>
               
-              <div class="terms-checkbox">
-                <input type="checkbox" id="termos" required data-gtm-form-interact-field-id="0">
-                <label for="termos">
-                  Li e aceito os 
-                  <a class="terms-link" href="./politica-privacidade.html#termos-de-uso" target="_blank" rel="noopener noreferrer">
-                    termos de uso <svg width="12" height="12" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;"><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>
-                  </a> e 
-                  <a class="terms-link" href="./politica-privacidade.html#politica-privacidade" target="_blank" rel="noopener noreferrer">
-                    política de privacidade <svg width="12" height="12" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;"><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>
-                  </a>
-                </label>
-                <span class="error-message" id="error-termos"></span>
+              <div class="form-group">
+                <input type="email" id="email" placeholder="E-mail*" required>
+                <span class="error-message" id="error-email"></span>
               </div>
               
-              <div class="submit-button">
-                <button type="submit" class="btn-enviar" id="enviar">Enviar</button>
+              <div class="form-group">
+                <input type="text" id="celular" placeholder="DDD + Celular*" required>
+                <span class="error-message" id="error-celular"></span>
               </div>
-            </form>
-          </div>
-        </div>
-      </section>
-      
-      <!-- <footer class="site-footer">
-        <div class="footer-container">
-          <div class="footer-content">
-            <div class="footer-info animate-me">
-              <img src="./imgs/icones/logo-branca.svg" width="135" height="32" alt="Logotipo da Pluug.ai" class="footer-logo">
-              <div class="contact-links">
-                <a href="https://wa.me/5521985486951" class="contact-link" target="_blank" rel="noopener">
-                  <img src="imgs/icones/whatsapp-icon2.svg" width="21" height="21" alt="Ícone do WhatsApp" class="icon"> WhatsApp
-                </a>
-                <a href="mailto:contato@pluug.ai" class="contact-link">
-                  <img src="imgs/icones/email-footer.svg" width="24" height="21" alt="Ícone de e-mail" class="icon"> contato@pluug.ai
-                </a>
-                <a href="https://www.instagram.com/pluug.ai" class="contact-link" target="_blank" rel="noopener">
-                  <img src="imgs/icones/instagram-footer.svg" width="20" height="21" alt="Ícone do Instagram" class="icon"> @pluug.ai
-                </a>
-                <a href="https://www.linkedin.com/company/pluug-ai" class="contact-link" target="_blank" rel="noopener">
-                  <img src="imgs/icones/linkedin-footer.svg" width="20" height="21" alt="Ícone do LinkedIn" class="icon"> pluug-ai
-                </a>
+              
+              <div class="form-group">
+                <input type="text" id="nicho" placeholder="Nicho de atuação">
               </div>
-            </div>            
-            <div class="footer-image">
-              <img src="./imgs/icones/mascotes-rodape.svg" width="785" height="255" alt="Mascotes Pluug.ai" class="mascotes-img">
             </div>
-          </div>
+            
+            <div class="terms-checkbox">
+              <input type="checkbox" id="termos" required data-gtm-form-interact-field-id="0">
+              <label for="termos">
+                Li e aceito os 
+                <a class="terms-link" href="./politica-privacidade.html#termos-de-uso" target="_blank" rel="noopener noreferrer">
+                  termos de uso <svg width="12" height="12" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;"><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>
+                </a> e 
+                <a class="terms-link" href="./politica-privacidade.html#politica-privacidade" target="_blank" rel="noopener noreferrer">
+                  política de privacidade <svg width="12" height="12" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;"><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>
+                </a>
+              </label>
+              <span class="error-message" id="error-termos"></span>
+            </div>
+            
+            <div class="submit-button">
+              <button type="submit" class="btn-enviar" id="enviar">Enviar</button>
+            </div>
+          </form>
         </div>
-      </footer> -->
+      </div>
+    </section>
+  </main>
+
+      <footer>
+        <div class="container footer-content">
+          <ul class="footer-socials">
+            <li><a href="https://www.instagram.com/storrertamburus/" target="_blank"><img src="./imgs/icones/instagram-footer.svg" alt="Instagram"></a></li>
+            <li><a href="https://www.linkedin.com/company/storrer-tamburus" target="_blank"><img src="./imgs/icones/linkedin.svg" alt="LinkedIn"></a></li>
+            <li><a href="https://wa.me/5521985486951" target="_blank"><img src="./imgs/icones/whatsapp-icon2.svg" alt="WhatsApp"></a></li>
+          </ul>
+      </footer> 
 
     </body>
   </html>
