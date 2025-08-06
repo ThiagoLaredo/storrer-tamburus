@@ -216,7 +216,7 @@
 }
 
 .diferenciais-list li {
-  background: rgba(255, 255, 255, 0.95); /* Branco semi-transparente */
+  background: #e7e4dd; /* Branco semi-transparente */
   padding: 2.5rem;
   border-radius: 8px;
   border: 1px solid rgba(90, 87, 86, 0.1); /* Borda sutil */
@@ -262,7 +262,7 @@
 }
 
 .diferenciais-list h3 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: var(--cinza);
   margin-bottom: 1rem;
   transition: color 0.3s ease;

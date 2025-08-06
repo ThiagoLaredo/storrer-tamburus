@@ -45,6 +45,7 @@
   color: var(--cinza);
   margin-bottom: 1.5rem;
   max-width: 800px;
+  font-weight: 300;
 }
 
 /* Metadados no topo */
