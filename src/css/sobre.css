@@ -1,0 +1,37 @@
+.socios {
+    display: flex;
+    /* justify-content: space-between;     */
+    align-items: center;
+    flex-wrap: nowrap;
+    /* gap: 4rem; */
+}
+
+.socios-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    max-width: 600px;
+    padding: 0 4rem;
+}
+
+.socio {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--amarelo-escuro-transparente-50);
+    padding: 2rem;
+
+}
+
+
+.socio h3 {
+    font-size: 1.5rem;
+    color: var(--cinza);
+}
+
+.socio p {
+    font-size: 1rem;
+    color: var(--cinza);
+    /* max-width: 400px; */
+    line-height: 1.5;
+}

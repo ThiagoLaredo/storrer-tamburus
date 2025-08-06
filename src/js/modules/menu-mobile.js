@@ -10,7 +10,7 @@ export default class MenuMobile {
     this.whatsappMobile = document.querySelector(whatsappMobile);
     this.linkedinMobile = document.querySelector(linkedinMobile);
     this.instagramMobile = document.querySelector(instagramMobile);
-    this.headerTop = document.querySelector(headerTop); // Novo seletor
+    // this.headerTop = document.querySelector(headerTop); 
     this.activeClass = "active";
     this.events = events || ["click"];
     this.menuOpened = false;
