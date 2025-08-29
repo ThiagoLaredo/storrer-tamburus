@@ -4,103 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 gsap.registerPlugin(ScrollTrigger);
 
 
-// export const initPageOpenAnimations = () => {
-//   // 1. Remova a classe preload imediatamente
-//   document.body.classList.remove("preload");
-  
-//   // 2. Adicione classe de controle no body
-//   document.body.classList.add('menu-animating');
-
-//   // 3. Configuração inicial - sem .header_acoes a
-//   gsap.set("[data-menu='logo'], [data-menu='button-menu'], .menu-institutional li, #menu-projetos > li > a", {
-//     opacity: 0,
-//     y: 10
-//   });
-
-//   // 4. Timeline principal
-//   const tl = gsap.timeline({ 
-//     defaults: { ease: "power3.out" },
-//     onComplete: () => {
-//       document.body.classList.remove('menu-animating');
-//       document.body.classList.add('menu-visible');
-//     }
-//   });
-
-//   // Logo
-//   tl.to("[data-menu='logo']", {
-//     opacity: 1,
-//     y: 0,
-//     duration: 0.8
-//   }, 0);
-
-//     // Botão Menu
-//     tl.to("[data-menu='button-menu']", {
-//       opacity: 1,
-//       duration: 0.6
-//     }, 0.2);
-
-//   // Menu Institucional com stagger
-//   tl.to(".menu-institutional li", {
-//     opacity: 1,
-//     y: 0,
-//     duration: 0.6,
-//     stagger: 0.1
-//   }, 0.2);
-
-//   // Itens do Menu Principal
-//   const animateMenuItems = () => {
-//     tl.to("#menu-projetos > li > a", {
-//       opacity: 1,
-//       y: 0,
-//       stagger: 0.1,
-//       duration: 0.5,
-//       onStart: () => {
-//         document.body.classList.add('menu-animating');
-//       }
-//     }, 0.4);
-//   };
-
-//   // Verificação e observer para itens dinâmicos
-//   if (document.querySelectorAll('#menu-projetos > li > a').length > 0) {
-//     animateMenuItems();
-//   } else {
-//     const observer = new MutationObserver((mutations) => {
-//       if (document.querySelectorAll('#menu-projetos > li > a').length > 0) {
-//         animateMenuItems();
-//         observer.disconnect();
-//       }
-//     });
-    
-//     observer.observe(document.getElementById('menu-projetos'), {
-//       childList: true,
-//       subtree: true
-//     });
-//   }
-
-//   // Animação dos elementos .page-open-animate (mantido igual)
-//   document.querySelectorAll('.page-open-animate').forEach((el, i) => {
-//     const rect = el.getBoundingClientRect();
-//     const isAboveFold = rect.top < window.innerHeight;
-
-//     if (isAboveFold) {
-//       gsap.fromTo(el,
-//         { opacity: 0, y: 30 },
-//         {
-//           opacity: 1,
-//           y: 0,
-//           duration: 0.8,
-//           delay: 0.8 + (i * 0.1), // Ajustado para compensar remoção
-//           ease: "back.out(1.4)"
-//         }
-//       );
-//     } else {
-//       gsap.set(el, { opacity: 1 });
-//     }
-//   });
-
-//   return tl;
-// };
-
 export const initPageOpenAnimations = () => {
   // 1. Remova a classe preload imediatamente
   document.body.classList.remove("preload");
@@ -108,16 +11,25 @@ export const initPageOpenAnimations = () => {
   // 2. Adicione classe de controle no body
   document.body.classList.add('menu-animating');
 
-  // 3. Configuração inicial
+  // 3. Configuração inicial - ESCONDER TUDO
   gsap.set("[data-menu='logo'], [data-menu='button-menu'], .menu-institutional li, #menu-projetos > li > a", {
     opacity: 0,
     y: 10
   });
 
-  gsap.set(".intro-text h1, .intro-text p, .intro-text a", {
-    opacity: 0,
-    y: 20
-  });
+  // prepara também o título e a barrinha
+  gsap.set("#projeto-titulo", { opacity: 0, x: -20 });
+  gsap.set("#projeto-titulo .barra", { scaleY: 0, transformOrigin: "bottom" });
+
+  // === NOVO: Configurar primeiro slide ===
+  const firstSlide = document.querySelector('.swiper-slide:first-child');
+  if (firstSlide) {
+    // Esconder elementos do primeiro slide
+    gsap.set(firstSlide.querySelectorAll('.projetos-titulo, .projeto-plus, .projeto-imagem, .projeto-descricao'), {
+      opacity: 0,
+      y: 30
+    });
+  }
 
   // 4. Timeline principal
   const tl = gsap.timeline({ 
@@ -125,34 +37,66 @@ export const initPageOpenAnimations = () => {
     onComplete: () => {
       document.body.classList.remove('menu-animating');
       document.body.classList.add('menu-visible');
-      
-      // Verifica se estamos na página inicial e anima os textos
-      if (document.querySelector('.intro-text')) {
-        animateIntroText();
-      }
     }
   });
 
-  // Logo
+  // === NOVO: ANIMAÇÃO DO PRIMEIRO SLIDE (começa primeiro) ===
+  if (firstSlide) {
+    // Elementos do slide para animar
+    const slideElements = firstSlide.querySelectorAll('.projetos-titulo, .projeto-plus, .projeto-imagem, .projeto-descricao');
+    
+    // Animação do primeiro slide - começa imediatamente
+    tl.to(slideElements, {
+      opacity: 1,
+      y: 0,
+      duration: 9,
+      stagger: 0.15,
+      ease: "back.out(1.4)"
+    }, 0); // Inicia no tempo 0 da timeline
+  }
+
+  // Logo (agora começa depois do slide)
   tl.to("[data-menu='logo']", {
     opacity: 1,
     y: 0,
     duration: 0.8
-  }, 0);
+  }, firstSlide ? 0.6 : 0); // Atraso se houver slide
 
   // Botão Menu
   tl.to("[data-menu='button-menu']", {
     opacity: 1,
     duration: 0.6
-  }, 0.2);
+  }, firstSlide ? 0.8 : 0.2);
 
-  // Menu Institucional com stagger
+  // Menu Projetos
+  tl.to("#menu-projetos > li > a", {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    stagger: 0.1
+  }, firstSlide ? 1.0 : 0.4);
+
+  // Menu Institucional
   tl.to(".menu-institutional li", {
     opacity: 1,
     y: 0,
     duration: 0.6,
     stagger: 0.1
-  }, 0.2);
+  }, firstSlide ? 0.8 : 0.2);
+
+  // título do projeto
+  tl.to("#projeto-titulo", {
+    opacity: 1,
+    x: 0,
+    duration: 0.8
+  }, firstSlide ? 1.2 : 0.8);
+
+  // barrinha
+  tl.to("#projeto-titulo .barra", {
+    scaleY: 1,
+    duration: 0.6,
+    ease: "power3.out"
+  }, firstSlide ? "-=0.2" : "-=0.4");
 
   // Itens do Menu Principal
   const animateMenuItems = () => {
@@ -164,7 +108,7 @@ export const initPageOpenAnimations = () => {
       onStart: () => {
         document.body.classList.add('menu-animating');
       }
-    }, 0.4);
+    }, firstSlide ? 1.0 : 0.4);
   };
 
   // Verificação e observer para itens dinâmicos
@@ -184,7 +128,7 @@ export const initPageOpenAnimations = () => {
     });
   }
 
-  // Animação dos elementos .page-open-animate
+  // Animação dos elementos .page-open-animate (com delay maior)
   document.querySelectorAll('.page-open-animate').forEach((el, i) => {
     const rect = el.getBoundingClientRect();
     const isAboveFold = rect.top < window.innerHeight;
@@ -196,7 +140,7 @@ export const initPageOpenAnimations = () => {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          delay: 0.8 + (i * 0.1),
+          delay: (firstSlide ? 1.5 : 0.8) + (i * 0.1),
           ease: "back.out(1.4)"
         }
       );
@@ -205,140 +149,9 @@ export const initPageOpenAnimations = () => {
     }
   });
 
-  // Função para animar os textos de introdução (só na index)
-  function animateIntroText() {
-    // Configuração inicial apenas para os elementos de intro
-    gsap.set(".intro-text h1, .intro-text p, .intro-text a", {
-      opacity: 0,
-      y: 20
-    });
-
-    const introTl = gsap.timeline({ defaults: { ease: "back.out(1.4)" } });
-    
-    introTl.to(".intro-text h1", {
-      opacity: 1,
-      y: 0,
-      duration: 0.8
-    })
-    .to(".intro-text p", {
-      opacity: 1,
-      y: 0,
-      duration: 0.8
-    }, "-=0.4") // Começa 0.4s antes do término da anterior
-    .to(".intro-text a", {
-      opacity: 1,
-      y: 0,
-      duration: 0.8
-    }, "-=0.4"); // Começa 0.4s antes do término da anterior
-    
-    return introTl;
-  }
-
   return tl;
 };
 
-export const initGalleryAnimations = () => {
-  // Configuração inicial - prepara os elementos
-  gsap.set('.projeto-item', {
-    opacity: 0,
-    y: 30
-  });
-
-  // Animação de entrada
-  gsap.to('.projeto-item', {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: 'back.out(1.2)',
-    delay: 0.3
-  });
-};
-
-export const initProjetoAnimations = () => {
-  const pageOpenTL = initPageOpenAnimations();
-  const projectTL = gsap.timeline({ paused: true });
-
-  // 1. Configuração inicial garantida
-  gsap.set(['#projeto-titulo', '#projeto-local', '#projeto-ano', '#projeto-area', '#projeto-texto p'], {
-    opacity: 0,
-    y: 20,
-    visibility: 'hidden'
-  });
-
-  gsap.set('.projeto-metadados-topo', {
-    'border-bottom-width': 0,
-    opacity: 1 // Container visível, só a borda animada
-  });
-
-  // 2. Sequência principal
-  projectTL
-    // Título
-    .to('#projeto-titulo', {
-      opacity: 1,
-      y: 0,
-      visibility: 'visible',
-      duration: 1,
-      ease: 'power2.out'
-    })
-    // Container dos metadados (sem animação de opacity)
-    .to('.projeto-metadados-topo', {
-      'border-bottom-width': '1px',
-      duration: 0.8,
-      ease: 'power1.out',
-      onStart: () => {
-        document.querySelector('.projeto-metadados-topo').classList.add('animado');
-      }
-    }, '+=0.2')
-    // Itens individuais
-    .to(['#projeto-local', '#projeto-ano', '#projeto-area'], {
-      opacity: 1,
-      y: 0,
-      visibility: 'visible',
-      duration: 0.6,
-      stagger: 0.1,
-      ease: 'power1.out'
-    }, '-=0.5') // Overlap com a borda
-    // Parágrafos
-    .to('#projeto-texto p', {
-      opacity: 1,
-      y: 0,
-      visibility: 'visible',
-      duration: 0.5,
-      stagger: 0.1,
-      ease: 'power1.out'
-    });
-
-  // 3. Disparo sincronizado
-  pageOpenTL.eventCallback('onComplete', () => {
-    // Garante que todos os elementos estão no estado inicial
-    gsap.set('.projeto-metadados-topo', { 'border-bottom-width': 0 });
-    document.querySelector('.projeto-metadados-topo').classList.remove('animado');
-    
-    projectTL.play();
-  });
-
-  return projectTL;
-};
-
-export const initProjetoGalleryAnimations = () => {
-  document.querySelectorAll('.galeria-item').forEach((item, index) => {
-    gsap.to(item, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: item,
-        start: "top 80%",
-        toggleActions: "play none none none"
-      },
-      onStart: () => {
-        item.style.visibility = 'visible';
-      }
-    });
-  });
-};
 
 export function initScrollAnimations() {
 
@@ -384,9 +197,12 @@ export const setupFilterAnimations = (container) => {
       // Cancela qualquer animação existente
       if (state.hoverTween) state.hoverTween.kill();
       
+      // Define a origem para a esquerda (entrada)
+      gsap.set(btn, {'--barra-origin': 'left'});
+      
       state.hoverTween = gsap.to(btn, {
-        '--circle-opacity': 1,
-        '--circle-scale': 1.5,
+        '--barra-opacity': 1,
+        '--barra-width': '100%',
         duration: 0.3,
         ease: 'power2.out',
         onComplete: () => {
@@ -404,9 +220,12 @@ export const setupFilterAnimations = (container) => {
       // Cancela a animação de entrada se estiver ocorrendo
       if (state.hoverTween) state.hoverTween.kill();
       
+      // Define a origem para a direita (saída)
+      gsap.set(btn, {'--barra-origin': 'right'});
+      
       state.hoverTween = gsap.to(btn, {
-        '--circle-opacity': 0,
-        '--circle-scale': 0,
+        '--barra-opacity': 0,
+        '--barra-width': '0%',
         duration: 0.2,
         ease: 'power1.in',
         onComplete: () => {
@@ -431,19 +250,25 @@ export const toggleActiveFilter = (activeBtn) => {
     }
     
     if (isActive) {
+      // Define a origem para a esquerda (ativação)
+      gsap.set(btn, {'--barra-origin': 'left'});
+      
       gsap.to(btn, {
-        '--circle-opacity': 1,
-        '--circle-scale': 1.5,
+        '--barra-opacity': 1,
+        '--barra-width': '100%',
         duration: 0.4,
-        ease: 'back.out(1.5)',
+        ease: 'power2.out',
         overwrite: 'auto'
       });
       btn.classList.add('ativo');
       state.active = true;
     } else {
+      // Define a origem para a direita (desativação)
+      gsap.set(btn, {'--barra-origin': 'right'});
+      
       gsap.to(btn, {
-        '--circle-opacity': 0,
-        '--circle-scale': 0,
+        '--barra-opacity': 0,
+        '--barra-width': '0%',
         duration: 0.3,
         overwrite: 'auto'
       });
@@ -460,43 +285,5 @@ export const cleanupFilterAnimations = (container) => {
     const state = hoverStates.get(btn);
     if (state?.hoverTween) state.hoverTween.kill();
     hoverStates.delete(btn);
-  });
-};
-
-
-export const setupDestaquesAnimation = (container) => {
-  const slides = container.querySelectorAll('.swiper-slide');
-  
-  // Configuração inicial
-  gsap.set(slides, {
-    opacity: 0,
-    y: 80,
-    scale: 0.95,
-    visibility: "hidden"
-  });
-
-  ScrollTrigger.create({
-    trigger: container,
-    start: "top 75%",
-    onEnter: () => {
-      const tl = gsap.timeline();
-      
-      tl.to(slides, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        visibility: "visible",
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "back.out(1.2)"
-      });
-      
-      tl.to(container.querySelectorAll('.destaque-titulo'), {
-        opacity: 1,
-        y: 0,
-        duration: 0.6
-      }, "-=0.3");
-    },
-    once: true
   });
 };

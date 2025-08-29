@@ -1,205 +1,10 @@
-/* Botões */
-.button {
-    display: inline-block;
-    padding: 0.75em 1.5em;
-    border-radius: 4px;
-    background-color: var(--amarelo);
-    color: var(--cinza);
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button:hover,
-  .button:focus {
-    background-color: var(--amarelo-escuro);
-  }
 
-  .button-cases {
-    display: inline-block;
-    padding: 0.75em 1.5em;
-    background-color: transparent; /* Fundo transparente */
-    color: var(--cinza);
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
-    position: relative; /* Para o pseudo-elemento do sublinhado */
-    text-decoration: none; /* Remove qualquer sublinhado padrão */
-    /* text-transform: uppercase; */
-    /* letter-spacing: 0.1em;  */
-}
-
-/* Sublinhado animado */
-.button-cases::after {
-    content: '';
-    position: absolute;
-    left: 1.5em; /* Alinha com o padding horizontal */
-    right: 1.5em; /* Alinha com o padding horizontal */
-    bottom: -.2em; /* Posiciona abaixo do texto */
-    height: 4px; /* Espessura semi-grossa */
-    background-color: var(--amarelo);
-    transform: scaleX(0.4); /* Começa com 80% de largura */
-    transform-origin: center;
-    transition: all 0.3s ease;
-    z-index: -1;
-}
-
-.button-cases:hover,
-.button-cases:focus {
-    color: var(--cinza); /* Mantém a cor do texto */
-}
-
-.button-cases:hover::after,
-.button-cases:focus::after {
-    background-color: var(--amarelo);
-    transform: scaleX(1); /* Expande para 100% de largura */
-    height: 4px; /* Aumenta ligeiramente a espessura no hover */
-    background-color: var(--amarelo-escuro);
-}
-  
-/* Botão com borda - versão aprimorada */
-.button-outline {
-  display: inline-block;
-  background: transparent;
-  border: 1px solid var(--cinza);
-  color: var(--cinza);
-  padding: 12px 32px;
-  font-size: 1rem;
-  font-weight: 600;
-  /* text-transform: uppercase;
-  letter-spacing: 1px; */
-  border-radius: 50px; 
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease-out;
-  cursor: pointer;
-}
-
-/* Efeito hover/focus - versão premium */
-.button-outline:hover,
-.button-outline:focus {
-  color: var(--cinza);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Efeito de preenchimento animado */
-.button-outline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--amarelo-escuro);
-  z-index: -1;
-  transition: all 0.4s ease-out;
-  border-radius: 50px;
-}
-
-.button-outline:hover::before,
-.button-outline:focus::before {
-  left: 0;
-}
-
-/* Efeito de brilho no hover */
-.button-outline:hover::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: rotate(45deg);
-  animation: shine 1.5s infinite;
-}
-
-@keyframes shine {
-  0% {
-    left: -50%;
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    left: 150%;
-    opacity: 0;
-  }
-}
-  
-  /* Cabeçalhos */
-  h1, h2, h3 {
-    color: var(--texto-principal);
-    font-weight: 600;
-    line-height: 1.2;
-  }
-
-   h2, h3 {
-    color: var(--texto-principal);
-    font-weight: 400;
-    line-height: 1.2;
-  }
-  
-  /* Parágrafos */
-  p {
-    color: var(--texto-principal);
-    line-height: 1.6;
-    font-size: 1rem;
-  }
-  
-  /* Navbar */
-  .navbar {
-    padding: 1.5rem 2rem;
-    background-color: var(--fundo-claro);
-    border-bottom: 1px solid var(--borda-clara);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /* Links */
-  a {
-    color: var(--texto-principal);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  a:hover {
-    color: var(--amarelo);
-  }
-  
-  /* Seções */
-  .section {
-    padding: 4rem 1.25rem;
-  }
-  
-  .section.bg-light {
-    background-color: var(--fundo-cinza-claro);
-  }
-  
-  /* Cartões */
-  .card {
-    background: #fff;
-    border: 1px solid var(--borda-clara);
-    border-radius: 6px;
-    box-shadow: var(--sombra-suave);
-    padding: 2rem;
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-4px);
-  }
-  
 /* ESTADO BASE DO BOTÃO DE FILTRO */
 .filtro-btn {
   position: relative;
-  color: var(--cinza) !important;
-  font: 500 1rem/1.2 'Inter', sans-serif;
+  color: #fff;
+  font: 400 1rem 'Inter', sans-serif;
+  padding-bottom: 4px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -207,46 +12,34 @@
   background: none;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: color 0.3s ease;
   z-index: 1;
-  --circle-opacity: 0;
-  --circle-scale: 0;
+  --barra-opacity: 0;
+  --barra-width: 0%;
+  --barra-origin: left;
 }
 
 .filtro-btn::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 6.2rem;
-  height: 2rem;
-  background: var(--amarelo-escuro);
-  border-radius: 0%;
-  transform: translate(-50%, -50%) scale(var(--circle-scale, 0));
-  opacity: var(--circle-opacity, 0);
+  bottom: 0;
+  left: 0;
+  width: var(--barra-width, 0%);
+  height: 2px;
+  background: var(--amarelo);
+  opacity: var(--barra-opacity, 0);
   z-index: -1;
-  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-              opacity 0.2s ease;
-  will-change: transform, opacity;
-  /* Novo: garante que o círculo não seja cortado */
+  will-change: width, opacity;
   pointer-events: none;
+  transform-origin: var(--barra-origin, left);
+  transition: opacity 0.2s ease;
 }
-
-/* Estado ativo */
-/* .filtro-btn.ativo {
-  color: var(--amarelo-escuro) !important;
-} */
 
 .filtro-btn.ativo::before {
+  --barra-opacity: 1;
+  --barra-width: 100%;
+  --barra-origin: left;
   background: var(--amarelo);
-  --circle-opacity: 1;
-  --circle-scale: 1;
-}
-
-/* Efeito hover */
-.filtro-btn:hover::before {
-  --circle-opacity: 1;
-  --circle-scale: 1;
 }
 
 /* Acessibilidade */
@@ -254,7 +47,6 @@
   outline: 2px solid var(--amarelo);
   outline-offset: 2px;
 }
-
 /* Container pai - importante para não cortar o efeito */
 [data-menu="list-projetos"] {
   overflow: visible !important;
