@@ -23,7 +23,7 @@
     <header class="header">
       <div class="container">
         <a data-menu="logo" class="home-link" href="/">
-          <img src="/imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
+          <span class="logo-text">Storrer Tamburus</span>
           <span class="visually-hidden">Voltar para a página inicial</span>
         </a>
 
@@ -32,7 +32,7 @@
           <!-- Menu Institucional -->
           <nav class="institutional-nav" aria-label="Navegação institucional">
             <ul class="menu-institutional">
-              <li><a href="/projetos">Projetos</a></li>
+              <li><a href="/projetos.html">Projetos</a></li>
               <li><a href="/sobre">Sobre</a></li>
               <li><a href="/contato">Contato</a></li>
             </ul>
@@ -71,48 +71,16 @@
     </a>
 
     <main>
-      <section id="projeto-detalhe" class="container">
-        <article class="projeto-conteudo">
-          <header class="projeto-header">
-            <h1 id="projeto-titulo" class="projeto-titulo"></h1>
-            
-            <!-- Novos campos adicionados aqui -->
-            <div class="projeto-metadados-topo">
-              <span id="projeto-local" class="projeto-metadado"></span>
-              <span id="projeto-ano" class="projeto-metadado"></span>
-              <span id="projeto-area" class="projeto-metadado"></span>
-            </div>
-            
-            <div id="projeto-texto" class="projeto-descricao"></div>
-          </header>
-    
-          <div id="projeto-imagens" class="projeto-galeria"></div>
-        </article>
+      <section id="projeto-detalhe" class="projeto-conteudo">
+        <h1 id="projeto-titulo" class="projeto-titulo">
+          <span class="barra"></span>
+          <span class="texto"></span>
+        </h1>                
+        <div id="projeto-imagens" class="galeria-projetos">
+          <!-- O Swiper será inserido aqui via JavaScript -->
+        </div>
       </section>
     </main>
-
-    <!-- <footer class="site-footer">
-      <div class="footer-container">
-        <div class="footer-content">
-          <div class="footer-info animate-me">
-            <div class="contact-links">
-              <a href="https://wa.me/5521985486951" class="contact-link" target="_blank" rel="noopener">
-                <img src="imgs/icones/whatsapp-icon2.svg" width="21" height="21" alt="Ícone do WhatsApp" class="icon"> WhatsApp
-              </a>
-              <a href="mailto:contato@pluug.ai" class="contact-link">
-                <img src="imgs/icones/email-footer.svg" width="24" height="21" alt="Ícone de e-mail" class="icon"> contato@pluug.ai
-              </a>
-              <a href="https://www.instagram.com/pluug.ai" class="contact-link" target="_blank" rel="noopener">
-                <img src="imgs/icones/instagram-footer.svg" width="20" height="21" alt="Ícone do Instagram" class="icon"> @pluug.ai
-              </a>
-              <a href="https://www.linkedin.com/company/pluug-ai" class="contact-link" target="_blank" rel="noopener">
-                <img src="imgs/icones/linkedin-footer.svg" width="20" height="21" alt="Ícone do LinkedIn" class="icon"> pluug-ai
-              </a>
-            </div>
-          </div>                
-        </div>
-      </div>
-    </footer> -->
    
   </body>
 </html>

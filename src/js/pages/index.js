@@ -5,23 +5,20 @@ import "../../css/header.css";
 import "../../css/menu-mobile.css";
 import "../../css/footer.css";
 import "../../css/home.css";
-import 'swiper/css'; // Importe o CSS base do Swiper
 
 import MenuMobile from '../modules/menu-mobile.js';
-import HeaderScroll from '../modules/header-scroll.js';
 import HeaderManager from '../modules/HeaderManager.js';
 import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
 import { fetchEntries } from '../modules/contentfulAPI.js';
-import { renderFiltros } from '../modules/renderMenu.js'; // Novo import
 import { renderDestaques } from '../modules/renderDestaques.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   // ========== COMPORTAMENTO DO LOGO ==========
-  document.querySelectorAll('.home-link, [data-menu="logo"]').forEach(link => {
-    link.addEventListener('click', () => {
-      localStorage.removeItem('lastFilter');
-    });
-  });
+  // document.querySelectorAll('.home-link, [data-menu="logo"]').forEach(link => {
+  //   link.addEventListener('click', () => {
+  //     localStorage.removeItem('lastFilter');
+  //   });
+  // });
 
   // ========== HEADER ==========
   const menuMobile = new MenuMobile(
@@ -39,13 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
 
   const headerManager = new HeaderManager('.header');
-  const headerEl = document.querySelector('.header');
-  if (headerEl) {
-    const headerScroll = new HeaderScroll('.header');
-    headerScroll.init();
-  }
-  
-  
+ 
   // ========== ANIMAÇÕES ==========
   initPageOpenAnimations();
   initScrollAnimations();

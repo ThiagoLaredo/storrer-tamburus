@@ -1,328 +1,38 @@
-.intro {
-  width: 100%;
+/* Só remove rolagem quando for a home */
+body.home {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Garante que o main ocupe 100% da tela */
+body.home main {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: var(--cor-fundo);
-  margin-top: -120px;
+  padding: 0;
+
 }
 
-.intro-text {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
-  color: var(--cor-texto);
-}
-.intro-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.intro-subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-/* Swiper Destaques - mantendo o estilo dos projetos */
-.swiper-destaques {
-  width: 100%;
-  padding: 2rem 0;
-  overflow: hidden; 
+/* A seção hero ocupa a tela toda por trás do header */
+body.home .hero {
+  flex: 1;
   position: relative;
-}
-
-/* Wrapper dos slides */
-.swiper-destaques .swiper-wrapper {
   height: 100%;
 }
 
-/* Slide individual */
-.swiper-destaques .swiper-slide {
-  height: 90vh;
-  width: 100%;
-}
-
-.destaque-slide {
-  position: relative; /* Necessário para o posicionamento absoluto interno */
-  width: 100%;
-  height: 100%; /* Altura da viewport */
-  overflow: hidden; /* Previne vazamento de conteúdo */
-}
-
-/* Link do slide */
-.destaque-link {
-  display: block;
-  width: 100%;
-  height: 100%;
+.hero-slideshow {
   position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.destaque-imagem {
+.hero-slideshow img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-}
-
-/* Container ajustado */
-.destaque-slide .container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-  box-sizing: border-box;
-  z-index: 10;
-}
-
-.destaque-titulo {
-  position: absolute;
-  left: 1.25rem; /* Respeita o padding do container */
-  bottom: 10%;
-  transform: translateY(-50%);
-  background-color: var(--cinza);
-  color: var(--amarelo);
-  padding: 0.3rem 0.6rem;
-  margin: 0;
-  font-size: 1.5rem;
-  /* border-radius: 1rem; */
-}
-  
-  .destaque-link {
-    text-decoration: none;
-    color: inherit;
-  }
-
-/* Container das setas (prev/next) */
-.swiper-button-prev,
-.swiper-button-next {
-  width: 40px !important;
-  height: 40px !important;
-  background-color: var(--amarelo); /* Fundo amarelo */
-  border-radius: 50%; /* Deixa redondo */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-/* Remove o fundo e padding do ::after (ícone) */
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  color: var(--cinza); /* Cor do ícone */
-  font-size: 1.5rem !important;
-  background: transparent !important; /* Remove o fundo anterior */
-  padding: 0 !important; /* Remove padding extra */
-}
-
-/* Efeito hover (opcional) */
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background-color: var(--cinza); /* Fundo cinza no hover */
-}
-
-.swiper-button-prev:hover::after,
-.swiper-button-next:hover::after {
-  color: var(--amarelo); /* Ícone amarelo no hover */
-}
-  .swiper-scrollbar {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 6px;
-    background: rgba(0, 0, 0, 0.1);
-    z-index: 10;
-  }
-  
-  .swiper-scrollbar-drag {
-    background: var(--amarelo);
-  }
-  
-  /* Placeholder */
-  .destaque-imagem.placeholder {
-    background-color: var(--cor-cinza-claro);
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Previne flicker antes da animação */
-/* .swiper-destaques .swiper-slide {
-  visibility: hidden;
-} */
-
-/* Quando a animação terminar */
-/* .swiper-destaques .swiper-slide.animated {
-  visibility: visible;
-} */
-
-/* Estilos para a seção de diferenciais */
-.diferenciais {
-  padding: 5rem 0;
-  background-color: rgba(220, 217, 210, 0.7); /* 70% da cor do body para criar profundidade */
-  position: relative;
-  text-align: center; /* Centraliza elementos inline/inline-block */ 
-}
-
-.diferenciais .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.diferenciais-title {
-  font-size: 2rem;
-  color: var(--cinza);
-  text-align: center;
-  margin-bottom: 3rem;
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-.diferenciais-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background-color: var(--amarelo);
-  transition: all 0.3s ease;
-}
-
-.diferenciais-title:hover::after {
-  width: 120px;
-  background-color: var(--amarelo-escuro);
-}
-
-.diferenciais-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  list-style: none;
-  padding: 0;
-}
-
-.diferenciais-list li {
-  background: #e7e4dd; /* Branco semi-transparente */
-  padding: 2.5rem;
-  border-radius: 8px;
-  border: 1px solid rgba(90, 87, 86, 0.1); /* Borda sutil */
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(2px); /* Efeito de vidro sutil */
-}
-
-.diferenciais-list li::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--amarelo), var(--amarelo-escuro));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.6s ease;
-}
-
-.diferenciais-list li:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(90, 87, 86, 0.15);
-  background: rgba(255, 255, 255, 1);
-}
-
-.diferenciais-list li:hover::before {
-  transform: scaleX(1);
-}
-
-.diferenciais-list img {
-  margin-bottom: 1.5rem;
-  transition: all 0.5s ease;
-  filter: drop-shadow(0 2px 4px rgba(90, 87, 86, 0.1));
-}
-
-.diferenciais-list li:hover img {
-  transform: scale(1.1) rotate(5deg);
-  filter: drop-shadow(0 4px 8px rgba(90, 87, 86, 0.2));
-}
-
-.diferenciais-list h3 {
-  font-size: 1.2rem;
-  color: var(--cinza);
-  margin-bottom: 1rem;
-  transition: color 0.3s ease;
-  position: relative;
-  display: inline-block;
-}
-
-.diferenciais-list h3::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--amarelo-escuro);
-  transition: width 0.3s ease;
-}
-
-.diferenciais-list li:hover h3 {
-  color: var(--cinza);
-}
-
-.diferenciais-list p {
-  color: var(--cinza);
-  line-height: 1.6;
-  font-size: 1rem;
-  margin-top: 1rem;
-  opacity: 0.9;
-}
-
-.button-diferenciais {
-  display: inline-block; /* Permite margens e centralização via text-align */
-  margin-top: 2rem; /* Espaço acima do botão */
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-
-  .destaque-titulo {
-    left: 50%; /* Respeita o padding do container */
-    transform: translateX(-50%); /* Corrige para o centro exato */
-    bottom: 8%;
-
-  }
-
-  .diferenciais {
-    padding: 3rem 0;
-  }
-  
-  .diferenciais-list {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .diferenciais-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .diferenciais-list li {
-    padding: 2rem;
-  }
+  opacity: 0;
 }
