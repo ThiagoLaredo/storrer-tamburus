@@ -1,124 +1,134 @@
 /* ============ BASE STYLES ============ */
+
 .projetos {
   padding: 0;
 }
 
+#galeria {
+  width: 100%;
+  height: 100vh; /* ocupa tela inteira */
+  overflow: hidden;
+}
+
+
 /* ============ SWIPER CORE STYLES ============ */
 .swiper {
   width: 100%;
-  overflow: visible !important;
+  height: 100%;
 }
 
 .swiper-wrapper {
-  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .swiper-slide {
-  width: auto !important;
-  height: auto;
-}
-
-.swiper-initialized {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-/* ============ SCROLLBAR GENERAL STYLES ============ */
-.swiper-scrollbar {
-  position: absolute;
-  height: 4px;
-  background: rgba(0, 0, 0, 0.1);
-  z-index: 10;
-}
-
-.swiper-scrollbar-drag {
-  background: rgba(0, 0, 0, 0.3);
-  cursor: grab;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 /* ============ PROJECT SLIDE COMPONENT ============ */
 .projeto-slide {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4); /* ajuste a opacidade */
+  z-index: 1; /* fica acima da imagem */
+}
+
+.projeto-slide .container {
+  position: relative; /* importante para ficar acima do overlay */
+  z-index: 2;         /* título acima do overlay */  
+  bottom: 4rem;
+  left: 0;
+  right: 0;
+}
+
 .projeto-imagem {
-  width: 300px;
-  height: 400px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* preenche sem distorcer */
+  display: block;
 }
 
-.projeto-imagem:hover {
-  transform: scale(1.02);
+.projetos-titulo {
+  margin: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 00;
 }
 
-.projeto-imagem.placeholder {
-  background-color: var(--cor-cinza-claro);
+
+.projeto-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  padding: 10px 20px 10px 0;
+  position: relative;
+}
+
+.projeto-plus {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--cor-cinza);
-}
-
-.projeto-titulo {
-  position: absolute;
-  left: 1.25rem; /* 20px */
-  bottom: 1%;
-  transform: translateY(-50%);
-  background-color: var(--cinza);
+  width: 30px;
+  height: 30px;
   color: var(--amarelo);
-  padding: 0.3rem 0.6rem;
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 30px;
+  transition: transform 0.3s ease;
+  transform: scale(1); /* Valor inicial padrão */
+  will-change: transform; /* Otimização de performance */
 }
 
-.projeto-link {
-  text-decoration: none;
-  color: inherit;
-}
+.projeto-link:hover .projeto-plus {
+  transform: scale(1.3) !important; /* Força a escala no hover */
+} 
 
-/* ============ GALLERY SPECIFIC STYLES ============ */
-#galeria.swiper-container {
-  padding-bottom: 30px; /* Espaço para a scrollbar */
-  overflow: visible !important;
-}
 
-#galeria .swiper-scrollbar {
+/* ============ PAGINATION BULLETS ============ */
+.swiper-pagination {
   position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  border-radius: 3px;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
-#galeria .swiper-scrollbar-drag {
-  background: var(--cinza-transparente-50);
-  border-radius: 3px;
+.swiper-pagination-bullet {
+  background: rgba(255,255,255,0.5);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 1;
+  transition: background 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--amarelo);
 }
 
 /* ============ RESPONSIVE ADJUSTMENTS ============ */
-@media (min-width: 1024px) {
-  .swiper-scrollbar {
-    height: 6px;
+@media (max-width: 768px) {
+  .projetos-titulo {
+    font-size: 1.25rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
   }
-  
-  .galeria-projetos {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
-@media (max-width: 600px) {
-  .galeria-projetos {
-    grid-template-columns: 1fr;
-  }
-  
-  .js-swiper-gallery {
-    overflow: hidden;
+  .swiper-pagination {
+    right: 1rem;
   }
 }

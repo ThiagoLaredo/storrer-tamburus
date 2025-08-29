@@ -32,7 +32,7 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     </noscript>
   
     <!-- JS Detection -->
@@ -45,10 +45,10 @@
     <header class="header">
       <div class="container">
         <a data-menu="logo" class="home-link" href="/">
-          <img src="/imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
+          <span class="logo-text">Storrer Tamburus</span>
           <span class="visually-hidden">Voltar para a página inicial</span>
         </a>
-
+        
         <!-- Menus -->
         <div class="navigation">
           <!-- Menu Institucional -->
@@ -93,57 +93,12 @@
     </a>
 
     <main>
-      <section class="intro">
-        <div class="intro-text container">
-          <h1 class="intro-title">Arquitetura e Design de Interiores</h1>
-          <p class="intro-subtitle">Projetos autorais com sofisticação, funcionalidade e identidade.</p>
-          <a href="#cases" class="button-cases">Conheça nossos cases</a>
-        </div>  
+      <section class="hero">
+        <!-- Aqui o renderDestaques() vai inserir o .hero-slideshow com as imagens -->
+        <div id="destaques"></div>
       </section>
-      <section class="highlights" id="cases">
-        <div id="destaques" class="destaques-projetos swiper-container animate-me"></div>
-      </section>
-
-      <section class="diferenciais">
-        <div class="container">
-          <h2 class="diferenciais-title animate-me">Nossos diferenciais</h2>
-          <ul class="diferenciais-list animate-me">
-            <li>
-              <!-- <img src="./imgs/icones/planejamento.svg" alt="Planejamento e organização" width="48" height="48"> -->
-              <h3>Planejamento e organização</h3>
-              <p>Trabalhamos com cronogramas detalhados para garantir a entrega no prazo.</p>
-            </li>
-            <li>
-              <!-- <img src="./imgs/icones/qualidade.svg" alt="Qualidade e sofisticação" width="48" height="48"> -->
-              <h3>Qualidade e sofisticação</h3>
-              <p>Utilizamos materiais de alta qualidade para resultados duradouros.</p>
-            </li>
-            <li>
-              <!-- <img src="./imgs/icones/atendimento.svg" alt="Atendimento personalizado" width="48" height="48"> -->
-              <h3>Atendimento personalizado</h3>
-              <p>Cada cliente é único, e adaptamos nossos serviços às suas necessidades.</p>
-            </li>
-          </ul>
-          <a href="./sobre.html" class="button-diferenciais button-outline animate-me">Saiba mais sobre nós</a>
-        </div>
-      </section>
-      <footer>
-        <div class="container footer-content">
-          <!-- <div class="footer-logo">
-            <img src="./imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
-          </div>
-          <div class="footer-text">
-            <p>© 2023 Storrer Tamburus. Todos os direitos reservados.</p>
-            <p>Desenvolvido por <a href="https://www.olatu.com.br" target="_blank">Olatu</a></p>
-          </div> -->
-          <ul class="footer-socials">
-            <li><a href="https://www.instagram.com/storrertamburus/" target="_blank"><img src="./imgs/icones/instagram-footer.svg" alt="Instagram"></a></li>
-            <li><a href="https://www.linkedin.com/company/storrer-tamburus" target="_blank"><img src="./imgs/icones/linkedin.svg" alt="LinkedIn"></a></li>
-            <li><a href="https://wa.me/5521985486951" target="_blank"><img src="./imgs/icones/whatsapp-icon2.svg" alt="WhatsApp"></a></li>
-          </ul>
-      </footer>  
-      
     </main>
+    
  
   </body>
 </html>

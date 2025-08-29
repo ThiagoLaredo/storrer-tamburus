@@ -13,7 +13,6 @@ body.projeto-page #menu-projetos {
   width: 100%;
   z-index: 1000;
   padding: 1rem 0;
-  background-color:var(--fundo-escuro);
   position: fixed;
   top: 0;
 }
@@ -23,6 +22,17 @@ body.projeto-page #menu-projetos {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.logo-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap; 
 }
 
 .navigation {
@@ -49,16 +59,27 @@ body.projeto-page #menu-projetos {
 }
 
 .menu-institutional a {
-  color: var(--cinza);
+  position: relative;
+  color: #fff;
   text-decoration: none;
   font-size: 1rem;
-  font-weight: 500;
-  transition: opacity 0.3s;
+  /* font-weight: 600; */
   z-index: 2;
 }
 
-.menu-institutional a:hover {
-  opacity: 0.8;
+.menu-institutional a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* distância da linha para o texto */
+  width: 0;
+  height: 2px; /* espessura da linha */
+  background-color: var(--amarelo);
+  transition: width 0.3s ease;
+}
+
+.menu-institutional a:hover::after {
+  width: 100%;
 }
 
 /* Conteúdo Principal do Header */
@@ -72,31 +93,6 @@ body.projeto-page #menu-projetos {
   width: 100%;
   gap: 4rem;
   order: 2; /* Posiciona abaixo do menu institucional */
-}
-
-.header.header-scrolled [data-menu="logo"] {
-display: none;
-}
-
-.header.header-scrolled {
-  padding: 0.4rem;
-  background-color: transparent;
-  display: flex;
-}
-
-.header.header-scrolled .menu-institutional {
-  border: 1px solid var(--amarelo);
-  border-radius: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--amarelo-escuro); 
-}
-
-.header.header-scrolled .navigation {
-  align-items: center;
-}
-
-.header.header-scrolled .menu-institutional li > a {
-  /* color: var(--amarelo);  */
 }
 
 
