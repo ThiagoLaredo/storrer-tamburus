@@ -15,11 +15,23 @@ button {
 body {
   overflow-x: hidden;
   font-family: 'Inter', sans-serif;
-  background: var(--fundo-escuro);
+  background: #fff;
 }
 
-main {   padding: calc(var(--header-height) + 0.2rem) 0 0 0;
+body.home::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3) ;
+  z-index: 900; /* abaixo do header, acima do slideshow */
+  pointer-events: none; /* não bloqueia clique */
 }
+
+/* main {   padding: calc(var(--header-height) + 0.2rem) 0 0 0;
+} */
 
 .swiper-slide {
   user-select: none;
@@ -70,6 +82,36 @@ img {
   /* overflow: hidden; */
 }
 
+/* Só vale para páginas de projetos e projeto */
+.projetos-page .institutional-nav,
+.projeto-page .institutional-nav {
+  position: fixed;       /* ou absolute se preferir relativo ao body */
+  bottom: 1rem;          /* distância do fundo */
+  right: 6rem;           /* distância da direita */
+  z-index: 1000;         /* garantir que fique por cima */
+  padding: 8px 12px;     /* opcional */
+  border-radius: 6px;    /* opcional */
+}
+
+.projetos-page .institutional-nav ul,
+.projeto-page .institutional-nav ul {
+  display: flex;
+  gap: 20px;
+}
+
+.projetos-page .institutional-nav a,
+.projeto-page .institutional-nav a {
+  color: #fff;   /* ou var(--cor) do projeto */
+  text-decoration: none;
+}
+
+.projetos-page .institutional-nav li:first-child,
+.projeto-page .institutional-nav li:first-child {
+  display: none;
+}
+
+
+
 /* Animações */
 
 /* Remova a opacidade padrão do seletor [data-menu] */
@@ -102,7 +144,6 @@ body.preload .menu-institutional a {
 .menu-visible #menu-projetos > li > a {
   opacity: 1 !important; /* Força a visibilidade */
 }
-
 
 /* Container padrão */
 .container {

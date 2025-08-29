@@ -30,11 +30,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet" />
-    </noscript>
-  
+    <!-- Carrega a fonte Inter de forma eficiente -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+    />
+
     <!-- JS Detection -->
     <script>document.documentElement.className += ' js';</script>
   </head>
@@ -45,7 +49,7 @@
     <header class="header">
       <div class="container">
         <a data-menu="logo" class="home-link" href="/">
-          <img src="/imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
+          <span class="logo-text">Storrer Tamburus</span>
           <span class="visually-hidden">Voltar para a página inicial</span>
         </a>
 
@@ -54,7 +58,7 @@
           <!-- Menu Institucional -->
           <nav class="institutional-nav" aria-label="Navegação institucional">
             <ul class="menu-institutional">
-              <li><a href="/projetos">Projetos</a></li>
+              <li><a href="/projetos.html">Projetos</a></li>
               <li><a href="/sobre">Sobre</a></li>
               <li><a href="/contato">Contato</a></li>
             </ul>
@@ -94,9 +98,7 @@
 
     <main>
       <section class="projetos">
-        <div class="container">
           <div id="galeria" class="galeria-projetos swiper-container"></div>
-        </div>
       </section>
     </main>
    
