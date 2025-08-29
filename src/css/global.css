@@ -110,8 +110,6 @@ img {
   display: none;
 }
 
-
-
 /* Animações */
 
 /* Remova a opacidade padrão do seletor [data-menu] */
@@ -162,4 +160,13 @@ body.preload .menu-institutional a {
 .header_acoes a,
 .page-open-animate {
   opacity: 0;
+}
+
+@media (max-width: 768px) {
+ 
+  .projetos-page .institutional-nav,
+  .projeto-page .institutional-nav {
+    right: 1rem; 
+  }
+
 }
