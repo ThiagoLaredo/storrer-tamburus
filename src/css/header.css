@@ -24,11 +24,11 @@ body.projeto-page #menu-projetos {
   width: 100%;
 }
 
-.logo-text {
+[data-menu="logo"] {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 1.8rem;
-  letter-spacing: 0.5px;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.8px;
   color: #fff;
   text-decoration: none;
   display: inline-block;
@@ -43,7 +43,6 @@ body.projeto-page #menu-projetos {
   width: 100%;
 }
 
-
 .institutional-nav {
   width: fit-content;
   padding: 0.5rem 0rem;
@@ -52,6 +51,7 @@ body.projeto-page #menu-projetos {
 .menu-institutional {
   display: flex;
   justify-content:center;
+  align-items: center;
   gap: 2rem;
   list-style: none;
   margin: 0;
@@ -111,12 +111,6 @@ ul[data-menu="list-projetos"].active {
   display: flex;
 }
 
-.logo-svg {
-  display: block;
-  width: 100%; 
-  height: auto;
-  transition: width 0.3s ease-in-out;
-}
 
 /* iPad Portrait (768px-1024px) Header Adjustments */
 @media only screen 
@@ -128,23 +122,23 @@ ul[data-menu="list-projetos"].active {
     height: auto;
   }
 
+  #menu-projetos {
+    display: flex;
+  }
+
   .header .container {
     flex-wrap: wrap;
     gap: 1rem;
     flex-direction: row; /* Volta para linha em tablets */
   }
 
+  [data-menu="logo"] {
+    font-size: 1rem; 
+  }
+
   .institutional-nav {
     order: 1;
     width: 100%;
-  }
-
-  .header_menu {
-    order: 2;
-    gap: 2rem;
-    justify-content: center;
-    width: 100%;
-    padding: 1rem 0 0 0;
   }
 
   .logo-svg {
@@ -169,16 +163,15 @@ ul[data-menu="list-projetos"].active {
 @media (max-width: 768px) {
 
   .header {
-    padding: 1rem 0;
+    padding: .5rem 0;
   }
 
-  .header_main {
-    margin-bottom: 0;
+  [data-menu="logo"] {
+    font-size: 1.2rem; 
   }
 
-  .header-top {
-    display: none;
-    opacity: 0;
+  [data-menu="logo"] .active {
+    color: var(--cinza); 
   }
 
   .institutional-nav {
@@ -192,5 +185,9 @@ ul[data-menu="list-projetos"].active {
   
   .menu-institutional a {
     font-size: 0.8rem;
+  }
+  
+  #menu-projetos {
+    display: flex;
   }
 }
