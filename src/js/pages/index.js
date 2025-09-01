@@ -13,12 +13,6 @@ import { fetchEntries } from '../modules/contentfulAPI.js';
 import { renderDestaques } from '../modules/renderDestaques.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // ========== COMPORTAMENTO DO LOGO ==========
-  // document.querySelectorAll('.home-link, [data-menu="logo"]').forEach(link => {
-  //   link.addEventListener('click', () => {
-  //     localStorage.removeItem('lastFilter');
-  //   });
-  // });
 
   // ========== HEADER ==========
   const menuMobile = new MenuMobile(

@@ -3,144 +3,137 @@
   display: none;
 }
 
-[data-menu="contato-mobile"],
-[data-menu="whatsapp"],
-[data-menu="linkedin"],
-[data-menu="instagram"] {
-  display: none;
-}
-
-
 @media (max-width: 768px) {
-  /* Ajustes gerais */
-
-  .header {
-    position: fixed;
-    width: 100%;
-    z-index: 10;
-    top: 0;
-    left: 0;
-  }
-
-
-  [data-menu="logo"] {
-    width: 150px;
-    z-index: 999;
-  }
-
-  .header a > img {
-    width: 70%;
-  }
-
-  .header-scrolled .menu li a,
-  .header-scrolled .menu li span {
-    font: 600 1rem 'Inter', sans-serif;
-  }
-
-  .header_menu {
-    justify-content: space-between;
-  }
-
-  .social-icons-header {
-    display: none;
-  }
-
-  /* Botão hamburguer */
+  /* Botão hamburguer moderno e minimalista */
   .js [data-menu='button-menu'] {
     display: flex;
-    background: var(--amarelo-escuro);
+    background: none;
     border: none;
-    padding: 0.6rem; 
-    border-radius: 50%; 
-    font-family: 'OpenSans', sans-serif;
-    font-weight: bold;
-    color: var(--amarelo-escuro);
+    padding: 0.5rem;
     cursor: pointer;
     margin: 4px 0;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     position: relative;
     z-index: 300;
-    width: 2rem; 
-    height: 2rem; 
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-direction: column;
+    gap: 6px;
   }
 
-  #hamburguer {
-    width: 30px;
-    height: 2px;
-    background: var(--cinza);
-    border-radius: 1px;
-    position: relative;
-    transition: background 0.3s ease; 
-  }
+/* Remove o antigo hamburguer */
+/* Remove o antigo hamburguer */
+#hamburguer {
+  display: none;
+}
 
-  #hamburguer::before,
-  #hamburguer::after {
-    content: "";
-    display: block;
-    width: 30px;
-    height: 2px;
-    background: var(--cinza);
-    border-radius: 1px;
-    position: absolute;
-    left: 0;
-    transition: transform 0.3s ease;
-  }
+/* Botão hamburguer moderno e minimalista */
+.js [data-menu='button-menu'] {
+  display: flex;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin: 4px 0;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 300;
+  width: 2.5rem;
+  height: 2.5rem;
+}
 
-  #hamburguer::before {
-    top: -8px;
-  }
+/* Cria dois traços do mesmo tamanho */
+.js [data-menu='button-menu']::before,
+.js [data-menu='button-menu']::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 4px;
+  background: var(--amarelo);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
 
-  #hamburguer::after {
-    top: 8px;
-  }
+/* Posiciona os traços */
+.js [data-menu='button-menu']::before {
+  transform: translateY(-8px);
+}
 
-  /* Estilos quando o menu está ativo */
-  .js [data-menu='button-menu'].active #hamburguer {
-    background: transparent;
-  }
+.js [data-menu='button-menu']::after {
+  transform: translateY(8px);
+}
 
-  .js [data-menu='button-menu'].active #hamburguer::before {
-    transform: rotate(45deg);
-    top: 0;
-  }
+/* Estilos quando o menu está ativo - forma um X perfeito */
+.js [data-menu='button-menu'].active::before {
+  transform: rotate(45deg);
+  background: var(--cinza);
+}
 
-  .js [data-menu='button-menu'].active #hamburguer::after {
-    transform: rotate(-45deg);
-    top: 0;
-  }
+.js [data-menu='button-menu'].active::after {
+  transform: rotate(-45deg);
+  background: var(--cinza);
+}
 
-  /* Menu mobile ajustado */
-  .js [data-menu="list-projetos"] {
+  /* Esconde os menus por padrão no mobile */
+  .institutional-nav,
+  .projetos-nav {
     display: none;
+  }
+  
+  /* Container do menu mobile quando aberto */
+  .js .navigation.active {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
-    top: 0;
-    left: 0;
-    text-align: center;
-    z-index: 200;
     background-color: var(--amarelo);
-    padding: 80px 20px 20px;
-    overflow-y: auto;
-    box-sizing: border-box;
-    margin: 0; 
-  }
-
-  .js [data-menu="list-projetos"].active {
+    z-index: 200;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
+    justify-content: space-between;
+    padding: 80px 20px 40px;
+    box-sizing: border-box;
+    overflow: hidden;
   }
-
-  .js [data-menu="list-projetos"] li {
+  
+  /* Mostra ambos os menus quando o menu mobile está ativo */
+  .js .navigation.active .institutional-nav,
+  .js .navigation.active .projetos-nav {
+    display: block;
+  }
+  
+  /* Menu Projetos - centralizado verticalmente */
+  .js .navigation.active .projetos-nav {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+  }
+  
+  .js .navigation.active [data-menu="list-projetos"] {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    position: relative;
+    height: auto;
+  }
+  
+  .js .navigation.active [data-menu="list-projetos"] li {
     width: 100%;
     max-width: 300px;
   }
-
-  .js [data-menu="list-projetos"] a {
+  
+  .js .navigation.active [data-menu="list-projetos"] a {
     font-size: 1.1rem;
     line-height: 1.4;
     color: var(--cinza);
@@ -148,100 +141,49 @@
     display: block;
     width: 100%;
     box-sizing: border-box;
+    transition: color 0.3s ease;
+  }
+
+  .js .navigation.active [data-menu="list-projetos"] a:hover {
+    color: var(--amarelo-escuro);
+  }
+  
+  /* Menu Institucional - no canto inferior direito */
+  .js .navigation.active .institutional-nav {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+  }
+  
+  .js .navigation.active .menu-institutional {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+  
+  .js .navigation.active .menu-institutional a {
+    color: var(--cinza);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .js .navigation.active .menu-institutional a:hover {
+    color: var(--amarelo-escuro);
+  }
+  
+  .js .navigation.active .menu-institutional li:last-child {
+    margin-top: 1rem;
+  }
+
+  /* Previne rolagem quando menu está aberto */
+  body.no-scroll {
+    overflow: hidden;
   }
 
   /* Previne rolagem horizontal */
   html, body {
     overflow-x: hidden;
     width: 100%;
-  }
-
-  /* Ajuste para os botões de ação */
-  .header_acoes {
-    display: none;
-    position: fixed;
-    bottom: 6rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 300px;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    z-index: 201;
-    padding: 0;
-  }
-
-  .js [data-menu="list-projetos"].active ~ .header_acoes,
-  .header_acoes.active {
-    display: flex;
-    animation: fadeIn 0.3s ease forwards;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, 10px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
-  }
-
-  .btn-login {
-    border: 2px solid var(--cinza);
-    color: var(--cinza);
-  }
-
-  .btn-cadastro {
-    background-color: var(--secondary);
-    border: 2px solid var(--secondary);
-    color: var(--bg-branco);
-  }
-
-  [data-menu="contato-mobile"].active  {
-    position: fixed;
-    font: 500 1rem 'Inter', sans-serif;
-    color: var(--cinza);
-    display: flex;
-    gap: 20px;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-    padding: 1rem;
-    opacity: 0;
-    text-decoration: none;
-    list-style: none;
-  }
-
-  [data-menu="linkedin"].active {
-    position: fixed;
-    font: 500 1rem 'OpenSans', sans-serif;
-    color: var(--roxo);
-    display: block;
-    bottom: 0;
-    right: 0;
-    z-index: 999;
-    padding: 1rem;
-    opacity: 0;
-  }
-
-  [data-menu="whatsapp"].active {
-    position: fixed;
-    font: 500 1rem 'OpenSans', sans-serif;
-    color: var(--roxo);
-    display: block;
-    bottom: 0;
-    right: 80px;
-    z-index: 999;
-    padding: 1rem;
-    opacity: 0;
-  }
-
-  [data-menu="instagram"].active {
-    position: fixed;
-    font: 500 1rem 'OpenSans', sans-serif;
-    color: var(--roxo);
-    display: block;
-    bottom: 0;
-    right: 40px;
-    z-index: 999;
-    padding: 1rem;
-    opacity: 0;
   }
 }
