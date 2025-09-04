@@ -76,23 +76,39 @@ export default class MenuMobile {
   }
 
   animateMenuItems() {
-    const menuItems = document.querySelectorAll('.menu li');
-    menuItems.forEach((item, index) => {
+    // Animar o logo primeiro - SEM clearProps para não remover a opacidade final
+    gsap.fromTo(this.logoMobile,
+      { opacity: 0, y: -20 },
+      {
+        opacity: 1, y: 0, duration: 0.4, ease: "power1.out"
+        // Removido onComplete com clearProps
+      }
+    );
+  
+    // Animar o menu-projetos em segundo
+    const menuProjetos = document.querySelector('#menu-projetos');
+    if (menuProjetos) {
+      gsap.fromTo(menuProjetos,
+        { opacity: 0, y: -15 },
+        {
+          opacity: 1, y: 0, duration: 0.4, ease: "power1.out", delay: 0.2,
+          onComplete: () => gsap.set(menuProjetos, { clearProps: "all" })
+        }
+      );
+    }
+  
+    // Animar os itens do menu institucional por último em cascata
+    const menuInstitucional = document.querySelectorAll('.menu-institutional li');
+    menuInstitucional.forEach((item, index) => {
       gsap.fromTo(item,
         { opacity: 0, y: 10 },
         {
-          opacity: 1, y: 0, duration: 0.5, ease: "power1.out", delay: 0.1 + index * 0.1,
+          opacity: 1, y: 0, duration: 0.4, ease: "power1.out", 
+          delay: 0.4 + index * 0.1,
           onComplete: () => gsap.set(item, { clearProps: "all" })
-        });
+        }
+      );
     });
-
-    // Anima os botões de ação
-    // if (this.headerTop) {
-    //   gsap.fromTo(this.headerTop,
-    //     { opacity: 0, y: 20 },
-    //     { opacity: 1, y: 0, duration: 0.5, ease: "power1.out", delay: 0.3 + menuItems.length * 0.1 });
-    // }
-
   }
 
   toggleMenuAnimation(show) {
