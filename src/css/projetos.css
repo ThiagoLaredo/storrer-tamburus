@@ -99,7 +99,7 @@
 /* ============ PAGINATION BULLETS ============ */
 .swiper-pagination {
   position: absolute;
-  right: 2rem;
+  right: 2rem !important;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -129,6 +129,6 @@
   }
 
   .swiper-pagination {
-    right: 1rem;
+    right: 1.25rem;
   }
 }

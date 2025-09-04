@@ -136,7 +136,7 @@
   
   .js .navigation.active .institutional-nav {
     position: absolute;
-    bottom: 80px;
+    bottom: 120px;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;              /* ocupa toda a largura */
