@@ -173,7 +173,4 @@ body.preload .menu-institutional a {
     right: 1rem; 
   }
 
-  .swiper-pagination-vertical.swiper-pagination-bullets, .swiper-vertical>.swiper-pagination-bullets {
-    right: 1.25rem;
-  }
 }
