@@ -4,78 +4,64 @@
 }
 
 @media (max-width: 768px) {
-  /* Botão hamburguer moderno e minimalista */
+
   .js [data-menu='button-menu'] {
     display: flex;
     background: none;
     border: none;
     padding: 0.5rem;
     cursor: pointer;
-    margin: 4px 0;
+    margin: 0;
     align-items: center;
     justify-content: center;
     position: relative;
     z-index: 300;
-    width: 2.5rem;
+    width: 1.5rem;
     height: 2.5rem;
-    flex-direction: column;
-    gap: 6px;
+    margin-left: auto; /* Isso empurra o botão para a direita */
   }
-
-/* Remove o antigo hamburguer */
-/* Remove o antigo hamburguer */
-#hamburguer {
-  display: none;
-}
-
-/* Botão hamburguer moderno e minimalista */
-.js [data-menu='button-menu'] {
-  display: flex;
-  background: none;
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  margin: 4px 0;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 300;
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
-/* Cria dois traços do mesmo tamanho */
-.js [data-menu='button-menu']::before,
-.js [data-menu='button-menu']::after {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 4px;
-  background: var(--amarelo);
-  transition: all 0.3s ease;
-  transform-origin: center;
-}
-
-/* Posiciona os traços */
-.js [data-menu='button-menu']::before {
-  transform: translateY(-8px);
-}
-
-.js [data-menu='button-menu']::after {
-  transform: translateY(8px);
-}
-
-/* Estilos quando o menu está ativo - forma um X perfeito */
-.js [data-menu='button-menu'].active::before {
-  transform: rotate(45deg);
-  background: var(--cinza);
-}
-
-.js [data-menu='button-menu'].active::after {
-  transform: rotate(-45deg);
-  background: var(--cinza);
-}
-
+  
+  /* Cria dois traços */
+  .js [data-menu='button-menu']::before,
+  .js [data-menu='button-menu']::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    background: var(--amarelo);
+    transition: all 0.3s ease;
+    transform-origin: center;
+    right: 0; /* Alinha ambos os traços à direita */
+  }
+  
+  /* Traço superior - mais longo */
+  .js [data-menu='button-menu']::before {
+    width: 30px;
+    top: calc(50% - 14px);
+  }
+  
+  /* Traço inferior - mais curto e alinhado à direita */
+  .js [data-menu='button-menu']::after {
+    width: 20px;
+    top: calc(50% + 0px);
+    /* Já está alinhado à direita por causa do right:0 */
+  }
+  
+  /* Estilos quando o menu está ativo - forma um X perfeito */
+  .js [data-menu='button-menu'].active::before {
+    transform: rotate(45deg);
+    background: var(--cinza);
+    top: 30%;
+    right: 0;
+  }
+  
+  .js [data-menu='button-menu'].active::after {
+    transform: rotate(-45deg);
+    background: var(--cinza);
+    width: 30px; /* Iguala ao tamanho do before */
+    top: 30%;
+    right: 0;
+  }
+  
   /* Esconde os menus por padrão no mobile */
   .institutional-nav,
   .projetos-nav {
@@ -94,7 +80,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 80px 20px 40px;
+    padding: 80px 20px;
     box-sizing: border-box;
     overflow: hidden;
   }
@@ -148,12 +134,20 @@
     color: var(--amarelo-escuro);
   }
   
-  /* Menu Institucional - no canto inferior direito */
   .js .navigation.active .institutional-nav {
     position: absolute;
     bottom: 20px;
-    right: 20px;
-    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;              /* ocupa toda a largura */
+    display: flex;            /* centraliza o conteúdo */
+    justify-content: center;  /* alinha no centro */
+  }
+  
+  .js .navigation.active .institutional-nav ul.menu-institutional {
+    display: flex;
+    gap: 20px; /* espaço entre links */
+    align-items: center;
   }
   
   .js .navigation.active .menu-institutional {
@@ -172,10 +166,6 @@
     color: var(--amarelo-escuro);
   }
   
-  .js .navigation.active .menu-institutional li:last-child {
-    margin-top: 1rem;
-  }
-
   /* Previne rolagem quando menu está aberto */
   body.no-scroll {
     overflow: hidden;
@@ -186,4 +176,9 @@
     overflow-x: hidden;
     width: 100%;
   }
+
+  .js .navigation.active .institutional-nav ul.menu-institutional li a svg {
+    color: #808080; /* cinza */
+  }
+
 }
