@@ -7,10 +7,11 @@ import "../../css/footer.css";
 import "../../css/home.css";
 
 import MenuMobile from '../modules/menu-mobile.js';
-import HeaderManager from '../modules/HeaderManager.js';
 import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
 import { fetchEntries } from '../modules/contentfulAPI.js';
 import { renderDestaques } from '../modules/renderDestaques.js';
+import { renderFiltros } from '../modules/filterMenu.js';
+
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -26,14 +27,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     '.header_acoes'
   );
   if (menuMobile) menuMobile.init();
-
-  
-
-  const headerManager = new HeaderManager('.header');
  
   // ========== ANIMAÇÕES ==========
   initPageOpenAnimations();
   initScrollAnimations();
+
+  // ----------- CARREGAMENTO DO MENU DE FILTROS ------------
+const filtrosContainer = document.querySelector('[data-menu="list-projetos"]');
+if (filtrosContainer) {
+  // Carrega os tipos de projeto para o menu
+  const tiposData = await fetchEntries('tipoDeProjeto');
+  const tiposParaFiltros = tiposData.items.map(tipo => ({
+    slug: tipo.fields.slug || 'sem-tipo',
+    nome: tipo.fields.nome || 'Sem nome'
+  }));
+  
+  // Função de callback quando um filtro é selecionado
+  function handleFiltroClick(slug) {
+    localStorage.setItem('lastFilter', slug);
+  }
+  
+  // Renderiza os filtros no menu com o tipo correto já selecionado
+  renderFiltros(filtrosContainer, tiposParaFiltros, handleFiltroClick);
+}
+
   
 
   // ========== CARREGAMENTO DOS DESTAQUES ==========

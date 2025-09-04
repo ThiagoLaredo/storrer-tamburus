@@ -133,7 +133,7 @@ ul[data-menu="list-projetos"].active {
   }
 
   [data-menu="logo"] {
-    font-size: 1rem; 
+    font-size: 1.6rem; 
   }
 
   .institutional-nav {
@@ -167,11 +167,15 @@ ul[data-menu="list-projetos"].active {
   }
 
   [data-menu="logo"] {
-    font-size: 1.2rem; 
+    font-size: 1.6rem; 
+    position: relative;
+    z-index: 99;
   }
 
-  [data-menu="logo"] .active {
+  [data-menu="logo"].active {
     color: var(--cinza); 
+    position: relative;
+    z-index: 999;
   }
 
   .institutional-nav {
@@ -190,4 +194,21 @@ ul[data-menu="list-projetos"].active {
   #menu-projetos {
     display: flex;
   }
+
+  .js .navigation.active .institutional-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;              /* ocupa toda a largura */
+    display: flex;            /* centraliza o conteúdo */
+    justify-content: center;  /* alinha no centro */
+  }
+
+  .js .navigation.active .institutional-nav ul.menu-institutional li a {
+    display: flex;
+    align-items: center;   /* garante alinhamento vertical */
+    justify-content: center;
+  }
+  
 }
