@@ -109,10 +109,10 @@
 
 /* ============ RESPONSIVE ADJUSTMENTS ============ */
 @media (max-width: 768px) {
-  .projeto-titulo {
+  #projeto-titulo {
     font-size: 1.25rem;
     bottom: 1.5rem;
-    left: 1.5rem;
+    left: 3rem;
   }
 
   .swiper-pagination {
