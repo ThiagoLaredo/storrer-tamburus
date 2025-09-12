@@ -1,54 +1,61 @@
-import sharp from 'sharp';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import sharp from "sharp";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 // Corrige __dirname em ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default class ImageOptimizer {
-  constructor({ inputFolder, widths, formats }) {
-    this.inputFolder = path.resolve(__dirname, '../../../', inputFolder);
-    this.outputFolder = this.inputFolder; // ✅ agora otimiza no mesmo lugar
-    this.widths = widths;
-    this.formats = formats;
-  }
+const baseFolder = path.resolve(__dirname, "../../../src/imgs");
 
-  async optimizeImage(filePath, fileName) {
-    const image = sharp(filePath);
-    const metadata = await image.metadata();
+async function optimizeFolder(folderPath) {
+  const folderName = path.basename(folderPath);
+  const files = fs.readdirSync(folderPath);
 
-    for (const width of this.widths) {
-      if (metadata.width < width) continue;
+  let count = 1;
+  for (const file of files) {
+    const ext = path.extname(file).toLowerCase();
+    if (![".jpg", ".jpeg", ".png"].includes(ext)) continue;
 
-      for (const format of this.formats) {
-        const outputFileName = `${path.parse(fileName).name}-${width}.${format}`;
-        const outputPath = path.join(this.outputFolder, outputFileName);
+    const filePath = path.join(folderPath, file);
+    const outputFileName = `${folderName}-${count}.webp`;
+    const outputPath = path.join(folderPath, outputFileName);
 
-        await image
-          .resize({ width })
-          .toFormat(format)
-          .toFile(outputPath);
+    try {
+      // Pega metadados da imagem
+      const metadata = await sharp(filePath).metadata();
+      const isHorizontal = metadata.width >= metadata.height;
 
-        console.log(`✅ ${outputFileName} gerado.`);
-      }
+      // Define resize de acordo com orientação
+      const resizeOptions = isHorizontal
+        ? { width: 1980, withoutEnlargement: true }   // horizontal
+        : { height: 1080, withoutEnlargement: true }; // vertical (exemplo: altura máxima 1080px)
+
+      await sharp(filePath)
+        .resize(resizeOptions)
+        .webp({ quality: 80 })
+        .toFile(outputPath);
+
+      console.log(`✅ ${outputFileName} gerado em ${folderName}`);
+
+      // Apaga o arquivo original
+      fs.unlinkSync(filePath);
+
+      count++;
+    } catch (err) {
+      console.error(`❌ Erro ao otimizar ${file}:`, err);
     }
   }
+}
 
-  async optimizeAll() {
-    if (!fs.existsSync(this.outputFolder)) {
-      fs.mkdirSync(this.outputFolder, { recursive: true });
-    }
+export async function optimizeAll() {
+  const folders = fs.readdirSync(baseFolder);
 
-    const files = fs.readdirSync(this.inputFolder);
-
-    for (const file of files) {
-      const ext = path.extname(file).toLowerCase();
-      if (!['.jpg', '.jpeg', '.png'].includes(ext)) continue;
-
-      const filePath = path.join(this.inputFolder, file);
-      await this.optimizeImage(filePath, file);
+  for (const folder of folders) {
+    const folderPath = path.join(baseFolder, folder);
+    if (fs.lstatSync(folderPath).isDirectory()) {
+      await optimizeFolder(folderPath);
     }
   }
 }
