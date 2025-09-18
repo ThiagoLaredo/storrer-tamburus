@@ -1,3 +1,4 @@
+// --- Imports de estilos ---
 import "../../css/global.css";
 import "../../css/cores.css";
 import "../../css/componentes.css";
@@ -6,128 +7,55 @@ import "../../css/menu-mobile.css";
 import "../../css/footer.css";
 import "../../css/projeto.css"; 
 
+// --- Imports de módulos ---
 import MenuMobile from '../modules/menu-mobile.js';
-import { 
-  initPageOpenAnimations, 
-  initScrollAnimations,
-} from '../modules/animations.js';
+import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
 import { fetchEntries } from "../modules/contentfulAPI.js";
 import { renderFiltros } from '../modules/filterMenu.js';
 import { ProjetoRenderer } from '../modules/projetoRenderer.js';
 
-const getProjectSlug = () => {
+// --- Funções utilitárias ---
+
+// Normaliza texto em slug amigável
+function slugify(text) {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9\-]/g, '');
+}
+
+// Extrai slug da URL (/projetos/slug ou ?slug=)
+function getProjectSlug() {
   const pathParts = window.location.pathname.split('/').filter(Boolean);
   if (pathParts[0] === 'projetos' && pathParts[1]) {
     return pathParts[1];
   }
   return new URLSearchParams(window.location.search).get('slug');
-};
+}
 
-// Função para obter o slug do tipo do projeto
+// Obtém slug do tipo do projeto
 async function getProjectTypeSlug(projeto, data) {
-  if (!projeto.fields.tipoDoProjeto) return 'comercial';
-  
+  if (!projeto.fields.tipoDoProjeto) return 'sem-tipo';
+
   const tipo = data.includes?.Entry?.find(entry => 
     entry.sys.id === projeto.fields.tipoDoProjeto.sys.id
   );
-  
-  return tipo?.fields?.slug || 'comercial';
+
+  return slugify(tipo?.fields?.nome || 'sem-tipo');
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    // Inicializações de componentes
-    const menuMobile = new MenuMobile(
-      '[data-menu="logo"]',
-      '[data-menu="button-menu"]',
-      '[data-menu="list-projetos"]',
-      '[data-menu="contato-mobile"]',
-      '[data-menu="whatsapp"]',
-      '[data-menu="linkedin"]',
-      '[data-menu="instagram"]',
-      '.header-top'
-    );
-    menuMobile?.init();
-
-    // Animações
-    initPageOpenAnimations();
-    initScrollAnimations();
-
-    // ----------- CARREGAMENTO DO PROJETO PRIMEIRO ------------
-    const slug = getProjectSlug();
-    const container = document.querySelector('#projeto-detalhe');
-
-    if (!slug || !container) {
-      container.innerHTML = '<p class="error-message">Projeto não encontrado.</p>';
-      return;
-    }
-
-    // Carrega dados do projeto
-    const data = await fetchEntries('projeto');
-    const projeto = data.items.find(item => item.fields.slug === slug);
-    
-    if (!projeto) {
-      container.innerHTML = `<p class="error-message">Projeto não encontrado.</p>`;
-      return;
-    }
-
-    // Obtém o tipo do projeto e salva como filtro ativo
-    const projectTypeSlug = await getProjectTypeSlug(projeto, data);
-    localStorage.setItem('lastFilter', projectTypeSlug);
-
-    // ----------- CARREGAMENTO DO MENU DE FILTROS ------------
-    const filtrosContainer = document.querySelector('[data-menu="list-projetos"]');
-    if (filtrosContainer) {
-      // Carrega os tipos de projeto para o menu
-      const tiposData = await fetchEntries('tipoDeProjeto');
-      const tiposParaFiltros = tiposData.items.map(tipo => ({
-        slug: tipo.fields.slug || 'sem-tipo',
-        nome: tipo.fields.nome || 'Sem nome'
-      }));
-      
-      // Função de callback quando um filtro é selecionado
-      function handleFiltroClick(slug) {
-        localStorage.setItem('lastFilter', slug);
-      }
-      
-      // Renderiza os filtros no menu com o tipo correto já selecionado
-      renderFiltros(filtrosContainer, tiposParaFiltros, handleFiltroClick);
-    }
-
-    // Usando o novo renderizador
-    const projetoRenderer = new ProjetoRenderer();
-    await projetoRenderer.renderProjeto(projeto, data);
-
-    // Atualiza SEO
-    document.title = `${projeto.fields.titulo} | Storrer Tamburus`;
-    updateMetaTags(
-      projeto.fields.titulo, 
-      projeto.fields.galeriaDeImagens[0]?.sys?.id 
-        ? data.includes.Asset.find(a => a.sys.id === projeto.fields.galeriaDeImagens[0].sys.id)?.fields?.file?.url 
-        : null
-    );
-
-    // Atualiza a URL para a versão amigável se veio de projeto.html
-    if (window.location.pathname.includes('projeto.html')) {
-      window.history.replaceState(null, '', `/projetos/${slug}`);
-    }
-
-  } catch (error) {
-    console.error('Erro na inicialização:', error);
-    document.querySelector('#projeto-detalhe').innerHTML = `
-      <p class="error-message">Erro ao carregar o projeto. Tente recarregar a página.</p>
-    `;
-  }
-});
-
+// Atualiza meta tags SEO e OpenGraph
 function updateMetaTags(title, imageUrl) {
-  // Meta description
   const metaDesc = document.querySelector('meta[name="description"]') || document.createElement('meta');
   metaDesc.name = 'description';
-  metaDesc.content = title ? `${title} | Projeto de arquitetura da Storrer Tamburus` : 'Projeto de arquitetura da Storrer Tamburus';
+  metaDesc.content = title 
+    ? `${title} | Projeto de arquitetura da Storrer Tamburus` 
+    : 'Projeto de arquitetura da Storrer Tamburus';
   document.head.appendChild(metaDesc);
 
-  // Open Graph
   const ogTags = [
     { property: 'og:title', content: title || 'Storrer Tamburus Arquitetura' },
     { property: 'og:description', content: title ? `${title} | Projeto de arquitetura` : 'Projeto de arquitetura' },
@@ -150,3 +78,93 @@ function updateMetaTags(title, imageUrl) {
     document.head.appendChild(el);
   });
 }
+
+// --- Inicialização ---
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    // Menu Mobile
+    const menuMobile = new MenuMobile(
+      '[data-menu="logo"]',
+      '[data-menu="button-menu"]',
+      '[data-menu="list-projetos"]',
+      '[data-menu="contato-mobile"]',
+      '[data-menu="whatsapp"]',
+      '[data-menu="linkedin"]',
+      '[data-menu="instagram"]',
+      '.header-top'
+    );
+    menuMobile?.init();
+
+    // Animações
+    initPageOpenAnimations();
+    initScrollAnimations();
+
+    // Slug atual
+    const slug = getProjectSlug();
+    const container = document.querySelector('#projeto-detalhe');
+    if (!slug || !container) {
+      container.innerHTML = '<p class="error-message">Projeto não encontrado.</p>';
+      return;
+    }
+
+    // Busca projetos
+    const data = await fetchEntries('projeto');
+
+    // Localiza projeto pelo slug (slug ou titulo)
+    const projeto = data.items.find(item => {
+      const contentfulSlug = item.fields.slug 
+        ? slugify(item.fields.slug) 
+        : slugify(item.fields.titulo);
+      return contentfulSlug === slug;
+    });
+
+    if (!projeto) {
+      container.innerHTML = '<p class="error-message">Projeto não encontrado.</p>';
+      return;
+    }
+
+    // Salva tipo do projeto como filtro ativo
+    const projectTypeSlug = await getProjectTypeSlug(projeto, data);
+    localStorage.setItem('lastFilter', projectTypeSlug);
+
+    // Renderiza menu de filtros
+    const filtrosContainer = document.querySelector('[data-menu="list-projetos"]');
+    if (filtrosContainer) {
+      const tiposData = await fetchEntries('tipoDeProjeto');
+      const tiposParaFiltros = tiposData.items.map(tipo => ({
+        slug: slugify(tipo.fields.nome || 'sem-tipo'),
+        nome: tipo.fields.nome || 'Sem nome'
+      }));
+
+      renderFiltros(filtrosContainer, tiposParaFiltros, slug => {
+        localStorage.setItem('lastFilter', slug);
+      });
+    }
+
+    // Renderiza detalhes do projeto
+    const projetoRenderer = new ProjetoRenderer();
+    await projetoRenderer.renderProjeto(projeto, data);
+
+    // SEO
+    document.title = `${projeto.fields.titulo} | Storrer Tamburus`;
+    const primeiraImagem = projeto.fields.galeriaDeImagens[0]?.sys?.id
+      ? data.includes.Asset.find(a => a.sys.id === projeto.fields.galeriaDeImagens[0].sys.id)?.fields?.file?.url
+      : null;
+    updateMetaTags(projeto.fields.titulo, primeiraImagem);
+
+    // URL amigável
+    const slugAmigavel = projeto.fields.slug 
+      ? slugify(projeto.fields.slug) 
+      : slugify(projeto.fields.titulo);
+
+    if (window.location.pathname.includes('projeto.html')) {
+      window.history.replaceState(null, '', `/projetos/${slugAmigavel}`);
+    }
+
+  } catch (error) {
+    console.error('Erro na inicialização:', error);
+    document.querySelector('#projeto-detalhe').innerHTML = `
+      <p class="error-message">Erro ao carregar o projeto. Tente recarregar a página.</p>
+    `;
+  }
+});

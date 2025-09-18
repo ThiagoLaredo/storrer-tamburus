@@ -27,10 +27,10 @@ async function optimizeFolder(folderPath) {
       const metadata = await sharp(filePath).metadata();
       const isHorizontal = metadata.width >= metadata.height;
 
-      // Define resize de acordo com orientação
+      // Ajuste: tamanhos maiores
       const resizeOptions = isHorizontal
-        ? { width: 1980, withoutEnlargement: true }   // horizontal
-        : { height: 1080, withoutEnlargement: true }; // vertical (exemplo: altura máxima 1080px)
+        ? { width: 3000, withoutEnlargement: true }   // horizontais até 3000px
+        : { height: 2000, withoutEnlargement: true }; // verticais até 2000px
 
       await sharp(filePath)
         .resize(resizeOptions)
