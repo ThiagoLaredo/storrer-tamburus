@@ -139,10 +139,6 @@
 //   return tl;
 // }
 
-import { SwiperGallery } from './swiper-gallery.js';
-import { gsap } from 'gsap';
-import { buildResponsiveImage } from './imageUtils.js';
-
 export function renderGaleria(container, projetos) {
   if (!container) return;
 
@@ -168,7 +164,6 @@ export function renderGaleria(container, projetos) {
               }
               <div class="overlay"></div>
 
-              <!-- Container do título e ícone -->
               <div class="container">
                 <a href="/projetos/${projeto.slug}" class="projeto-link">
                   <h3 class="projetos-titulo" data-slide-index="${index}">${projeto.title}</h3>
@@ -185,11 +180,13 @@ export function renderGaleria(container, projetos) {
     </div>
   `;
 
-  // Inicializa o Swiper com animação do título
   const swiper = new SwiperGallery('.swiper', {
     pagination: { el: '.swiper-pagination', clickable: true },
     on: {
-      init() { animateTitleOnSlideChange(); },
+      init() { 
+        animateTitleOnSlideChange();
+        animateFirstSlideImage(); // anima a primeira imagem
+      },
       slideChangeTransitionStart() {
         const activeSlide = document.querySelector('.swiper-slide-active');
         const title = activeSlide?.querySelector('.projetos-titulo');
@@ -210,7 +207,7 @@ export function renderGaleria(container, projetos) {
   swiper.init();
 }
 
-// Mantemos a função de animação como no código antigo
+// Animação do título e ícone
 function animateTitleOnSlideChange() {
   const activeSlide = document.querySelector('.swiper-slide-active');
   if (!activeSlide) return;
@@ -225,3 +222,16 @@ function animateTitleOnSlideChange() {
   tl.to(title, { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }, 0)
     .to(plusIcon, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', onComplete: () => gsap.set(plusIcon, { clearProps: 'transform' }) }, 0.05);
 }
+
+// Nova função: fade-in suave para a primeira imagem
+function animateFirstSlideImage() {
+  const firstImage = document.querySelector('.swiper-slide:first-child .projeto-imagem');
+  if (!firstImage) return;
+
+  gsap.fromTo(firstImage, 
+    { opacity: 0, scale: 1.05 }, // começa levemente ampliada e invisível
+    { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out' } // fade-in e ajuste do scale
+  );
+}
+
+
