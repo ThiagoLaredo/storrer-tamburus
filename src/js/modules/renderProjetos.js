@@ -189,7 +189,7 @@ export function renderGaleria(container, projetos) {
     on: {
       init() { 
         animateTitleOnSlideChange();
-        animateFirstSlideImage(); // anima a primeira imagem
+        animateLCPImage(); // nova função
       },
       slideChangeTransitionStart() {
         const activeSlide = document.querySelector('.swiper-slide-active');
@@ -227,15 +227,15 @@ function animateTitleOnSlideChange() {
     .to(plusIcon, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', onComplete: () => gsap.set(plusIcon, { clearProps: 'transform' }) }, 0.05);
 }
 
-// Nova função: fade-in suave para a primeira imagem
-function animateFirstSlideImage() {
-  const firstImage = document.querySelector('.swiper-slide:first-child .projeto-imagem');
-  if (!firstImage) return;
+function animateLCPImage() {
+  const lcpImage = document.querySelector('.swiper-slide .lcp-image');
+  if (!lcpImage) return;
 
-  gsap.fromTo(firstImage, 
-    { opacity: 0, scale: 1.05 }, // começa levemente ampliada e invisível
-    { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out' } // fade-in e ajuste do scale
+  gsap.fromTo(lcpImage, 
+    { opacity: 0, scale: 1.05 },
+    { opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out' }
   );
 }
+
 
 
