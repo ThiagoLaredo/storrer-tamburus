@@ -139,7 +139,6 @@
 //   return tl;
 // }
 
-// src/js/modules/renderGaleria.js
 import { SwiperGallery } from './swiper-gallery.js';
 import { gsap } from 'gsap';
 import { buildResponsiveImage } from './imageUtils.js';
@@ -160,13 +159,12 @@ export function renderGaleria(container, projetos) {
         ${projetos.map((projeto, index) => `
           <div class="swiper-slide">
             <div class="projeto-slide">
-              ${
-                projeto.capa
-                  ? buildResponsiveImage(projeto.capa, projeto.title, {
-                      isLCP: index === 0,
-                      className: 'projeto-imagem' // mantém layout do projeto
-                    })
-                  : '<div class="projeto-imagem placeholder"></div>'
+              ${projeto.capa
+                ? buildResponsiveImage(projeto.capa, projeto.title, { 
+                    isLCP: index === 0, 
+                    className: 'projeto-imagem' 
+                  })
+                : '<div class="projeto-imagem placeholder"></div>'
               }
               <div class="overlay"></div>
 
@@ -187,16 +185,17 @@ export function renderGaleria(container, projetos) {
     </div>
   `;
 
-  // Inicializa Swiper com animações do título
-  const swiperOptions = {
+  // Inicializa o Swiper com animação do título
+  const swiper = new SwiperGallery('.swiper', {
     pagination: { el: '.swiper-pagination', clickable: true },
     on: {
-      init() { animateTitleOnSlideChange(this.activeIndex); },
+      init() { animateTitleOnSlideChange(); },
       slideChangeTransitionStart() {
-        const currentTitle = document.querySelector('.swiper-slide-active .projetos-titulo');
-        const currentIcon = document.querySelector('.swiper-slide-active .projeto-plus');
-        if (currentTitle && currentIcon) {
-          gsap.to([currentTitle, currentIcon], {
+        const activeSlide = document.querySelector('.swiper-slide-active');
+        const title = activeSlide?.querySelector('.projetos-titulo');
+        const plusIcon = activeSlide?.querySelector('.projeto-plus');
+        if (title && plusIcon) {
+          gsap.to([title, plusIcon], {
             y: 20,
             opacity: 0,
             duration: 0.3,
@@ -204,15 +203,15 @@ export function renderGaleria(container, projetos) {
           });
         }
       },
-      slideChangeTransitionEnd() { animateTitleOnSlideChange(this.activeIndex); }
+      slideChangeTransitionEnd() { animateTitleOnSlideChange(); }
     }
-  };
+  });
 
-  const swiper = new SwiperGallery('.swiper', swiperOptions);
   swiper.init();
 }
 
-function animateTitleOnSlideChange(slideIndex) {
+// Mantemos a função de animação como no código antigo
+function animateTitleOnSlideChange() {
   const activeSlide = document.querySelector('.swiper-slide-active');
   if (!activeSlide) return;
 
@@ -225,6 +224,4 @@ function animateTitleOnSlideChange(slideIndex) {
   const tl = gsap.timeline();
   tl.to(title, { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }, 0)
     .to(plusIcon, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', onComplete: () => gsap.set(plusIcon, { clearProps: 'transform' }) }, 0.05);
-
-  return tl;
 }
