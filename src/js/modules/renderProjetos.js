@@ -141,6 +141,7 @@
 
 import { SwiperGallery } from './swiper-gallery.js';
 import { gsap } from 'gsap';
+import { buildResponsiveImage } from './imageUtils.js';
 
 export function renderGaleria(container, projetos) {
   if (!container) return;
