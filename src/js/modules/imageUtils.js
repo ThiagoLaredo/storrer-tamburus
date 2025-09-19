@@ -4,23 +4,17 @@ export function buildResponsiveImage(
     alt,
     { isLCP = false, widths = [480, 768, 1200, 1920, 3840] } = {}
   ) {
-    if (!url) return '';
+    if (!url) return { pictureHTML: '', preloadHTML: '' };
   
-    const avifSrcset = widths
-      .map(w => `${url}?w=${w}&fm=avif&q=85 ${w}w`)
-      .join(', ');
+    // Remove extensão original (.jpg, .png, .webp) — Contentful ignora e aplica o fm= certo
+    const cleanUrl = url.replace(/\.(jpg|jpeg|png|webp|avif)$/, '');
   
-    const webpSrcset = widths
-      .map(w => `${url}?w=${w}&fm=webp&q=85 ${w}w`)
-      .join(', ');
+    const avifSrcset = widths.map(w => `${cleanUrl}?w=${w}&fm=avif&q=85 ${w}w`).join(', ');
+    const webpSrcset = widths.map(w => `${cleanUrl}?w=${w}&fm=webp&q=85 ${w}w`).join(', ');
+    const jpgSrcset  = widths.map(w => `${cleanUrl}?w=${w}&fm=jpg&q=85 ${w}w`).join(', ');
   
-    const jpgSrcset = widths
-      .map(w => `${url}?w=${w}&fm=jpg&q=85 ${w}w`)
-      .join(', ');
+    const fallbackSrc = `${cleanUrl}?w=1200&fm=jpg&q=85`;
   
-    const fallbackSrc = `${url}?w=1200&fm=jpg&q=85`;
-  
-    // Monta o <picture>
     const pictureHTML = `
       <picture>
         <source srcset="${avifSrcset}" sizes="100vw" type="image/avif">
@@ -38,9 +32,8 @@ export function buildResponsiveImage(
       </picture>
     `;
   
-    // Se for LCP, gera também a tag <link rel="preload">
     const preloadHTML = isLCP
-      ? `<link rel="preload" as="image" href="${fallbackSrc}" imagesrcset="${jpgSrcset}" imagesizes="100vw" type="image/jpeg">`
+      ? `<link rel="preload" as="image" href="${fallbackSrc}" imagesrcset="${avifSrcset}, ${webpSrcset}, ${jpgSrcset}" imagesizes="100vw">`
       : '';
   
     return { pictureHTML, preloadHTML };
