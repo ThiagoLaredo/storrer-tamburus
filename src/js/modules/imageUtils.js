@@ -45,7 +45,7 @@
 //     `;
 //   }
   
-
+// src/js/modules/imageUtils.js
 export function buildResponsiveImage(
     url,
     alt,
@@ -60,9 +60,6 @@ export function buildResponsiveImage(
     const jpgSrcset = widths.map(w => `${cleanUrl}?w=${w}&fm=jpg&q=85 ${w}w`).join(', ');
     const fallbackSrc = `${cleanUrl}?w=1200&fm=jpg&q=85`;
   
-    // Adiciona a classe especial para LCP, para facilitar a animação
-    const extraClass = className + (isLCP ? ' lcp-image' : '');
-  
     return `
       <picture>
         <source srcset="${avifSrcset}" sizes="100vw" type="image/avif">
@@ -72,7 +69,7 @@ export function buildResponsiveImage(
           srcset="${jpgSrcset}"
           sizes="100vw"
           alt="${alt || ''}"
-          class="${extraClass.trim()}"
+          class="${className}"
           loading="${isLCP ? 'eager' : 'lazy'}"
           ${isLCP ? 'fetchpriority="high"' : ''}
           decoding="async"
@@ -80,4 +77,5 @@ export function buildResponsiveImage(
       </picture>
     `;
   }
+   
   
