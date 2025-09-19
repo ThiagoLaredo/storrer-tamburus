@@ -65,11 +65,26 @@ export function renderDestaques(container, projetos) {
     return;
   }
 
+  // Gera as imagens
+  const imagensHTML = projetos.map((projeto, index) => {
+    const { pictureHTML, preloadHTML } = buildResponsiveImage(
+      projeto.capa,
+      projeto.title,
+      { isLCP: index === 0 }
+    );
+
+    // Se for a primeira (LCP), injeta o preload no <head>
+    if (preloadHTML) {
+      document.head.insertAdjacentHTML('beforeend', preloadHTML);
+    }
+
+    return pictureHTML;
+  }).join('');
+
+  // Monta o slideshow
   container.innerHTML = `
     <div class="hero-slideshow">
-      ${projetos.map((projeto, index) => 
-        buildResponsiveImage(projeto.capa, projeto.title, { isLCP: index === 0 })
-      ).join('')}
+      ${imagensHTML}
     </div>
   `;
 
