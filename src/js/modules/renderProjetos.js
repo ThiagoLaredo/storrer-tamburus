@@ -154,7 +154,7 @@ export function renderGaleria(container, projetos) {
     return;
   }
 
-  container.innerHTML = `
+    container.innerHTML = `
     <div class="swiper">
       <div class="swiper-wrapper">
         ${projetos.map((projeto, index) => `
@@ -165,6 +165,8 @@ export function renderGaleria(container, projetos) {
                 : '<div class="projeto-imagem placeholder"></div>'
               }
               <div class="overlay"></div>
+
+              <!-- Mantemos o container do título e do ícone -->
               <div class="container">
                 <a href="/projetos/${projeto.slug}" class="projeto-link">
                   <h3 class="projetos-titulo" data-slide-index="${index}">${projeto.title}</h3>
