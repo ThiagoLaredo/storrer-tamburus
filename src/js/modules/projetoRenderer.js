@@ -1,19 +1,12 @@
+// 
+
+
 // projetoRenderer.js
 import { SwiperGallery } from './swiper-gallery.js';
+import { buildResponsiveImage } from './imageUtils.js';
 
 export class ProjetoRenderer {
-  constructor() {
-    // Configuração de imagens responsivas e otimizadas
-    this.IMAGE_OPTIONS = {
-      sizes: [
-        { maxWidth: 640, width: 640, quality: 80 },
-        { maxWidth: 1024, width: 1024, quality: 85 },
-        { width: 1600, quality: 90 },
-      ],
-      format: 'webp',
-      fallbackFormat: 'jpg',
-    };
-  }
+  constructor() {}
 
   async renderProjeto(projeto, data) {
     const { titulo, galeriaDeImagens = [], tipoDoProjeto } = projeto.fields;
@@ -37,11 +30,27 @@ export class ProjetoRenderer {
       tituloElement.innerHTML = `<span class="barra"></span><span class="texto">${titulo}</span>`;
     }
 
-    // Renderiza galeria otimizada
+    // Renderiza galeria otimizada usando buildResponsiveImage
     document.querySelector('#projeto-imagens').innerHTML = `
       <div class="swiper js-swiper-gallery">
         <div class="swiper-wrapper">
-          ${await this.loadOptimizedImages(galeriaDeImagens, data.includes?.Asset || [], titulo)}
+          ${galeriaDeImagens.map((imgRef, index) => {
+            const asset = data.includes?.Asset?.find(a => a.sys.id === imgRef.sys.id);
+            if (!asset) {
+              console.warn('Asset não encontrado para referência:', imgRef);
+              return '';
+            }
+            const url = `https:${asset.fields.file.url}`;
+            const alt = asset.fields.title || asset.fields.description || titulo;
+            return `
+              <div class="swiper-slide">
+                <div class="projeto-slide">
+                  ${buildResponsiveImage(url, alt, { isLCP: index === 0 })}
+                  <div class="overlay"></div>
+                </div>
+              </div>
+            `;
+          }).join('')}
         </div>
         <div class="swiper-pagination"></div>
       </div>
@@ -49,55 +58,6 @@ export class ProjetoRenderer {
 
     this.initSwiper();
     return true;
-  }
-
-  async loadOptimizedImages(galeriaDeImagens, assets, defaultAlt) {
-    const imagesHtml = await Promise.all(
-      galeriaDeImagens.map(async (imgRef) => {
-        const asset = assets.find(a => a.sys.id === imgRef.sys.id);
-        if (!asset) {
-          console.warn('Asset não encontrado para referência:', imgRef);
-          return '';
-        }
-
-        const url = asset.fields.file.url;
-        const alt = asset.fields.title || asset.fields.description || defaultAlt;
-
-        // Cria srcset WebP
-        const webpSrcset = this.IMAGE_OPTIONS.sizes.map(size =>
-          `https:${url}?w=${size.width}&q=${size.quality}&fm=webp ${size.width}w`
-        ).join(', ');
-
-        // Cria srcset JPG fallback
-        const jpgSrcset = this.IMAGE_OPTIONS.sizes.map(size =>
-          `https:${url}?w=${size.width}&q=${size.quality}&fm=jpg ${size.width}w`
-        ).join(', ');
-
-        const fallbackSrc = `https:${url}?w=1200&q=85&fm=${this.IMAGE_OPTIONS.fallbackFormat}`;
-
-        return `
-          <div class="swiper-slide">
-            <div class="projeto-slide">
-              <picture>
-                <source srcset="${webpSrcset}" type="image/webp">
-                <img
-                  src="${fallbackSrc}"
-                  srcset="${jpgSrcset}"
-                  sizes="100vw"
-                  alt="${alt}"
-                  loading="lazy"
-                  decoding="async"
-                  class="projeto-imagem"
-                >
-              </picture>
-              <div class="overlay"></div>
-            </div>
-          </div>
-        `;
-      })
-    );
-
-    return imagesHtml.join('');
   }
 
   initSwiper() {
