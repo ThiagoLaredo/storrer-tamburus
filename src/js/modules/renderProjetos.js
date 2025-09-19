@@ -139,6 +139,9 @@
 //   return tl;
 // }
 
+import { SwiperGallery } from './swiper-gallery.js';
+import { gsap } from 'gsap';
+
 export function renderGaleria(container, projetos) {
   if (!container) return;
 
