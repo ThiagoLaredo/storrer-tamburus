@@ -36,7 +36,7 @@ export function buildResponsiveImage(
           srcset="${jpgSrcset}"
           sizes="100vw"
           alt="${alt || ''}"
-          class="destaque-imagem"
+          class="projeto-imagem destaque-imagem
           loading="${isLCP ? 'eager' : 'lazy'}"
           ${isLCP ? 'fetchpriority="high"' : ''}
           decoding="async"
