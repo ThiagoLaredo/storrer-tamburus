@@ -128,51 +128,9 @@ export const initPageOpenAnimations = () => {
     });
   }
 
-  // Animação dos elementos .page-open-animate (com delay maior)
-  document.querySelectorAll('.page-open-animate').forEach((el, i) => {
-    const rect = el.getBoundingClientRect();
-    const isAboveFold = rect.top < window.innerHeight;
-
-    if (isAboveFold) {
-      gsap.fromTo(el,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: (firstSlide ? 1.5 : 0.8) + (i * 0.1),
-          ease: "back.out(1.4)"
-        }
-      );
-    } else {
-      gsap.set(el, { opacity: 1 });
-    }
-  });
-
   return tl;
 };
 
-
-export function initScrollAnimations() {
-
-  const elements = document.querySelectorAll(".animate-me");
-
-  elements.forEach((el, index) => {
-
-    gsap.from(el, {
-      scrollTrigger: {
-        trigger: el,
-        start: "top 100%",
-        toggleActions: "play none none none",
-        markers: false,
-      },
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out"
-    });
-  });
-}
 
 // Objeto para controlar o estado
 const hoverStates = new WeakMap();
