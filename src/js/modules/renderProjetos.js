@@ -139,7 +139,7 @@
 //   return tl;
 // }
 
-
+// src/js/modules/renderGaleria.js
 import { SwiperGallery } from './swiper-gallery.js';
 import { gsap } from 'gsap';
 import { buildResponsiveImage } from './imageUtils.js';
@@ -154,19 +154,23 @@ export function renderGaleria(container, projetos) {
     return;
   }
 
-    container.innerHTML = `
+  container.innerHTML = `
     <div class="swiper">
       <div class="swiper-wrapper">
         ${projetos.map((projeto, index) => `
           <div class="swiper-slide">
             <div class="projeto-slide">
-              ${projeto.capa
-                ? buildResponsiveImage(projeto.capa, projeto.title, { isLCP: index === 0 })
-                : '<div class="projeto-imagem placeholder"></div>'
+              ${
+                projeto.capa
+                  ? buildResponsiveImage(projeto.capa, projeto.title, {
+                      isLCP: index === 0,
+                      className: 'projeto-imagem' // mantém layout do projeto
+                    })
+                  : '<div class="projeto-imagem placeholder"></div>'
               }
               <div class="overlay"></div>
 
-              <!-- Mantemos o container do título e do ícone -->
+              <!-- Container do título e ícone -->
               <div class="container">
                 <a href="/projetos/${projeto.slug}" class="projeto-link">
                   <h3 class="projetos-titulo" data-slide-index="${index}">${projeto.title}</h3>
@@ -183,7 +187,7 @@ export function renderGaleria(container, projetos) {
     </div>
   `;
 
-  // Inicializa Swiper com animações
+  // Inicializa Swiper com animações do título
   const swiperOptions = {
     pagination: { el: '.swiper-pagination', clickable: true },
     on: {
