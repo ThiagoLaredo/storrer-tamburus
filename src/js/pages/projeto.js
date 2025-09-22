@@ -9,7 +9,7 @@ import "../../css/projeto.css";
 
 // --- Imports de módulos ---
 import MenuMobile from '../modules/menu-mobile.js';
-import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
+import { initPageOpenAnimations } from '../modules/animations.js';
 import { fetchEntries } from "../modules/contentfulAPI.js";
 import { renderFiltros } from '../modules/filterMenu.js';
 import { ProjetoRenderer } from '../modules/projetoRenderer.js';
@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Animações
     initPageOpenAnimations();
-    initScrollAnimations();
 
     // Slug atual
     const slug = getProjectSlug();

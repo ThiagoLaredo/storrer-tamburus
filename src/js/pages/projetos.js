@@ -140,7 +140,7 @@ import "../../css/footer.css";
 import "../../css/projetos.css"; 
 
 import MenuMobile from '../modules/menu-mobile.js';
-import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
+import { initPageOpenAnimations } from '../modules/animations.js';
 
 import { fetchEntries } from '../modules/contentfulAPI.js';
 import { renderGaleria } from '../modules/renderProjetos.js';
@@ -164,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
   // ========== ANIMAÇÕES ==========
   initPageOpenAnimations();
-  initScrollAnimations();
 
   // ========== GALERIA DE PROJETOS ==========
   const galeria = document.getElementById('galeria');

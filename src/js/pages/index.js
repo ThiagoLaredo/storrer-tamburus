@@ -7,7 +7,7 @@ import "../../css/footer.css";
 import "../../css/home.css";
 
 import MenuMobile from '../modules/menu-mobile.js';
-import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
+import { initPageOpenAnimations } from '../modules/animations.js';
 import { fetchEntries } from '../modules/contentfulAPI.js';
 import { renderDestaques } from '../modules/renderDestaques.js';
 import { renderFiltros } from '../modules/filterMenu.js';
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', async () => {
  
   // ========== ANIMAÇÕES ==========
   initPageOpenAnimations();
-  initScrollAnimations();
 
   // ----------- CARREGAMENTO DO MENU DE FILTROS ------------
 const filtrosContainer = document.querySelector('[data-menu="list-projetos"]');
