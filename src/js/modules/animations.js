@@ -1,8 +1,133 @@
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 
-gsap.registerPlugin(ScrollTrigger);
+// export const initPageOpenAnimations = () => {
+//   // 1. Remova a classe preload imediatamente
+//   document.body.classList.remove("preload");
+  
+//   // 2. Adicione classe de controle no body
+//   document.body.classList.add('menu-animating');
 
+//   // 3. Configuração inicial - ESCONDER TUDO
+//   gsap.set("[data-menu='logo'], [data-menu='button-menu'], .menu-institutional li, #menu-projetos > li > a", {
+//     opacity: 0,
+//     y: 10
+//   });
+
+//   // prepara também o título e a barrinha
+//   gsap.set("#projeto-titulo", { opacity: 0, x: -20 });
+//   gsap.set("#projeto-titulo .barra", { scaleY: 0, transformOrigin: "bottom" });
+
+//   // === NOVO: Configurar primeiro slide ===
+//   const firstSlide = document.querySelector('.swiper-slide:first-child');
+//   if (firstSlide) {
+//     // Esconder elementos do primeiro slide
+//     gsap.set(firstSlide.querySelectorAll('.projetos-titulo, .projeto-plus, .projeto-imagem, .projeto-descricao'), {
+//       opacity: 0,
+//       y: 30
+//     });
+//   }
+
+//   // 4. Timeline principal
+//   const tl = gsap.timeline({ 
+//     defaults: { ease: "power3.out" },
+//     onComplete: () => {
+//       document.body.classList.remove('menu-animating');
+//       document.body.classList.add('menu-visible');
+//     }
+//   });
+
+//   // === NOVO: ANIMAÇÃO DO PRIMEIRO SLIDE (começa primeiro) ===
+//   if (firstSlide) {
+//     // Elementos do slide para animar
+//     const slideElements = firstSlide.querySelectorAll('.projetos-titulo, .projeto-plus, .projeto-imagem, .projeto-descricao');
+    
+//     // Animação do primeiro slide - começa imediatamente
+//     tl.to(slideElements, {
+//       opacity: 1,
+//       y: 0,
+//       duration: 9,
+//       stagger: 0.15,
+//       ease: "back.out(1.4)"
+//     }, 0); // Inicia no tempo 0 da timeline
+//   }
+
+//   // Logo (agora começa depois do slide)
+//   tl.to("[data-menu='logo']", {
+//     opacity: 1,
+//     y: 0,
+//     duration: 0.8
+//   }, firstSlide ? 0.6 : 0); // Atraso se houver slide
+
+//   // Botão Menu
+//   tl.to("[data-menu='button-menu']", {
+//     opacity: 1,
+//     duration: 0.6
+//   }, firstSlide ? 0.8 : 0.2);
+
+//   // Menu Projetos
+//   tl.to("#menu-projetos > li > a", {
+//     opacity: 1,
+//     y: 0,
+//     duration: 0.6,
+//     stagger: 0.1
+//   }, firstSlide ? 1.0 : 0.4);
+
+//   // Menu Institucional
+//   tl.to(".menu-institutional li", {
+//     opacity: 1,
+//     y: 0,
+//     duration: 0.6,
+//     stagger: 0.1
+//   }, firstSlide ? 0.8 : 0.2);
+
+//   // título do projeto
+//   tl.to("#projeto-titulo", {
+//     opacity: 1,
+//     x: 0,
+//     duration: 0.8
+//   }, firstSlide ? 1.2 : 0.8);
+
+//   // barrinha
+//   tl.to("#projeto-titulo .barra", {
+//     scaleY: 1,
+//     duration: 0.6,
+//     ease: "power3.out"
+//   }, firstSlide ? "-=0.2" : "-=0.4");
+
+//   // Itens do Menu Principal
+//   const animateMenuItems = () => {
+//     tl.to("#menu-projetos > li > a", {
+//       opacity: 1,
+//       y: 0,
+//       stagger: 0.1,
+//       duration: 0.5,
+//       onStart: () => {
+//         document.body.classList.add('menu-animating');
+//       }
+//     }, firstSlide ? 1.0 : 0.4);
+//   };
+
+//   // Verificação e observer para itens dinâmicos
+//   if (document.querySelectorAll('#menu-projetos > li > a').length > 0) {
+//     animateMenuItems();
+//   } else {
+//     const observer = new MutationObserver((mutations) => {
+//       if (document.querySelectorAll('#menu-projetos > li > a').length > 0) {
+//         animateMenuItems();
+//         observer.disconnect();
+//       }
+//     });
+    
+//     observer.observe(document.getElementById('menu-projetos'), {
+//       childList: true,
+//       subtree: true
+//     });
+//   }
+
+//   return tl;
+// };
+
+// Objeto para controlar o estado
 
 export const initPageOpenAnimations = () => {
   // 1. Remova a classe preload imediatamente
@@ -11,25 +136,11 @@ export const initPageOpenAnimations = () => {
   // 2. Adicione classe de controle no body
   document.body.classList.add('menu-animating');
 
-  // 3. Configuração inicial - ESCONDER TUDO
+  // 3. Configuração inicial - ESCONDER MENU/HEADER
   gsap.set("[data-menu='logo'], [data-menu='button-menu'], .menu-institutional li, #menu-projetos > li > a", {
     opacity: 0,
     y: 10
   });
-
-  // prepara também o título e a barrinha
-  gsap.set("#projeto-titulo", { opacity: 0, x: -20 });
-  gsap.set("#projeto-titulo .barra", { scaleY: 0, transformOrigin: "bottom" });
-
-  // === NOVO: Configurar primeiro slide ===
-  const firstSlide = document.querySelector('.swiper-slide:first-child');
-  if (firstSlide) {
-    // Esconder elementos do primeiro slide
-    gsap.set(firstSlide.querySelectorAll('.projetos-titulo, .projeto-plus, .projeto-imagem, .projeto-descricao'), {
-      opacity: 0,
-      y: 30
-    });
-  }
 
   // 4. Timeline principal
   const tl = gsap.timeline({ 
@@ -40,33 +151,18 @@ export const initPageOpenAnimations = () => {
     }
   });
 
-  // === NOVO: ANIMAÇÃO DO PRIMEIRO SLIDE (começa primeiro) ===
-  if (firstSlide) {
-    // Elementos do slide para animar
-    const slideElements = firstSlide.querySelectorAll('.projetos-titulo, .projeto-plus, .projeto-imagem, .projeto-descricao');
-    
-    // Animação do primeiro slide - começa imediatamente
-    tl.to(slideElements, {
-      opacity: 1,
-      y: 0,
-      duration: 9,
-      stagger: 0.15,
-      ease: "back.out(1.4)"
-    }, 0); // Inicia no tempo 0 da timeline
-  }
-
-  // Logo (agora começa depois do slide)
+  // Logo
   tl.to("[data-menu='logo']", {
     opacity: 1,
     y: 0,
     duration: 0.8
-  }, firstSlide ? 0.6 : 0); // Atraso se houver slide
+  }, 0);
 
   // Botão Menu
   tl.to("[data-menu='button-menu']", {
     opacity: 1,
     duration: 0.6
-  }, firstSlide ? 0.8 : 0.2);
+  }, 0.2);
 
   // Menu Projetos
   tl.to("#menu-projetos > li > a", {
@@ -74,7 +170,7 @@ export const initPageOpenAnimations = () => {
     y: 0,
     duration: 0.6,
     stagger: 0.1
-  }, firstSlide ? 1.0 : 0.4);
+  }, 0.4);
 
   // Menu Institucional
   tl.to(".menu-institutional li", {
@@ -82,23 +178,9 @@ export const initPageOpenAnimations = () => {
     y: 0,
     duration: 0.6,
     stagger: 0.1
-  }, firstSlide ? 0.8 : 0.2);
+  }, 0.6);
 
-  // título do projeto
-  tl.to("#projeto-titulo", {
-    opacity: 1,
-    x: 0,
-    duration: 0.8
-  }, firstSlide ? 1.2 : 0.8);
-
-  // barrinha
-  tl.to("#projeto-titulo .barra", {
-    scaleY: 1,
-    duration: 0.6,
-    ease: "power3.out"
-  }, firstSlide ? "-=0.2" : "-=0.4");
-
-  // Itens do Menu Principal
+  // Itens dinâmicos do menu (caso venham via JS/Contentful)
   const animateMenuItems = () => {
     tl.to("#menu-projetos > li > a", {
       opacity: 1,
@@ -108,14 +190,13 @@ export const initPageOpenAnimations = () => {
       onStart: () => {
         document.body.classList.add('menu-animating');
       }
-    }, firstSlide ? 1.0 : 0.4);
+    }, 0.4);
   };
 
-  // Verificação e observer para itens dinâmicos
   if (document.querySelectorAll('#menu-projetos > li > a').length > 0) {
     animateMenuItems();
   } else {
-    const observer = new MutationObserver((mutations) => {
+    const observer = new MutationObserver(() => {
       if (document.querySelectorAll('#menu-projetos > li > a').length > 0) {
         animateMenuItems();
         observer.disconnect();
@@ -132,7 +213,6 @@ export const initPageOpenAnimations = () => {
 };
 
 
-// Objeto para controlar o estado
 const hoverStates = new WeakMap();
 
 export const setupFilterAnimations = (container) => {
