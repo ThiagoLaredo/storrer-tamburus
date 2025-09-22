@@ -140,8 +140,6 @@ import "../../css/footer.css";
 import "../../css/projetos.css"; 
 
 import MenuMobile from '../modules/menu-mobile.js';
-import { initPageOpenAnimations } from '../modules/animations.js';
-
 import { fetchEntries } from '../modules/contentfulAPI.js';
 import { renderGaleria } from '../modules/renderProjetos.js';
 import { renderFiltros, getCurrentFilter } from '../modules/filterMenu.js';
@@ -162,8 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   if (menuMobile) menuMobile.init();
     
-  // ========== ANIMAÇÕES ==========
-  initPageOpenAnimations();
 
   // ========== GALERIA DE PROJETOS ==========
   const galeria = document.getElementById('galeria');
