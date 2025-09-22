@@ -8,7 +8,7 @@ import "../../css/sobre.css";
 
 import MenuMobile from '../modules/menu-mobile.js';
 import HeaderManager from '../modules/HeaderManager.js';
-import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
+import { initPageOpenAnimations } from '../modules/animations.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -31,7 +31,5 @@ document.addEventListener('DOMContentLoaded', async () => {
  
   // ========== ANIMAÇÕES ==========
   initPageOpenAnimations();
-  initScrollAnimations();
   
-
   });

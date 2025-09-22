@@ -8,7 +8,7 @@ import "../../css/contato.css";
 
 import MenuMobile from '../modules/menu-mobile.js';
 import HeaderManager from '../modules/HeaderManager.js';
-import { initPageOpenAnimations, initScrollAnimations } from '../modules/animations.js';
+import { initPageOpenAnimations } from '../modules/animations.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -28,8 +28,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const headerManager = new HeaderManager('.header');
  
   // ========== ANIMAÇÕES ==========
-  initPageOpenAnimations();
-  initScrollAnimations();
-  
+  initPageOpenAnimations();  
 
   });
