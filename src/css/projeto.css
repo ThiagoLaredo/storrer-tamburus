@@ -43,13 +43,13 @@
   z-index: 1; /* fica acima da imagem */
 }
 
-.projeto-slide .container {
-  position: relative; /* importante para ficar acima do overlay */
-  z-index: 2;         /* título acima do overlay */  
+/* .projeto-slide .container {
+  position: absolute;
+  z-index: 2;          
   bottom: 4rem;
   left: 0;
   right: 0;
-}
+} */
 
 .projeto-imagem {
   width: 100%;
