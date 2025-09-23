@@ -94,6 +94,7 @@ export class ProjetoRenderer {
       
           // Passa extras para animar junto com o slide
           animateFirstSlide(firstSlide, { extraElements: [titulo, barra].filter(Boolean) });
+          
         },
         slideChangeTransitionStart: function () {
           const previousSlide = this.slides[this.previousIndex];
