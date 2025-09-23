@@ -85,8 +85,7 @@
 /* ============ PAGINATION BULLETS ============ */
 .swiper-pagination {
   position: absolute;
-  right: 2rem;
-  top: 50%;
+  right: 2rem !important;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -110,11 +109,11 @@
 @media (max-width: 768px) {
   #projeto-titulo {
     font-size: 1.25rem;
-    bottom: 45%;       
+    bottom: calc(50% - 10px);
     left: 3rem;
   }
 
   .swiper-pagination {
-    right: 1rem;
+    right: 1.25rem !important;
   }
 }
