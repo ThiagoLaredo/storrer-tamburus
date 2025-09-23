@@ -150,30 +150,6 @@ body.preload .menu-institutional a {
   font-size: 1.5em;
 }
 
-/* ============ PAGINATION BULLETS ============ */
-.swiper-pagination {
-  position: absolute;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.swiper-pagination-bullet {
-  background: rgba(255,255,255,0.5);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  opacity: 1;
-  transition: background 0.3s;
-}
-
-.swiper-pagination-bullet-active {
-  background: var(--amarelo);
-}
-
 @media (max-width: 768px) {
  
   .projetos-page .institutional-nav,
