@@ -82,12 +82,35 @@
   z-index: 99;
 }
 
+/* ============ PAGINATION BULLETS ============ */
+.swiper-pagination {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255,255,255,0.5);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 1;
+  transition: background 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--amarelo);
+}
 
 /* ============ RESPONSIVE ADJUSTMENTS ============ */
 @media (max-width: 768px) {
   #projeto-titulo {
     font-size: 1.25rem;
-    bottom: 1.5rem;
+    bottom: 45%;       
     left: 3rem;
   }
 
