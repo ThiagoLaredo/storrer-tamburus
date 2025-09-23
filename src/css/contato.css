@@ -1,7 +1,10 @@
 #entre-em-contato {
     padding: 40px 20px;
     color: var(--texto-principal);
-}
+    min-height: 100vh; /* ocupa pelo menos a tela toda descontando o header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;}
 
 #entre-em-contato h2 {
     color: var(--cinza);

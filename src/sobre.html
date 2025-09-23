@@ -34,18 +34,22 @@
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet" />
     </noscript>
-  
+    <!-- Font Awesome -->
+    <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+    />
     <script>document.documentElement.className += ' js';</script>
   </head>
   
   <body class="page-sobre">
     <header class="header">
       <div class="container">
-        <a [data-menu="logo"] class="home-link" href="/">
+        <a class="home-link" href="/">
           <span data-menu="logo">Storrer Tamburus</span>
           <span class="visually-hidden">Voltar para a página inicial</span>
         </a>
-
+        
         <!-- Menus -->
         <div class="navigation">
           <!-- Menu Institucional -->
@@ -75,31 +79,13 @@
         </button> 
       </div>
     </header>
-    
-    <!-- Icones sociais menu mobile -->
-    <ul data-menu="contato-mobile">
-      <li>Sobre</li>
-      <li>Contato</li>
-    </ul>
-    <a data-menu="whatsapp" href="https://wa.me/5521985486951" target="_blank" loading="lazy">
-      <img src="./imgs/icones/whatsapp-icon2.svg" alt="icone WhatsApp mobile" width="32" height="32">
-      <span class="visually-hidden">Ir para o WhatsApp</span>
-    </a>
-    <a data-menu="linkedin" href="https://www.linkedin.com/company/storrer-tamburus" target="_blank" loading="lazy">
-      <img src="./imgs/icones/linkedin.svg" alt="icone Linkedin mobile" width="32" height="32">
-      <span class="visually-hidden">Ir para o Linkedin</span>
-    </a>
-    <a data-menu="instagram" href="https://www.instagram.com/storrertamburus/" target="_blank">
-      <img src="./imgs/icones/instagram-footer.svg" alt="icone Instagram mobile" width="32" height="32" loading="lazy">
-      <span class="visually-hidden">Ir para o Instagram</span>
-    </a>
 
     <main>
-      <section class="container">
+      <section class="sobre container">
         <div class="socios">
-          <div class="socio-img">
+          <!-- <div class="socio-img">
             <img class="animate-me" src="./imgs/socios.jpg" alt="Veridiana Tamburus e Fábio Storrer" width="" height="">
-          </div>
+          </div> -->
           <div class="socios-text">
             <div class="socio animate-me">
               <h3>Veridiana Tamburus</h3>
@@ -115,25 +101,7 @@
   
         </div>
       </section>
-
     </main>
-
-    <footer>
-      <div class="container footer-content">
-        <!-- <div class="footer-logo">
-          <img src="./imgs/icones/logo.png" alt="Logotipo da Storrer Tamburus" width="120" height="120">
-        </div>
-        <div class="footer-text">
-          <p>© 2023 Storrer Tamburus. Todos os direitos reservados.</p>
-          <p>Desenvolvido por <a href="https://www.olatu.com.br" target="_blank">Olatu</a></p>
-        </div> -->
-        <ul class="footer-socials">
-          <li><a href="https://www.instagram.com/storrertamburus/" target="_blank"><img src="./imgs/icones/instagram-footer.svg" alt="Instagram"></a></li>
-          <li><a href="https://www.linkedin.com/company/storrer-tamburus" target="_blank"><img src="./imgs/icones/linkedin.svg" alt="LinkedIn"></a></li>
-          <li><a href="https://wa.me/5521985486951" target="_blank"><img src="./imgs/icones/whatsapp-icon2.svg" alt="WhatsApp"></a></li>
-        </ul>
-    </footer> 
-
 
   </body>
 </html>

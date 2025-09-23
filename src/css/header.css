@@ -35,6 +35,10 @@ body.projeto-page #menu-projetos {
   white-space: nowrap; 
 }
 
+.page-sobre [data-menu="logo"], .page-contato [data-menu="logo"] {
+  color: var(--cinza);
+}
+
 .navigation {
   display: flex;
   flex-direction: column;
@@ -81,6 +85,12 @@ body.projeto-page #menu-projetos {
 .menu-institutional a:hover::after {
   width: 100%;
 }
+
+.page-sobre .menu-institutional a, .page-contato .menu-institutional a {
+  color: var(--cinza);
+}
+
+
 
 /* Conteúdo Principal do Header */
 .header_menu {
