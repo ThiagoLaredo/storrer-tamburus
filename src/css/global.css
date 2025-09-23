@@ -18,21 +18,6 @@ body {
   background: #fff;
 }
 
-body.home::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3) ;
-  z-index: 900; /* abaixo do header, acima do slideshow */
-  pointer-events: none; /* não bloqueia clique */
-}
-
-/* main {   padding: calc(var(--header-height) + 0.2rem) 0 0 0;
-} */
-
 .swiper-slide {
   user-select: none;
 }
@@ -163,6 +148,30 @@ body.preload .menu-institutional a {
 
 .fa-2x {
   font-size: 1.5em;
+}
+
+/* ============ PAGINATION BULLETS ============ */
+.swiper-pagination {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255,255,255,0.5);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 1;
+  transition: background 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--amarelo);
 }
 
 @media (max-width: 768px) {

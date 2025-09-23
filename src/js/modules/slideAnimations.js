@@ -1,65 +1,3 @@
-// import gsap from "gsap";
-
-
-
-// export function animateFirstSlide(slide, { extraElements = [] } = {}) {
-//   if (!slide) return;
-
-//   const title = slide.querySelector('.projetos-titulo') || slide.querySelector('#projeto-titulo');
-//   const plusIcon = slide.querySelector('.projeto-plus');
-//   const barra = slide.querySelector('.barra');           // ProjetoRenderer
-//   const image = slide.querySelector('.projeto-imagem');
-
-//   const elements = [title, plusIcon, image, ...extraElements].filter(Boolean);
-
-//   // anima barra separadamente
-//   if (barra) {
-//     gsap.set(barra, { scaleY: 0, transformOrigin: "bottom" });
-//   }
-
-//   if (elements.length) {
-//     gsap.set(elements, { opacity: 0, y: 30 });
-//   }
-
-//   // animação principal
-//   gsap.to(elements, {
-//     opacity: 1,
-//     y: 0,
-//     duration: 0.8,
-//     stagger: 0.15,
-//     ease: "power2.out"
-//   });
-
-//   // animação da barra
-//   if (barra) {
-//     gsap.to(barra, {
-//       scaleY: 1,
-//       duration: 0.6,
-//       delay: 0.3, // começa depois do título
-//       ease: "power2.out"
-//     });
-//   }
-// }
-
-// export function animateSlideChange(slide) {
-//   if (!slide) return;
-
-//   const title = slide.querySelector('.projetos-titulo') || slide.querySelector('#projeto-titulo');
-//   const plusIcon = slide.querySelector('.projeto-plus');
-//   const barra = slide.querySelector('.barra'); // ProjetoRenderer
-
-//   const elements = [title, plusIcon].filter(Boolean);
-
-//   if (elements.length) {
-//     gsap.fromTo(elements, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" });
-//   }
-
-//   // anima barra separadamente
-//   if (barra) {
-//     gsap.fromTo(barra, { scaleY: 0 }, { scaleY: 1, duration: 0.6, ease: "power2.out" });
-//   }
-// }
-
 import gsap from "gsap";
 import { initPageOpenAnimations } from './animations.js';
 
@@ -105,7 +43,7 @@ export function animateFirstSlide(slide) {
   tl.to([title, plusIcon], {
     opacity: 1,
     y: 0,
-    duration: 0.5,
+    duration: 0.2,
     stagger: 0.1
   }, ">"); // começa imediatamente após o header
 
@@ -119,25 +57,30 @@ export function animateFirstSlide(slide) {
   return tl;
 }
 
-
-
-
-
 export function animateSlideChange(slide) {
   if (!slide) return;
 
   const title = slide.querySelector('.projetos-titulo') || slide.querySelector('#projeto-titulo');
   const plusIcon = slide.querySelector('.projeto-plus');
-  const barra = slide.querySelector('.barra'); // ProjetoRenderer
 
-  const elements = [title, plusIcon].filter(Boolean);
+  const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-  if (elements.length) {
-    gsap.fromTo(elements, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" });
+  if (title) {
+    tl.fromTo(
+      title,
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.3 }
+    );
   }
 
-  // anima barra separadamente
-  if (barra) {
-    gsap.fromTo(barra, { scaleY: 0 }, { scaleY: 1, duration: 0.6, ease: "power2.out" });
+  if (plusIcon) {
+    tl.fromTo(
+      plusIcon,
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.1 },
+      ">-0.1" // entra logo depois do título, com um pequeno overlap
+    );
   }
+
+  return tl;
 }
