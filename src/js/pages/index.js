@@ -3,7 +3,6 @@ import "../../css/cores.css";
 import "../../css/componentes.css";
 import "../../css/header.css";
 import "../../css/menu-mobile.css";
-import "../../css/footer.css";
 import "../../css/home.css";
 
 import MenuMobile from '../modules/menu-mobile.js';
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     '.header_acoes'
   );
   if (menuMobile) menuMobile.init();
-
 
   // ----------- CARREGAMENTO DO MENU DE FILTROS ------------
   const filtrosContainer = document.querySelector('[data-menu="list-projetos"]');
